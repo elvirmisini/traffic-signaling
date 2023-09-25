@@ -56,7 +56,8 @@ def saveScheduleToFile(schedules, streets, filename):
                 line = streets[schedule.order[i]].name + ' ' + str(schedule.green_times[schedule.order[i]]) + '\n'
                 file.write(line)
 
-# Save to file
+# Save to file  
+
 saveScheduleToFile(schedule, streets, output_file)
 
 
