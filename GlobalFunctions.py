@@ -227,3 +227,14 @@ def printSchedule(schedules, streets):
         print(len(schedule.order))
         for i in range(len(schedule.order)):
             print(streets[schedule.order[i]].name, schedule.green_times[schedule.order[i]])
+
+
+def saveScheduleToFile(schedules, streets, filename):
+    with open(filename, 'w') as file:
+        file.write(str(len(schedules)) + '\n')
+        for schedule in schedules:
+            file.write(str(schedule.i_intersection) + '\n')
+            file.write(str(len(schedule.order)) + '\n')
+            for i in range(len(schedule.order)):
+                line = streets[schedule.order[i]].name + ' ' + str(schedule.green_times[schedule.order[i]]) + '\n'
+                file.write(line)

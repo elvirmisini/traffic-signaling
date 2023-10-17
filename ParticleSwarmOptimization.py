@@ -120,3 +120,12 @@ time_spend = time() - start
 gl.printSchedule(schedule, streets)
 print("Score: ", score)
 print("Time: ", time_spend)
+
+
+
+output_file = "./outputs//"+file+".output.txt"  # You can change the file name as needed
+# Save to file  
+
+gl.saveScheduleToFile(schedule, streets, output_file)
+
+

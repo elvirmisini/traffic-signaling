@@ -45,19 +45,8 @@ print("Time: ", time_spend)
 
 output_file = "./outputs//"+file+".output.txt"  # You can change the file name as needed
 
-
-def saveScheduleToFile(schedules, streets, filename):
-    with open(filename, 'w') as file:
-        file.write(str(len(schedules)) + '\n')
-        for schedule in schedules:
-            file.write(str(schedule.i_intersection) + '\n')
-            file.write(str(len(schedule.order)) + '\n')
-            for i in range(len(schedule.order)):
-                line = streets[schedule.order[i]].name + ' ' + str(schedule.green_times[schedule.order[i]]) + '\n'
-                file.write(line)
-
 # Save to file  
 
-saveScheduleToFile(schedule, streets, output_file)
+gl.saveScheduleToFile(schedule, streets, output_file)
 
 
