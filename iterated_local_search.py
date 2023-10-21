@@ -42,8 +42,8 @@ def tweak(current_solution):
     return modified_schedule
 
 
-def new_home_base(current_home_base, current_solution):
-    return current_solution
+# def new_home_base(current_home_base, current_solution):
+#     return current_solution
 
 
 def perturb(schedule):
@@ -95,8 +95,8 @@ def optimize_solution_with_ils(initial_solution,
         if cs_score > bs_score:
             best_solution = current_solution
 
-        current_home_base = new_home_base(current_home_base, current_solution)
-        current_solution = perturb(current_home_base)
+        # current_home_base = new_home_base(current_home_base, current_solution)
+        current_solution = perturb(current_solution)
         iteration = iteration + 1
 
     return best_solution
