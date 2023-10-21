@@ -23,8 +23,8 @@ def main(instance_name: str, output: str) -> None:
     total_duration, bonus_points, intersections, streets, name_to_i_street, paths = read_input(instance_name)
     initial_solution = random_initial_solution(intersections)
 
-    score = fitness_score(initial_solution, streets, intersections, paths, total_duration, bonus_points)
-    print(f'The solution of {instance_name} has the score {score}.')
+    initial_score = fitness_score(initial_solution, streets, intersections, paths, total_duration, bonus_points)
+    print(f'The solution of {instance_name} has the score {initial_score}.')
 
     ils_solution = optimize_solution_with_ils(initial_solution,
                                               streets,
@@ -36,6 +36,7 @@ def main(instance_name: str, output: str) -> None:
     score = fitness_score(ils_solution, streets, intersections, paths, total_duration, bonus_points)
     print(f'The solution of {instance_name} has the score {score}.')
 
+    print(f'\nOptimized for {score - initial_score} points.')
     save_schedule_to_file(ils_solution, streets, output)
 
     end_time = time.perf_counter()

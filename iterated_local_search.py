@@ -3,11 +3,43 @@ from random import shuffle
 
 from fitness_function import fitness_score
 
+import random
+
 
 def tweak(current_solution):
-    new_schedule = deepcopy(current_solution)
+    modified_schedule = deepcopy(current_solution)
 
-    return new_schedule
+    for i in range(len(modified_schedule)):
+        # 1. Shuffle the order of streets
+        streets_order = modified_schedule[i].order
+        shuffle(streets_order)
+
+        # 2. Modify the green times
+        green_times = modified_schedule[i].green_times
+
+        street_ids = list(green_times.keys())
+        original_total_time = sum(green_times.values())
+
+        adjustments = []
+        for _ in street_ids[:-1]:  # We don't include the last street for now
+            # Change the green time a bit (either increase or decrease)
+            change = random.randint(-2, 2)  # You can adjust these values as needed
+            adjustments.append(change)
+
+        # Calculate adjustment for the last street to keep total time consistent
+        adjustments.append(
+            original_total_time - sum(green_times[street_id] + adj for street_id, adj in zip(street_ids, adjustments)))
+
+        for street_id, adj in zip(street_ids, adjustments):
+            green_times[street_id] += adj
+
+        # Ensure no green time goes below zero
+        for street_id in street_ids:
+            if green_times[street_id] < 0:
+                green_times[
+                    street_id] = 0  # or reset to original: green_times[street_id] = schedule[i].green_times[street_id]
+
+    return modified_schedule
 
 
 def new_home_base(current_home_base, current_solution):
@@ -44,12 +76,12 @@ def optimize_solution_with_ils(initial_solution,
     best_solution = deepcopy(initial_solution)
 
     iteration = 0
-    while iteration < 10:
+    while iteration < 20:
         print(iteration)
         inner_iteration = 0
 
-        while inner_iteration < 30:
-            tweak_solution = perturb(current_solution)
+        while inner_iteration < 20:
+            tweak_solution = tweak(current_solution)
 
             cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
             tw_score = fitness_score(tweak_solution, streets, intersections, paths, total_duration, bonus_points)
