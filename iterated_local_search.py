@@ -1,12 +1,11 @@
+import random
 from copy import deepcopy
 from random import shuffle
 
 from fitness_function import fitness_score
 
-import random
 
-
-def tweak(current_solution):
+def shuffle_and_adjust_timings(current_solution):
     modified_schedule = deepcopy(current_solution)
 
     for i in range(len(modified_schedule)):
@@ -42,8 +41,56 @@ def tweak(current_solution):
     return modified_schedule
 
 
-# def new_home_base(current_home_base, current_solution):
-#     return current_solution
+def tweak_light_order_and_duration(schedule):
+    """This operator is taken from existing literature but changed.
+
+    Resource link: https://github.com/sagishporer/hashcode-2021-qualification
+    """
+    perturbed_schedule = deepcopy(schedule)
+
+    # 1. Shuffle Green Lights for random intersections
+    for i in range(len(perturbed_schedule)):
+        if random.random() < 0.3:  # 30% chance to shuffle an intersection
+            streets_order = perturbed_schedule[i].order
+            shuffle(streets_order)
+            perturbed_schedule[i].order = streets_order
+
+    # 2. Swap Green Light Durations for a couple of streets in some intersections
+    for i in range(len(perturbed_schedule)):
+        green_times = perturbed_schedule[i].green_times
+        street_ids = list(green_times.keys())
+
+        if len(street_ids) < 2:
+            continue
+
+        if random.random() < 0.2:  # 20% chance to swap durations for an intersection
+            idx1 = random.randint(0, len(street_ids) - 1)
+            idx2 = random.randint(0, len(street_ids) - 1)
+            while idx1 == idx2:
+                idx2 = random.randint(0, len(street_ids) - 1)
+
+            # Swap durations
+            temp_duration = green_times[street_ids[idx1]]
+            green_times[street_ids[idx1]] = green_times[street_ids[idx2]]
+            green_times[street_ids[idx2]] = temp_duration
+
+    return perturbed_schedule
+
+
+def tweak(current_solution):
+    if random.random() < 0.5:
+        return shuffle_and_adjust_timings(current_solution)
+    else:
+        return tweak_light_order_and_duration(current_solution)
+
+
+def new_home_base(current_home_base, current_solution, streets, intersections, paths, total_duration, bonus_points):
+    cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
+    chb_score = fitness_score(current_home_base, streets, intersections, paths, total_duration, bonus_points)
+    if cs_score >= chb_score:
+        return deepcopy(current_solution)
+    else:
+        return deepcopy(current_home_base)
 
 
 def perturb(schedule):
@@ -76,11 +123,11 @@ def optimize_solution_with_ils(initial_solution,
     best_solution = deepcopy(initial_solution)
 
     iteration = 0
-    while iteration < 20:
+    while iteration < 50:
         print(iteration)
         inner_iteration = 0
 
-        while inner_iteration < 20:
+        while inner_iteration < 250:
             tweak_solution = tweak(current_solution)
 
             cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
@@ -95,8 +142,11 @@ def optimize_solution_with_ils(initial_solution,
         if cs_score > bs_score:
             best_solution = current_solution
 
-        # current_home_base = new_home_base(current_home_base, current_solution)
-        current_solution = perturb(current_solution)
+        print(bs_score)
+
+        current_home_base = new_home_base(current_home_base, current_solution, streets, intersections, paths,
+                                          total_duration, bonus_points)
+        current_solution = perturb(current_home_base)
         iteration = iteration + 1
 
     return best_solution
