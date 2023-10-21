@@ -13,6 +13,7 @@ import time
 from fitness_function import fitness_score
 from initial_solution import random_initial_solution
 from input_parser import read_input
+from iterated_local_search import optimize_solution_with_ils
 from ouput_writer import save_schedule_to_file
 
 
@@ -23,10 +24,19 @@ def main(instance_name: str, output: str) -> None:
     initial_solution = random_initial_solution(intersections)
 
     score = fitness_score(initial_solution, streets, intersections, paths, total_duration, bonus_points)
-
     print(f'The solution of {instance_name} has the score {score}.')
 
-    save_schedule_to_file(initial_solution, streets, output)
+    ils_solution = optimize_solution_with_ils(initial_solution,
+                                              streets,
+                                              intersections,
+                                              paths,
+                                              total_duration,
+                                              bonus_points)
+
+    score = fitness_score(ils_solution, streets, intersections, paths, total_duration, bonus_points)
+    print(f'The solution of {instance_name} has the score {score}.')
+
+    save_schedule_to_file(ils_solution, streets, output)
 
     end_time = time.perf_counter()
     elapsed_time = end_time - start_time
