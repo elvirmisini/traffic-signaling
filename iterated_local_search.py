@@ -77,10 +77,51 @@ def tweak_light_order_and_duration(schedule):
     return perturbed_schedule
 
 
-def tweak(current_solution):
-    if random.random() < 0.5:
+def tweak_showtime(current_solution, streets, intersections, paths, total_duration, bonus_points):
+    tweaked_solution = {intersection.i_intersection: intersection for intersection in current_solution}
+
+    while True:  # This loop will run until there's no improvement
+        # 1. Randomly select an intersection and a street in that intersection
+        rand_intersection_id, rand_intersection = random.choice(list(tweaked_solution.items()))
+        if not rand_intersection.order:
+            continue
+        rand_street_id = random.choice(rand_intersection.order)
+
+        # 2. Adjust the green light time of the chosen street by ±1
+        adjustment = random.choice([-1, 1])
+        rand_intersection.green_times[rand_street_id] += adjustment
+        rand_intersection.green_times[rand_street_id] = max(0, rand_intersection.green_times[rand_street_id])  # ensure non-negative
+
+        # 3. Check if the score improves
+        old_score = fitness_score(list(tweaked_solution.values()), streets, intersections, paths, total_duration, bonus_points)
+        new_score = fitness_score(list(tweaked_solution.values()), streets, intersections, paths, total_duration, bonus_points)
+
+        if new_score <= old_score:
+            # If there's no improvement, revert the change and break the loop
+            rand_intersection.green_times[rand_street_id] -= adjustment
+            break
+
+    return list(tweaked_solution.values())
+
+
+def shuffle_single_intersection_order(current_solution):
+    tweaked_solution = deepcopy(current_solution)
+    rand_intersection = random.choice(tweaked_solution)
+    if rand_intersection.order:
+        shuffle(rand_intersection.order)
+    return tweaked_solution
+
+
+def enhanced_tweak(current_solution, streets, intersections, paths, total_duration, bonus_points):
+    tweak_option = random.choice(["showtime", "single_shuffle", "adjust_timings", "light_order_duration"])
+
+    if tweak_option == "showtime":
+        return tweak_showtime(current_solution, streets, intersections, paths, total_duration, bonus_points)
+    elif tweak_option == "single_shuffle":
+        return shuffle_single_intersection_order(current_solution)
+    elif tweak_option == "adjust_timings":
         return shuffle_and_adjust_timings(current_solution)
-    else:
+    else:  # "light_order_duration"
         return tweak_light_order_and_duration(current_solution)
 
 
@@ -123,12 +164,12 @@ def optimize_solution_with_ils(initial_solution,
     best_solution = deepcopy(initial_solution)
 
     iteration = 0
-    while iteration < 50:
+    while iteration < 30:
         print(iteration)
         inner_iteration = 0
 
-        while inner_iteration < 250:
-            tweak_solution = tweak(current_solution)
+        while inner_iteration < 100:
+            tweak_solution = enhanced_tweak(current_solution, streets, intersections, paths, total_duration, bonus_points)
 
             cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
             tw_score = fitness_score(tweak_solution, streets, intersections, paths, total_duration, bonus_points)
