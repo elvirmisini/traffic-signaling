@@ -1,7 +1,7 @@
 import random
 from copy import deepcopy
 from random import shuffle
-
+from random import shuffle, sample
 from fitness_function import fitness_score
 
 
@@ -113,7 +113,7 @@ def shuffle_single_intersection_order(current_solution):
 
 
 def enhanced_tweak(current_solution, streets, intersections, paths, total_duration, bonus_points):
-    tweak_option = random.choice(["showtime", "single_shuffle", "adjust_timings", "light_order_duration"])
+    tweak_option = random.choice(["showtime", "single_shuffle", "adjust_timings", "light_order_duration","switch_green_times"])
 
     if tweak_option == "showtime":
         return tweak_showtime(current_solution, streets, intersections, paths, total_duration, bonus_points)
@@ -121,6 +121,8 @@ def enhanced_tweak(current_solution, streets, intersections, paths, total_durati
         return shuffle_single_intersection_order(current_solution)
     elif tweak_option == "adjust_timings":
         return shuffle_and_adjust_timings(current_solution)
+    elif tweak_option == "switch_green_times":#added new
+        return switch_green_times(current_solution)
     else:  # "light_order_duration"
         return tweak_light_order_and_duration(current_solution)
 
@@ -151,6 +153,25 @@ def perturb(schedule):
 
     return perturbed_schedule
 
+def switch_green_times(schedule):
+    perturbed_schedule = deepcopy(schedule)
+
+    # Example: Shuffle the order of streets within a random subset of intersections
+    for intersection in sample(perturbed_schedule, k=len(perturbed_schedule) // 2):
+        shuffle(intersection.order)
+        shuffle_green_times(intersection.green_times)
+    
+    return perturbed_schedule
+
+def shuffle_green_times(green_times):
+    # Shuffle the green times for streets within an intersection
+    street_ids = list(green_times.keys())
+    shuffle(street_ids)
+    new_green_times = {street_id: green_times[street_id] for street_id in street_ids}
+
+    for street_id, green_time in green_times.items():
+        green_times[street_id] = new_green_times[street_id]
+
 
 def optimize_solution_with_ils(initial_solution,
                                streets,
@@ -164,11 +185,11 @@ def optimize_solution_with_ils(initial_solution,
     best_solution = deepcopy(initial_solution)
 
     iteration = 0
-    while iteration < 30:
+    while iteration < 100:
         print(iteration)
         inner_iteration = 0
 
-        while inner_iteration < 100:
+        while inner_iteration < 11:
             tweak_solution = enhanced_tweak(current_solution, streets, intersections, paths, total_duration, bonus_points)
 
             cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)

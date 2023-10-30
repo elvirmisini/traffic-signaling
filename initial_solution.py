@@ -82,6 +82,40 @@ def usage_based_initial_solution(intersections) -> Schedule:
     return schedules
 
 
+# import numpy as np  
+
+# import numpy as np
+
+# def usage_based_initial_solution(intersections, percentile=75) -> Schedule:
+#     schedules = []
+
+#     for intersection in intersections:
+#         order = []
+#         green_times = {}
+
+#         # Extract street usages from valid streets
+#         street_usages = [intersection.streets_usage.get(street.name, 0) for street in intersection.incomings if street.name in intersection.streets_usage]
+
+#         if not street_usages:
+#             # Handle the case where street_usages is empty (e.g., set a default threshold)
+#             threshold_usage = 0
+#         else:
+#             # Calculate the threshold_usage based on the instance's statistics
+#             threshold_usage = np.percentile(street_usages, percentile)
+
+#         sorted_streets = sorted(intersection.incomings, key=lambda s: intersection.streets_usage.get(s.name, 0), reverse=True)
+
+#         for street in sorted_streets:
+#             if street.name in intersection.using_streets:
+#                 order.append(street.id)
+#                 green_times[street.id] = 2 if intersection.streets_usage.get(street.name, 0) > threshold_usage else 1
+
+#         if order:
+#             schedules.append(Schedule(intersection.id, order, green_times))
+
+#     return schedules
+
+
 from random import choices
 
 
