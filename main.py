@@ -22,7 +22,7 @@ def main(instance_name: str, output: str) -> None:
     start_time = time.perf_counter()
 
     total_duration, bonus_points, intersections, streets, name_to_i_street, paths = read_input(instance_name)
-    initial_solution = traffic_based_initial_solution(intersections)
+    initial_solution = usage_based_initial_solution(intersections)
 
     initial_score = fitness_score(initial_solution, streets, intersections, paths, total_duration, bonus_points)
     print(f'The solution of {instance_name} has the score {initial_score}.')

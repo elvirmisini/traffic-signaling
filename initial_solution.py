@@ -1,5 +1,5 @@
 from random import choices, randint
-
+import random
 from recordclass import recordclass
 
 Schedule = recordclass('Schedule', [
@@ -47,7 +47,10 @@ def traffic_based_initial_solution(intersections) -> Schedule:
         for street in sorted_streets:
             if street.name in intersection.using_streets:
                 order.append(street.id)
-                green_times[street.id] = 2 if len(street.waiting_cars) > threshold else 1  # example static allocation
+                # Introduce randomness in green time allocation
+                random_factor = random.uniform(1, 2)  # Adjust the range as needed
+                green_time = 2 if len(street.waiting_cars) > threshold else 1
+                green_times[street.id] = int(green_time * random_factor)
 
         if order:
             schedules.append(Schedule(intersection.id, order, green_times))
@@ -74,7 +77,10 @@ def usage_based_initial_solution(intersections) -> Schedule:
         for street in sorted_streets:
             if street.name in intersection.using_streets:
                 order.append(street.id)
-                green_times[street.id] = 2 if intersection.streets_usage.get(street.name, 0) > threshold_usage else 1
+                # Introduce randomness in green time allocation
+                random_factor = random.uniform(1,2)  # Adjust the range as needed
+                green_time = 2 if intersection.streets_usage.get(street.name, 0) > threshold_usage else 1
+                green_times[street.id] = int(green_time * random_factor)
 
         if order:
             schedules.append(Schedule(intersection.id, order, green_times))
