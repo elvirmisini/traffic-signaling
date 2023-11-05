@@ -185,7 +185,7 @@ def optimize_solution_with_ils(initial_solution,
     best_solution = deepcopy(initial_solution)
 
     iteration = 0
-    while iteration < 100:
+    while iteration < 10:
         print(iteration)
         inner_iteration = 0
 

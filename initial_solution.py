@@ -1,3 +1,4 @@
+import math
 from random import choices, randint
 import random
 from recordclass import recordclass
@@ -74,13 +75,21 @@ def usage_based_initial_solution(intersections) -> Schedule:
         sorted_streets = sorted(intersection.incomings, key=lambda s: intersection.streets_usage.get(s.name, 0),
                                 reverse=True)
 
+        # for street in sorted_streets:
+        #     if street.name in intersection.using_streets:
+        #         order.append(street.id)
+        #         # Introduce randomness in green time allocation
+        #         random_factor = random.uniform(1,2)  # Adjust the range as needed
+        #         green_time = 2 if intersection.streets_usage.get(street.name, 0) > threshold_usage else 1
+        #         green_times[street.id] = int(green_time * random_factor)
+
         for street in sorted_streets:
             if street.name in intersection.using_streets:
                 order.append(street.id)
-                # Introduce randomness in green time allocation
-                random_factor = random.uniform(1,2)  # Adjust the range as needed
-                green_time = 2 if intersection.streets_usage.get(street.name, 0) > threshold_usage else 1
-                green_times[street.id] = int(green_time * random_factor)
+                # Introduce a modified green time based on street usage
+                usage = intersection.streets_usage.get(street.name, 0)
+                green_time = int(math.sqrt(usage)) if usage > 0 else 1
+                green_times[street.id] = green_time        
 
         if order:
             schedules.append(Schedule(intersection.id, order, green_times))
