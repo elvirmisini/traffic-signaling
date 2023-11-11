@@ -195,7 +195,7 @@ def optimize_solution_with_ils(initial_solution,
         print(iteration)
         inner_iteration = 0
         i = 0
-        while inner_iteration < 1000:
+        while inner_iteration < 100:
             tweak_solution = enhanced_tweak(current_solution, streets, intersections, paths, total_duration,
                                             bonus_points)
 
