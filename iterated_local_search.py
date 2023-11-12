@@ -69,8 +69,8 @@ def randomize_intersections_streets_and_customize_timings(current_solution: list
             adjustments.append(change)
 
         # Calculate adjustment for the last street to keep total time consistent
-        for street_id, adj in zip(street_ids, adjustments):
-            adjustments.append(original_total_time - sum(green_times[street_id] + adj))
+        adjustments.append(
+            original_total_time - sum(green_times[street_id] + adj for street_id, adj in zip(street_ids, adjustments)))
 
         for street_id, adj in zip(street_ids, adjustments):
             green_times[street_id] += adj
