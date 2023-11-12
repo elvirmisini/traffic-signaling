@@ -60,16 +60,22 @@ def switch_green_times(schedule):
     return perturbed_schedule
 
 
-def shuffle_and_adjust_timings(current_solution):
-    modified_schedule = deepcopy(current_solution)
+def randomize_intersections_streets_and_customize_timings(current_solution: Schedule) -> Schedule:
+    """Based on a comment from the link: https://codeforces.com/blog/entry/88188
 
-    for i in range(len(modified_schedule)):
+    This operator changes the streets order and changes the green times by randomly
+    increasing or decreasing the green time by 1 or -1.
+    """
+
+    tweaked_solution = deepcopy(current_solution)
+
+    for i in range(len(tweaked_solution)):
         # 1. Shuffle the order of streets
-        streets_order = modified_schedule[i].order
+        streets_order = tweaked_solution[i].order
         shuffle(streets_order)
 
         # 2. Modify the green times
-        green_times = modified_schedule[i].green_times
+        green_times = tweaked_solution[i].green_times
 
         street_ids = list(green_times.keys())
         original_total_time = sum(green_times.values())
@@ -77,12 +83,12 @@ def shuffle_and_adjust_timings(current_solution):
         adjustments = []
         for _ in street_ids[:-1]:  # We don't include the last street for now
             # Change the green time a bit (either increase or decrease)
-            change = random.randint(-2, 2)  # You can adjust these values as needed
+            change = random.randint(-1, 1)
             adjustments.append(change)
 
         # Calculate adjustment for the last street to keep total time consistent
-        adjustments.append(
-            original_total_time - sum(green_times[street_id] + adj for street_id, adj in zip(street_ids, adjustments)))
+        for street_id, adj in zip(street_ids, adjustments):
+            adjustments.append(original_total_time - sum(green_times[street_id] + adj))
 
         for street_id, adj in zip(street_ids, adjustments):
             green_times[street_id] += adj
@@ -90,16 +96,22 @@ def shuffle_and_adjust_timings(current_solution):
         # Ensure no green time goes below zero
         for street_id in street_ids:
             if green_times[street_id] < 0:
-                green_times[
-                    street_id] = 0  # or reset to original: green_times[street_id] = schedule[i].green_times[street_id]
+                green_times[street_id] = 0  # or reset to original
 
-    return modified_schedule
+    return tweaked_solution
 
 
-def shuffle_single_intersection_order(current_solution: Schedule) -> Schedule:
-    """Selects one group of intersections randomly and shuffle the order of the streets
-    and change the green lights.
+def randomize_intersections_streets_and_timings(current_solution: Schedule) -> Schedule:
+    """Selects one group of intersections randomly and shuffles the order of the streets
+    and changes the green light duration time.
+
+    Example: We get a number of intersections randomly: Intersection_2, Intersection_5 and
+    get the streets of these intersections for example streets of Intersection_2 are A, B, C, D.
+    For these streets we have these green times: A -> 1 second, B -> 2, C -> 1, D -> 3.
+    This operator will shuffle the order of the streets and changes the green duration time,
+    for example the new Intersection_2 will be  B -> 1 second, D -> 3, A -> 1,C -> 1.
     """
+
     tweaked_solution = deepcopy(current_solution)
     for intersection in sample(tweaked_solution, k=len(tweaked_solution) // 2):
         shuffle(intersection.order)
@@ -118,15 +130,16 @@ def shuffle_single_intersection_order(current_solution: Schedule) -> Schedule:
     return tweaked_solution
 
 
-def shuffle_intersection_streets_order(current_solution: Schedule) -> Schedule:
+def randomize_intersection_streets_order(current_solution: Schedule) -> Schedule:
     """Selects one intersection randomly and shuffles the order of how the green
     lights are going to be set for the streets.
 
     Example: We have an intersection Intersection_1 and its streets A, B, C, D.
     Let the current solution have the order: A, D, C, B.
     This operator will shuffle the order of the streets randomly,
-    for example we will get: B, D, A, C
+    for example we will get: B, D, A, C.
     """
+
     tweaked_solution = deepcopy(current_solution)
     random_intersection = random.choice(tweaked_solution)
     if random_intersection.order:
@@ -176,18 +189,18 @@ def new_home_base(current_home_base, current_solution, streets, intersections, p
 def enhanced_tweak(current_solution):
     tweak_option = random.choice([
         0,
-        "single_shuffle",
+        1,
         "adjust_timings",
         "light_order_duration",
         "switch_green_times"
     ])
 
     if tweak_option == 0:
-        return shuffle_intersection_streets_order(current_solution)
-    elif tweak_option == "single_shuffle":
-        return shuffle_single_intersection_order(current_solution)
+        return randomize_intersection_streets_order(current_solution)
+    elif tweak_option == 1:
+        return randomize_intersections_streets_and_timings(current_solution)
     elif tweak_option == "adjust_timings":
-        return shuffle_and_adjust_timings(current_solution)
+        return randomize_intersections_streets_and_customize_timings(current_solution)
     elif tweak_option == "switch_green_times":  # added new
         return switch_green_times(current_solution)
     else:
