@@ -3,6 +3,8 @@ import random
 
 from recordclass import recordclass
 
+from input_parser import Intersection
+
 Schedule = recordclass('Schedule', [
     'i_intersection',
     'order',
@@ -10,7 +12,7 @@ Schedule = recordclass('Schedule', [
 ])
 
 
-def traffic_based_initial_solution(intersections) -> Schedule:
+def traffic_based_initial_solution(intersections: list[Intersection]) -> list[Schedule]:
     schedules = []
 
     # Calculate the global threshold first for efficiency
@@ -40,7 +42,7 @@ def traffic_based_initial_solution(intersections) -> Schedule:
     return schedules
 
 
-def usage_based_initial_solution(intersections) -> Schedule:
+def usage_based_initial_solution(intersections: list[Intersection]) -> list[Schedule]:
     schedules = []
 
     for intersection in intersections:
