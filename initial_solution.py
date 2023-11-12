@@ -61,4 +61,3 @@ def usage_based_initial_solution(intersections) -> Schedule:
             schedules.append(Schedule(intersection.id, order, green_times))
 
     return schedules
-

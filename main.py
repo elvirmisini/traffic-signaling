@@ -8,7 +8,6 @@ Aliases:
 """
 
 import argparse
-import sys
 import time
 
 from fitness_function import fitness_score
