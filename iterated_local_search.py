@@ -232,6 +232,6 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
         current_solution = perturb(current_home_base, streets, intersections, paths, total_duration, bonus_points)
         iteration = iteration + 1
 
-        print('Current best score: ', bs_score)
+        print('Best score: ', bs_score)
 
     return best_solution
