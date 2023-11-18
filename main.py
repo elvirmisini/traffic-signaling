@@ -11,7 +11,7 @@ import argparse
 import time
 
 from fitness_function import fitness_score
-from initial_solution import usage_based_initial_solution
+from initial_solution import usage_based_initial_solution, traffic_based_initial_solution
 from input_parser import read_input
 from iterated_local_search import optimize_solution_with_ils
 from ouput_writer import save_schedule_to_file
