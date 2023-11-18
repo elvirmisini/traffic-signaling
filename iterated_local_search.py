@@ -43,44 +43,44 @@ def change_light_orders_and_durations(current_solution: list[Schedule]) -> list[
     return tweaked_solution
 
 
-def randomize_intersections_streets_and_customize_timings(current_solution: list[Schedule]) -> list[Schedule]:
-    """Based on a comment from the link: https://codeforces.com/blog/entry/88188
+# def randomize_intersections_streets_and_customize_timings(current_solution: list[Schedule]) -> list[Schedule]:
+#     """Based on a comment from the link: https://codeforces.com/blog/entry/88188
 
-    This operator changes the streets order and changes the green times by randomly
-    increasing or decreasing the green time by 1 or -1.
-    """
-    tweaked_solution = deepcopy(current_solution)
+#     This operator changes the streets order and changes the green times by randomly
+#     increasing or decreasing the green time by 1 or -1.
+#     """
+#     tweaked_solution = deepcopy(current_solution)
 
-    for i in range(len(tweaked_solution)):
-        # 1. Shuffle the order of streets
-        streets_order = tweaked_solution[i].order
-        shuffle(streets_order)
+#     for i in range(len(tweaked_solution)):
+#         # 1. Shuffle the order of streets
+#         streets_order = tweaked_solution[i].order
+#         shuffle(streets_order)
 
-        # 2. Modify the green times
-        green_times = tweaked_solution[i].green_times
+#         # 2. Modify the green times
+#         green_times = tweaked_solution[i].green_times
 
-        street_ids = list(green_times.keys())
-        original_total_time = sum(green_times.values())
+#         street_ids = list(green_times.keys())
+#         original_total_time = sum(green_times.values())
 
-        adjustments = []
-        for _ in street_ids[:-1]:  # We don't include the last street for now
-            # Change the green time a bit (either increase or decrease)
-            change = random.randint(-1, 1)
-            adjustments.append(change)
+#         adjustments = []
+#         for _ in street_ids[:-1]:  # We don't include the last street for now
+#             # Change the green time a bit (either increase or decrease)
+#             change = random.randint(-1, 1)
+#             adjustments.append(change)
 
-        # Calculate adjustment for the last street to keep total time consistent
-        adjustments.append(
-            original_total_time - sum(green_times[street_id] + adj for street_id, adj in zip(street_ids, adjustments)))
+#         # Calculate adjustment for the last street to keep total time consistent
+#         adjustments.append(
+#             original_total_time - sum(green_times[street_id] + adj for street_id, adj in zip(street_ids, adjustments)))
 
-        for street_id, adj in zip(street_ids, adjustments):
-            green_times[street_id] += adj
+#         for street_id, adj in zip(street_ids, adjustments):
+#             green_times[street_id] += adj
 
-        # Ensure no green time goes below zero
-        for street_id in street_ids:
-            if green_times[street_id] < 0:
-                green_times[street_id] = 0  # or reset to original
+#         # Ensure no green time goes below zero
+#         for street_id in street_ids:
+#             if green_times[street_id] < 0:
+#                 green_times[street_id] = 0  # or reset to original
 
-    return tweaked_solution
+#     return tweaked_solution
 
 
 def randomize_intersections_streets_and_timings(current_solution: list[Schedule]) -> list[Schedule]:
@@ -184,14 +184,14 @@ def new_home_base(current_home_base: list[Schedule],
 
 
 def enhanced_tweak(current_solution: list[Schedule]) -> list[Schedule]:
-    tweak_option = random.choice([0, 1, 2, 3])
+    tweak_option = random.choice([0,1,3])
 
     if tweak_option == 0:
         return randomize_intersection_streets_order(current_solution)
     elif tweak_option == 1:
         return randomize_intersections_streets_and_timings(current_solution)
-    elif tweak_option == 2:
-        return randomize_intersections_streets_and_customize_timings(current_solution)
+    # elif tweak_option == 2:
+    #     return randomize_intersections_streets_and_customize_timings(current_solution)
     else:
         return change_light_orders_and_durations(current_solution)
 
