@@ -1,6 +1,5 @@
 import os.path
 from collections import deque
-
 from recordclass import recordclass
 
 SOLUTION_REPORTER_DIR = 'solution_reporter'

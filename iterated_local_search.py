@@ -1,7 +1,6 @@
 import random
 from copy import deepcopy
 from random import shuffle, sample
-
 from fitness_function import fitness_score
 from initial_solution import Schedule
 from input_parser import Intersection, Street

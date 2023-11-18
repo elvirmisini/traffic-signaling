@@ -1,4 +1,3 @@
-
 def reinit(streets, intersections):
     # Reinitialize mutable data structures
     for street in streets:
@@ -13,7 +12,6 @@ def reinit(streets, intersections):
         intersection.green_street_per_t_mod.clear()
         intersection.schedule_duration = None
         intersection.needs_updates = False
-
 
 def fitness_score(schedules, streets, intersections, paths, total_duration, bonus_points):
     # we reset intersections and streets before performing a simulation
