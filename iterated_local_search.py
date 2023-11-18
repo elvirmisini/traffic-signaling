@@ -208,11 +208,11 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     best_solution = deepcopy(initial_solution)
 
     iteration = 0
-    while iteration < 1000:
+    while iteration < 2000:
         print('Current iteration: ', iteration)
 
         inner_iteration = 0
-        while inner_iteration < 100:
+        while inner_iteration < 25:
             tweak_solution = enhanced_tweak(current_solution)
 
             cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
