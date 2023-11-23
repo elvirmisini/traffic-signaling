@@ -30,7 +30,8 @@ def change_green_times(current_solution: list[Schedule]) -> list[Schedule]:
         if not schedule.order:
             continue
         order_key = random.choice(schedule.order)
-        change = random.choice([-1, 1])
+        choices = [-1] * 35 + [1] * 35 + [2] * 10 + [3] * 10 + [4] * 10
+        change = random.choice(choices)
         schedule.green_times[order_key] = max(1, schedule.green_times[order_key] + change)
     return tweaked_solution
 
@@ -89,16 +90,15 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     best_solution = deepcopy(initial_solution)
 
     iteration = 0
-    while iteration < 10:
+    while iteration < 1000:
         print('Current iteration: ', iteration)
 
         inner_iteration = 0
-        while inner_iteration < 3:
+        while inner_iteration < 1000:
             tweak_solution = enhanced_tweak(current_solution)
 
             cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
             tw_score = fitness_score(tweak_solution, streets, intersections, paths, total_duration, bonus_points)
-            print(tw_score)
             if tw_score > cs_score:
                 current_solution = tweak_solution
 

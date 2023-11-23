@@ -13,6 +13,7 @@ def reinit(streets, intersections):
         intersection.schedule_duration = None
         intersection.needs_updates = False
 
+
 def fitness_score(schedules, streets, intersections, paths, total_duration, bonus_points):
     # we reset intersections and streets before performing a simulation
     reinit(streets, intersections)
