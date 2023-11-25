@@ -90,14 +90,13 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     current_home_base = deepcopy(initial_solution)
     best_solution = deepcopy(initial_solution)
 
-    duration = 1 * 60
+    duration = 30 * 60
 
     start_time = time.time()
     iteration = 0
-    inner_iteration_x = 0
 
     while time.time() - start_time < duration:
-        # print('Current iteration: ', iteration)
+        print('Current iteration: ', iteration)
 
         inner_iteration = 0
         while inner_iteration < 500 and time.time() - start_time < duration:
@@ -109,7 +108,6 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
                 current_solution = tweak_solution
 
             inner_iteration = inner_iteration + 1
-            inner_iteration_x = inner_iteration_x + 1
 
         bs_score = fitness_score(best_solution, streets, intersections, paths, total_duration, bonus_points)
         cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
@@ -121,6 +119,6 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
         current_solution = perturb(current_home_base)
         iteration = iteration + 1
 
-        # print('Best score: ', bs_score)
+        print('Best score: ', bs_score)
 
     return best_solution
