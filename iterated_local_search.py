@@ -1,4 +1,5 @@
 import random
+import time
 from copy import deepcopy
 
 from fitness_function import fitness_score
@@ -30,7 +31,7 @@ def change_green_times(current_solution: list[Schedule]) -> list[Schedule]:
         if not schedule.order:
             continue
         order_key = random.choice(schedule.order)
-        choices = [-1] * 35 + [1] * 35 + [2] * 10 + [3] * 10 + [4] * 10
+        choices = [-1] * 40 + [1] * 40 + [2] * 10 + [3] * 5 + [4] * 5
         change = random.choice(choices)
         schedule.green_times[order_key] = max(1, schedule.green_times[order_key] + change)
     return tweaked_solution
@@ -89,12 +90,17 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     current_home_base = deepcopy(initial_solution)
     best_solution = deepcopy(initial_solution)
 
+    duration = 1 * 60
+
+    start_time = time.time()
     iteration = 0
-    while iteration < 1000:
-        print('Current iteration: ', iteration)
+    inner_iteration_x = 0
+
+    while time.time() - start_time < duration:
+        # print('Current iteration: ', iteration)
 
         inner_iteration = 0
-        while inner_iteration < 1000:
+        while inner_iteration < 500 and time.time() - start_time < duration:
             tweak_solution = enhanced_tweak(current_solution)
 
             cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
@@ -103,6 +109,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
                 current_solution = tweak_solution
 
             inner_iteration = inner_iteration + 1
+            inner_iteration_x = inner_iteration_x + 1
 
         bs_score = fitness_score(best_solution, streets, intersections, paths, total_duration, bonus_points)
         cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
@@ -114,6 +121,6 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
         current_solution = perturb(current_home_base)
         iteration = iteration + 1
 
-        print('Best score: ', bs_score)
+        # print('Best score: ', bs_score)
 
     return best_solution
