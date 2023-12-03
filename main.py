@@ -1,10 +1,3 @@
-"""
-Example usage:
-    python3 main.py --instance_name f.txt --output f.txt
-
-Aliases:
-    -i, --instance_name
-"""
 import argparse
 import time
 
@@ -15,7 +8,7 @@ from iterated_local_search import optimize_solution_with_ils
 from ouput_writer import save_schedule_to_file
 
 
-def main(instance_name, output) -> None:
+def main(instance_name, output, version_prefix) -> None:
     start_time = time.perf_counter()
 
     total_duration, bonus_points, intersections, streets, name_to_i_street, paths = read_input(instance_name)
@@ -34,18 +27,22 @@ def main(instance_name, output) -> None:
     score = fitness_score(ils_solution, streets, intersections, paths, total_duration, bonus_points)
     print(f'The solution of {instance_name} has the score {score}.')
 
-    print(f'\nOptimized for {score - initial_score} points.')
-    save_schedule_to_file(ils_solution, streets, output)
+    print(f'Optimized for {score - initial_score} points.')
+    save_schedule_to_file(ils_solution, streets, f"{output.replace('.txt', '')}_{version_prefix}")
 
     end_time = time.perf_counter()
     elapsed_time = end_time - start_time
-    print(f'Execution time:', elapsed_time / 60, 'minutes.')
+    print(f'Execution time:', elapsed_time / 60, 'minutes.\n')
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--instance_name', type=str, required=True)
     parser.add_argument('-o', '--output', type=str, required=True)
+    parser.add_argument('-v', '--version', type=str, required=True)
 
     args = parser.parse_args()
-    main(args.instance_name, args.output)
+
+    for run_number in range(1, 11):
+        version = f"{args.version}_{run_number}"
+        main(args.instance_name, args.output, version)
