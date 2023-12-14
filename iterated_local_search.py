@@ -60,7 +60,7 @@ def swap_random_orders(current_solution: list[Schedule]) -> list[Schedule]:
 
 
 def enhanced_tweak(current_solution: list[Schedule]) -> list[Schedule]:
-    tweak_option = random.choice([0, 1, 2])
+    tweak_option = random.choice([0, 2])
 
     if tweak_option == 0:
         return change_green_times(current_solution)
