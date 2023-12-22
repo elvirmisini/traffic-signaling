@@ -43,6 +43,9 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    for run_number in range(1, 11):
-        version = f"{args.version}_{run_number}"
-        main(args.instance_name, args.output, version)
+
+    instancat=["I9000_S36000_C1500.txt","I10000_S30000_C1200.txt","I12000_S36000_C2000.txt"]
+    for instanca in instancat:
+    	for run_number in range(1, 11):
+        	version = f"{args.version}_{run_number}"
+        	main(instanca, instanca, version)
