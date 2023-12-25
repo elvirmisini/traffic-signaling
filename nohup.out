@@ -2248,3 +2248,165 @@ The solution of I80_S240_C300.txt has the score 108201.
 Optimized for 186 points.
 Execution time: 10.000273273450633 minutes.
 
+  File "/home/elvirmisini/test/traffic-signaling/main.py", line 59
+    instance_names = [
+IndentationError: unexpected indent
+  File "/home/elvirmisini/test/traffic-signaling/main.py", line 59
+    instance_names = [
+IndentationError: unexpected indent
+  File "/home/elvirmisini/test/traffic-signaling/main.py", line 59
+    instance_names = [
+IndentationError: unexpected indent
+  File "/home/elvirmisini/test/traffic-signaling/main.py", line 59
+    instancat = [
+IndentationError: unexpected indent
+The initial solution of I9000_S36000_C1500.txt has the score 1128412.
+The solution of I9000_S36000_C1500.txt has the score 1128497.
+Optimized for 85 points.
+Execution time: 10.010173243132886 minutes.
+
+The initial solution of I9000_S36000_C1500.txt has the score 1128412.
+The solution of I9000_S36000_C1500.txt has the score 1128502.
+Optimized for 90 points.
+Execution time: 10.011434945718308 minutes.
+
+The initial solution of I9000_S36000_C1500.txt has the score 1128412.
+The solution of I9000_S36000_C1500.txt has the score 1128482.
+Optimized for 70 points.
+Execution time: 10.011801458534318 minutes.
+
+The initial solution of I9000_S36000_C1500.txt has the score 1128412.
+The solution of I9000_S36000_C1500.txt has the score 1128493.
+Optimized for 81 points.
+Execution time: 10.008760141317422 minutes.
+
+The initial solution of I9000_S36000_C1500.txt has the score 1128412.
+The solution of I9000_S36000_C1500.txt has the score 1128486.
+Optimized for 74 points.
+Execution time: 10.01134447734997 minutes.
+
+The initial solution of I9000_S36000_C1500.txt has the score 1128412.
+The solution of I9000_S36000_C1500.txt has the score 1128484.
+Optimized for 72 points.
+Execution time: 10.011389320850139 minutes.
+
+The initial solution of I9000_S36000_C1500.txt has the score 1128412.
+The solution of I9000_S36000_C1500.txt has the score 1128496.
+Optimized for 84 points.
+Execution time: 10.01249188123232 minutes.
+
+The initial solution of I9000_S36000_C1500.txt has the score 1128412.
+The solution of I9000_S36000_C1500.txt has the score 1128482.
+Optimized for 70 points.
+Execution time: 10.013260618215039 minutes.
+
+The initial solution of I9000_S36000_C1500.txt has the score 1128412.
+The solution of I9000_S36000_C1500.txt has the score 1128486.
+Optimized for 74 points.
+Execution time: 10.011720905433565 minutes.
+
+The initial solution of I9000_S36000_C1500.txt has the score 1128412.
+The solution of I9000_S36000_C1500.txt has the score 1128495.
+Optimized for 83 points.
+Execution time: 10.013728362515879 minutes.
+
+The initial solution of I10000_S30000_C1200.txt has the score 1348229.
+The solution of I10000_S30000_C1200.txt has the score 1348306.
+Optimized for 77 points.
+Execution time: 10.007777965615968 minutes.
+
+The initial solution of I10000_S30000_C1200.txt has the score 1348229.
+The solution of I10000_S30000_C1200.txt has the score 1348292.
+Optimized for 63 points.
+Execution time: 10.00975816688345 minutes.
+
+The initial solution of I10000_S30000_C1200.txt has the score 1348229.
+The solution of I10000_S30000_C1200.txt has the score 1348299.
+Optimized for 70 points.
+Execution time: 10.012950795766665 minutes.
+
+The initial solution of I10000_S30000_C1200.txt has the score 1348229.
+The solution of I10000_S30000_C1200.txt has the score 1348302.
+Optimized for 73 points.
+Execution time: 10.01270669696581 minutes.
+
+The initial solution of I10000_S30000_C1200.txt has the score 1348229.
+The solution of I10000_S30000_C1200.txt has the score 1348299.
+Optimized for 70 points.
+Execution time: 10.009378381632269 minutes.
+
+The initial solution of I10000_S30000_C1200.txt has the score 1348229.
+The solution of I10000_S30000_C1200.txt has the score 1348303.
+Optimized for 74 points.
+Execution time: 10.015084324249377 minutes.
+
+The initial solution of I10000_S30000_C1200.txt has the score 1348229.
+The solution of I10000_S30000_C1200.txt has the score 1348305.
+Optimized for 76 points.
+Execution time: 10.010195435632097 minutes.
+
+The initial solution of I10000_S30000_C1200.txt has the score 1348229.
+The solution of I10000_S30000_C1200.txt has the score 1348305.
+Optimized for 76 points.
+Execution time: 10.013973922134998 minutes.
+
+The initial solution of I10000_S30000_C1200.txt has the score 1348229.
+The solution of I10000_S30000_C1200.txt has the score 1348293.
+Optimized for 64 points.
+Execution time: 10.010488499316853 minutes.
+
+The initial solution of I10000_S30000_C1200.txt has the score 1348229.
+The solution of I10000_S30000_C1200.txt has the score 1348319.
+Optimized for 90 points.
+Execution time: 10.008888268851054 minutes.
+
+The initial solution of I12000_S36000_C2000.txt has the score 2784978.
+The solution of I12000_S36000_C2000.txt has the score 2785044.
+Optimized for 66 points.
+Execution time: 10.01821476611658 minutes.
+
+The initial solution of I12000_S36000_C2000.txt has the score 2784978.
+The solution of I12000_S36000_C2000.txt has the score 2785036.
+Optimized for 58 points.
+Execution time: 10.019711526283452 minutes.
+
+The initial solution of I12000_S36000_C2000.txt has the score 2784978.
+The solution of I12000_S36000_C2000.txt has the score 2785041.
+Optimized for 63 points.
+Execution time: 10.01331057306573 minutes.
+
+The initial solution of I12000_S36000_C2000.txt has the score 2784978.
+The solution of I12000_S36000_C2000.txt has the score 2785050.
+Optimized for 72 points.
+Execution time: 10.019418029250422 minutes.
+
+The initial solution of I12000_S36000_C2000.txt has the score 2784978.
+The solution of I12000_S36000_C2000.txt has the score 2785039.
+Optimized for 61 points.
+Execution time: 10.012352395715425 minutes.
+
+The initial solution of I12000_S36000_C2000.txt has the score 2784978.
+The solution of I12000_S36000_C2000.txt has the score 2785066.
+Optimized for 88 points.
+Execution time: 10.006561484083068 minutes.
+
+The initial solution of I12000_S36000_C2000.txt has the score 2784978.
+The solution of I12000_S36000_C2000.txt has the score 2785039.
+Optimized for 61 points.
+Execution time: 10.007851313099188 minutes.
+
+The initial solution of I12000_S36000_C2000.txt has the score 2784978.
+The solution of I12000_S36000_C2000.txt has the score 2785046.
+Optimized for 68 points.
+Execution time: 10.013441928949517 minutes.
+
+The initial solution of I12000_S36000_C2000.txt has the score 2784978.
+The solution of I12000_S36000_C2000.txt has the score 2785053.
+Optimized for 75 points.
+Execution time: 10.011599501499829 minutes.
+
+The initial solution of I12000_S36000_C2000.txt has the score 2784978.
+The solution of I12000_S36000_C2000.txt has the score 2785051.
+Optimized for 73 points.
+Execution time: 10.01258122420016 minutes.
+
