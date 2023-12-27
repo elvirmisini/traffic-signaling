@@ -60,12 +60,14 @@ def swap_random_orders(current_solution: list[Schedule]) -> list[Schedule]:
 
 
 def enhanced_tweak(current_solution: list[Schedule]) -> list[Schedule]:
-    tweak_option = random.choice([0, 1])
+    tweak_option = random.random()
 
-    if tweak_option == 0:
+    if tweak_option < 0.45:
         return swap_neighbor_orders(current_solution)
-    else:
+    elif tweak_option < 0.90:
         return swap_random_orders(current_solution)
+    else:
+        return change_green_times(current_solution)
 
 
 def perturb(current_solution: list[Schedule]) -> list[Schedule]:
@@ -88,7 +90,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     current_home_base = deepcopy(initial_solution)
     best_solution = deepcopy(initial_solution)
 
-    duration = 10 * 60
+    duration = 30 * 60
 
     start_time = time.time()
     iteration = 0
@@ -114,5 +116,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
                                           total_duration, bonus_points)
         current_solution = perturb(current_home_base)
         iteration = iteration + 1
+
+        print(bs_score)
 
     return best_solution
