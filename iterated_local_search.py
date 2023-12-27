@@ -97,7 +97,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
 
     while time.time() - start_time < duration:
         inner_iteration = 0
-        while inner_iteration < 30 and time.time() - start_time < duration:
+        while inner_iteration < 1000 and time.time() - start_time < duration:
             tweak_solution = enhanced_tweak(current_solution)
 
             cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
