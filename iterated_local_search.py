@@ -70,28 +70,13 @@ def enhanced_tweak(current_solution: list[Schedule]) -> list[Schedule]:
         return change_green_times(current_solution)
 
 
-def set_green_times_to_one(current_solution: list[Schedule]) -> list[Schedule]:
-    tweaked_solution = deepcopy(current_solution)
-    for schedules in tweaked_solution:
-        for schedule in schedules:
-            schedule.green_time = 1
-    return tweaked_solution
-
-
-def shuffle(current_solution: list[Schedule]) -> list[Schedule]:
+def perturb(current_solution: list[Schedule]) -> list[Schedule]:
     perturbed_solution = deepcopy(current_solution)
     num_to_shuffle = max(1, len(perturbed_solution) * 20 // 100)
     for _ in range(num_to_shuffle):
         schedule = random.choice(perturbed_solution)
         random.shuffle(schedule.order)
     return perturbed_solution
-
-
-def perturb(current_solution: list[Schedule]) -> list[Schedule]:
-    if random.random() < 0.9:  # 90% probability
-        return shuffle(current_solution)
-    else:  # 10% probability
-        return set_green_times_to_one(current_solution)
 
 
 def optimize_solution_with_ils(initial_solution: list[Schedule],
@@ -105,14 +90,14 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     current_home_base = deepcopy(initial_solution)
     best_solution = deepcopy(initial_solution)
 
-    duration = 30 * 60
+    duration = 60 * 60
 
     start_time = time.time()
     iteration = 0
 
     while time.time() - start_time < duration:
         inner_iteration = 0
-        while inner_iteration < 500 and time.time() - start_time < duration:
+        while inner_iteration < 5000 and time.time() - start_time < duration:
             tweak_solution = enhanced_tweak(current_solution)
 
             cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
@@ -131,7 +116,5 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
                                           total_duration, bonus_points)
         current_solution = perturb(current_home_base)
         iteration = iteration + 1
-
-        print(bs_score)
 
     return best_solution
