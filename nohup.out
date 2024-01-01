@@ -1,0 +1,495 @@
+  File "/home/uranlajci/traffic-signaling/main.py", line 119
+    for instance_name in instances:
+                                   ^
+IndentationError: unindent does not match any outer indentation level
+  File "/home/uranlajci/traffic-signaling/main.py", line 119
+    for instance_name in instances:
+                                   ^
+IndentationError: unindent does not match any outer indentation level
+  File "/home/uranlajci/traffic-signaling/main.py", line 119
+    for instance_name in instances:
+                                   ^
+IndentationError: unindent does not match any outer indentation level
+  File "/home/uranlajci/traffic-signaling/main.py", line 119
+    for instance_name in instances:
+                                   ^
+IndentationError: unindent does not match any outer indentation level
+  File "/home/uranlajci/traffic-signaling/main.py", line 119
+    for instance_name in instances:
+                                   ^
+IndentationError: unindent does not match any outer indentation level
+  File "/home/uranlajci/traffic-signaling/main.py", line 119
+    for instance_name in instances:
+                                   ^
+IndentationError: unindent does not match any outer indentation level
+The usage based heuristic initial solution of I300_S1500_C469.txt has the score 589462.
+The traffic based heuristic initial solution of I300_S1500_C469.txt has the score 589379.
+The solution of I300_S1500_C469.txt has the score 589861.
+Optimized for 399 points.
+Execution time: 30.004405838817668 minutes.
+
+The usage based heuristic initial solution of I300_S1500_C469.txt has the score 589462.
+The traffic based heuristic initial solution of I300_S1500_C469.txt has the score 589379.
+The solution of I300_S1500_C469.txt has the score 589858.
+Optimized for 396 points.
+Execution time: 30.00345929711669 minutes.
+
+The usage based heuristic initial solution of I300_S1500_C469.txt has the score 589462.
+The traffic based heuristic initial solution of I300_S1500_C469.txt has the score 589379.
+The solution of I300_S1500_C469.txt has the score 589913.
+Optimized for 451 points.
+Execution time: 30.00385018348461 minutes.
+
+The usage based heuristic initial solution of I300_S1500_C469.txt has the score 589462.
+The traffic based heuristic initial solution of I300_S1500_C469.txt has the score 589379.
+The solution of I300_S1500_C469.txt has the score 589901.
+Optimized for 439 points.
+Execution time: 30.004089498651833 minutes.
+
+The usage based heuristic initial solution of I300_S1500_C469.txt has the score 589462.
+The traffic based heuristic initial solution of I300_S1500_C469.txt has the score 589379.
+The solution of I300_S1500_C469.txt has the score 589894.
+Optimized for 432 points.
+Execution time: 30.0042574504662 minutes.
+
+The usage based heuristic initial solution of I300_S1500_C469.txt has the score 589462.
+The traffic based heuristic initial solution of I300_S1500_C469.txt has the score 589379.
+The solution of I300_S1500_C469.txt has the score 589969.
+Optimized for 507 points.
+Execution time: 30.004306321501886 minutes.
+
+The usage based heuristic initial solution of I300_S1500_C469.txt has the score 589462.
+The traffic based heuristic initial solution of I300_S1500_C469.txt has the score 589379.
+The solution of I300_S1500_C469.txt has the score 589846.
+Optimized for 384 points.
+Execution time: 30.003802329616157 minutes.
+
+The usage based heuristic initial solution of I300_S1500_C469.txt has the score 589462.
+The traffic based heuristic initial solution of I300_S1500_C469.txt has the score 589379.
+The solution of I300_S1500_C469.txt has the score 589918.
+Optimized for 456 points.
+Execution time: 30.003977765119636 minutes.
+
+The usage based heuristic initial solution of I300_S1500_C469.txt has the score 589462.
+The traffic based heuristic initial solution of I300_S1500_C469.txt has the score 589379.
+The solution of I300_S1500_C469.txt has the score 589883.
+Optimized for 421 points.
+Execution time: 30.003845248348078 minutes.
+
+The usage based heuristic initial solution of I300_S1500_C469.txt has the score 589462.
+The traffic based heuristic initial solution of I300_S1500_C469.txt has the score 589379.
+The solution of I300_S1500_C469.txt has the score 589910.
+Optimized for 448 points.
+Execution time: 30.003929810183276 minutes.
+
+The usage based heuristic initial solution of I300_S900_C500.txt has the score 646690.
+The traffic based heuristic initial solution of I300_S900_C500.txt has the score 646559.
+The solution of I300_S900_C500.txt has the score 646849.
+Optimized for 159 points.
+Execution time: 30.001872016101455 minutes.
+
+The usage based heuristic initial solution of I300_S900_C500.txt has the score 646690.
+The traffic based heuristic initial solution of I300_S900_C500.txt has the score 646559.
+The solution of I300_S900_C500.txt has the score 646843.
+Optimized for 153 points.
+Execution time: 30.001724750249803 minutes.
+
+The usage based heuristic initial solution of I300_S900_C500.txt has the score 646690.
+The traffic based heuristic initial solution of I300_S900_C500.txt has the score 646559.
+The solution of I300_S900_C500.txt has the score 646839.
+Optimized for 149 points.
+Execution time: 30.0015608438019 minutes.
+
+The usage based heuristic initial solution of I300_S900_C500.txt has the score 646690.
+The traffic based heuristic initial solution of I300_S900_C500.txt has the score 646559.
+The solution of I300_S900_C500.txt has the score 646855.
+Optimized for 165 points.
+Execution time: 30.00168091013329 minutes.
+
+The usage based heuristic initial solution of I300_S900_C500.txt has the score 646690.
+The traffic based heuristic initial solution of I300_S900_C500.txt has the score 646559.
+The solution of I300_S900_C500.txt has the score 646867.
+Optimized for 177 points.
+Execution time: 30.00204490001779 minutes.
+
+The usage based heuristic initial solution of I300_S900_C500.txt has the score 646690.
+The traffic based heuristic initial solution of I300_S900_C500.txt has the score 646559.
+The solution of I300_S900_C500.txt has the score 646847.
+Optimized for 157 points.
+Execution time: 30.001837313582655 minutes.
+
+The usage based heuristic initial solution of I300_S900_C500.txt has the score 646690.
+The traffic based heuristic initial solution of I300_S900_C500.txt has the score 646559.
+The solution of I300_S900_C500.txt has the score 646869.
+Optimized for 179 points.
+Execution time: 30.001857200082547 minutes.
+
+The usage based heuristic initial solution of I300_S900_C500.txt has the score 646690.
+The traffic based heuristic initial solution of I300_S900_C500.txt has the score 646559.
+The solution of I300_S900_C500.txt has the score 646855.
+Optimized for 165 points.
+Execution time: 30.001645719314304 minutes.
+
+The usage based heuristic initial solution of I300_S900_C500.txt has the score 646690.
+The traffic based heuristic initial solution of I300_S900_C500.txt has the score 646559.
+The solution of I300_S900_C500.txt has the score 646862.
+Optimized for 172 points.
+Execution time: 30.001943030701174 minutes.
+
+The usage based heuristic initial solution of I300_S900_C500.txt has the score 646690.
+The traffic based heuristic initial solution of I300_S900_C500.txt has the score 646559.
+The solution of I300_S900_C500.txt has the score 646856.
+Optimized for 166 points.
+Execution time: 30.00175346508622 minutes.
+
+The usage based heuristic initial solution of I3333_S13332_C428.txt has the score 102998.
+The traffic based heuristic initial solution of I3333_S13332_C428.txt has the score 103000.
+The solution of I3333_S13332_C428.txt has the score 103101.
+Optimized for 101 points.
+Execution time: 30.00492999573471 minutes.
+
+The usage based heuristic initial solution of I3333_S13332_C428.txt has the score 102998.
+The traffic based heuristic initial solution of I3333_S13332_C428.txt has the score 103000.
+The solution of I3333_S13332_C428.txt has the score 103098.
+Optimized for 98 points.
+Execution time: 30.004155233250156 minutes.
+
+The usage based heuristic initial solution of I3333_S13332_C428.txt has the score 102998.
+The traffic based heuristic initial solution of I3333_S13332_C428.txt has the score 103000.
+The solution of I3333_S13332_C428.txt has the score 103105.
+Optimized for 105 points.
+Execution time: 30.004675138617554 minutes.
+
+The usage based heuristic initial solution of I3333_S13332_C428.txt has the score 102998.
+The traffic based heuristic initial solution of I3333_S13332_C428.txt has the score 103000.
+The solution of I3333_S13332_C428.txt has the score 103100.
+Optimized for 100 points.
+Execution time: 30.00464739263213 minutes.
+
+The usage based heuristic initial solution of I3333_S13332_C428.txt has the score 102998.
+The traffic based heuristic initial solution of I3333_S13332_C428.txt has the score 103000.
+The solution of I3333_S13332_C428.txt has the score 103102.
+Optimized for 102 points.
+Execution time: 30.00442032671611 minutes.
+
+The usage based heuristic initial solution of I3333_S13332_C428.txt has the score 102998.
+The traffic based heuristic initial solution of I3333_S13332_C428.txt has the score 103000.
+The solution of I3333_S13332_C428.txt has the score 103092.
+Optimized for 92 points.
+Execution time: 30.004333118496774 minutes.
+
+The usage based heuristic initial solution of I3333_S13332_C428.txt has the score 102998.
+The traffic based heuristic initial solution of I3333_S13332_C428.txt has the score 103000.
+The solution of I3333_S13332_C428.txt has the score 103095.
+Optimized for 95 points.
+Execution time: 30.00532326756511 minutes.
+
+The usage based heuristic initial solution of I3333_S13332_C428.txt has the score 102998.
+The traffic based heuristic initial solution of I3333_S13332_C428.txt has the score 103000.
+The solution of I3333_S13332_C428.txt has the score 103097.
+Optimized for 97 points.
+Execution time: 30.005042910800935 minutes.
+
+The usage based heuristic initial solution of I3333_S13332_C428.txt has the score 102998.
+The traffic based heuristic initial solution of I3333_S13332_C428.txt has the score 103000.
+The solution of I3333_S13332_C428.txt has the score 103093.
+Optimized for 93 points.
+Execution time: 30.00546351245139 minutes.
+
+The usage based heuristic initial solution of I3333_S13332_C428.txt has the score 102998.
+The traffic based heuristic initial solution of I3333_S13332_C428.txt has the score 103000.
+The solution of I3333_S13332_C428.txt has the score 103102.
+Optimized for 102 points.
+Execution time: 30.004975273867604 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The traffic based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The solution of I4000_S12000_C161.txt has the score 856858.
+Optimized for 4 points.
+Execution time: 30.00666138109906 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The traffic based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The solution of I4000_S12000_C161.txt has the score 856858.
+Optimized for 4 points.
+Execution time: 30.00509076489834 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The traffic based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The solution of I4000_S12000_C161.txt has the score 856858.
+Optimized for 4 points.
+Execution time: 30.005655624247932 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The traffic based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The solution of I4000_S12000_C161.txt has the score 856858.
+Optimized for 4 points.
+Execution time: 30.00514942186419 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The traffic based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The solution of I4000_S12000_C161.txt has the score 856858.
+Optimized for 4 points.
+Execution time: 30.004784843550684 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The traffic based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The solution of I4000_S12000_C161.txt has the score 856858.
+Optimized for 4 points.
+Execution time: 30.00557290506937 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The traffic based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The solution of I4000_S12000_C161.txt has the score 856858.
+Optimized for 4 points.
+Execution time: 30.004908330199154 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The traffic based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The solution of I4000_S12000_C161.txt has the score 856858.
+Optimized for 4 points.
+Execution time: 30.00496550479826 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The traffic based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The solution of I4000_S12000_C161.txt has the score 856858.
+Optimized for 4 points.
+Execution time: 30.007796959582873 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The traffic based heuristic initial solution of I4000_S12000_C161.txt has the score 856854.
+The solution of I4000_S12000_C161.txt has the score 856858.
+Optimized for 4 points.
+Execution time: 30.00517747406848 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C387.txt has the score 2608683.
+The traffic based heuristic initial solution of I4000_S12000_C387.txt has the score 2608665.
+The solution of I4000_S12000_C387.txt has the score 2608760.
+Optimized for 77 points.
+Execution time: 30.07727592656544 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C387.txt has the score 2608683.
+The traffic based heuristic initial solution of I4000_S12000_C387.txt has the score 2608665.
+The solution of I4000_S12000_C387.txt has the score 2608761.
+Optimized for 78 points.
+Execution time: 30.07582459266608 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C387.txt has the score 2608683.
+The traffic based heuristic initial solution of I4000_S12000_C387.txt has the score 2608665.
+The solution of I4000_S12000_C387.txt has the score 2608778.
+Optimized for 95 points.
+Execution time: 30.063163514380964 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C387.txt has the score 2608683.
+The traffic based heuristic initial solution of I4000_S12000_C387.txt has the score 2608665.
+The solution of I4000_S12000_C387.txt has the score 2608760.
+Optimized for 77 points.
+Execution time: 30.076196226349566 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C387.txt has the score 2608683.
+The traffic based heuristic initial solution of I4000_S12000_C387.txt has the score 2608665.
+The solution of I4000_S12000_C387.txt has the score 2608765.
+Optimized for 82 points.
+Execution time: 30.072258694450525 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C387.txt has the score 2608683.
+The traffic based heuristic initial solution of I4000_S12000_C387.txt has the score 2608665.
+The solution of I4000_S12000_C387.txt has the score 2608757.
+Optimized for 74 points.
+Execution time: 30.06921964546588 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C387.txt has the score 2608683.
+The traffic based heuristic initial solution of I4000_S12000_C387.txt has the score 2608665.
+The solution of I4000_S12000_C387.txt has the score 2608764.
+Optimized for 81 points.
+Execution time: 30.065115260197004 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C387.txt has the score 2608683.
+The traffic based heuristic initial solution of I4000_S12000_C387.txt has the score 2608665.
+The solution of I4000_S12000_C387.txt has the score 2608765.
+Optimized for 82 points.
+Execution time: 30.077840772884276 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C387.txt has the score 2608683.
+The traffic based heuristic initial solution of I4000_S12000_C387.txt has the score 2608665.
+The solution of I4000_S12000_C387.txt has the score 2608772.
+Optimized for 89 points.
+Execution time: 30.067903590431282 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C387.txt has the score 2608683.
+The traffic based heuristic initial solution of I4000_S12000_C387.txt has the score 2608665.
+The solution of I4000_S12000_C387.txt has the score 2608764.
+Optimized for 81 points.
+Execution time: 30.06624794715317 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C397.txt has the score 373948.
+The traffic based heuristic initial solution of I4000_S12000_C397.txt has the score 374884.
+The solution of I4000_S12000_C397.txt has the score 375081.
+Optimized for 197 points.
+Execution time: 30.17482627025262 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C397.txt has the score 373948.
+The traffic based heuristic initial solution of I4000_S12000_C397.txt has the score 374884.
+The solution of I4000_S12000_C397.txt has the score 375081.
+Optimized for 197 points.
+Execution time: 30.185278756551757 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C397.txt has the score 373948.
+The traffic based heuristic initial solution of I4000_S12000_C397.txt has the score 374884.
+The solution of I4000_S12000_C397.txt has the score 375077.
+Optimized for 193 points.
+Execution time: 30.166203781329873 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C397.txt has the score 373948.
+The traffic based heuristic initial solution of I4000_S12000_C397.txt has the score 374884.
+The solution of I4000_S12000_C397.txt has the score 375079.
+Optimized for 195 points.
+Execution time: 30.165563180336417 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C397.txt has the score 373948.
+The traffic based heuristic initial solution of I4000_S12000_C397.txt has the score 374884.
+The solution of I4000_S12000_C397.txt has the score 375077.
+Optimized for 193 points.
+Execution time: 30.16971328936828 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C397.txt has the score 373948.
+The traffic based heuristic initial solution of I4000_S12000_C397.txt has the score 374884.
+The solution of I4000_S12000_C397.txt has the score 375082.
+Optimized for 198 points.
+Execution time: 30.15219613328421 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C397.txt has the score 373948.
+The traffic based heuristic initial solution of I4000_S12000_C397.txt has the score 374884.
+The solution of I4000_S12000_C397.txt has the score 375098.
+Optimized for 214 points.
+Execution time: 30.17437500390224 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C397.txt has the score 373948.
+The traffic based heuristic initial solution of I4000_S12000_C397.txt has the score 374884.
+The solution of I4000_S12000_C397.txt has the score 375063.
+Optimized for 179 points.
+Execution time: 30.155518619634677 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C397.txt has the score 373948.
+The traffic based heuristic initial solution of I4000_S12000_C397.txt has the score 374884.
+The solution of I4000_S12000_C397.txt has the score 375100.
+Optimized for 216 points.
+Execution time: 30.15968615276894 minutes.
+
+The usage based heuristic initial solution of I4000_S12000_C397.txt has the score 373948.
+The traffic based heuristic initial solution of I4000_S12000_C397.txt has the score 374884.
+The solution of I4000_S12000_C397.txt has the score 376050.
+Optimized for 1166 points.
+Execution time: 30.18849127056698 minutes.
+
+The usage based heuristic initial solution of I4000_S20000_C309.txt has the score 2057454.
+The traffic based heuristic initial solution of I4000_S20000_C309.txt has the score 2057458.
+The solution of I4000_S20000_C309.txt has the score 2057540.
+Optimized for 82 points.
+Execution time: 30.063266810347947 minutes.
+
+The usage based heuristic initial solution of I4000_S20000_C309.txt has the score 2057454.
+The traffic based heuristic initial solution of I4000_S20000_C309.txt has the score 2057458.
+The solution of I4000_S20000_C309.txt has the score 2057551.
+Optimized for 93 points.
+Execution time: 30.06653194188451 minutes.
+
+The usage based heuristic initial solution of I4000_S20000_C309.txt has the score 2057454.
+The traffic based heuristic initial solution of I4000_S20000_C309.txt has the score 2057458.
+The solution of I4000_S20000_C309.txt has the score 2057539.
+Optimized for 81 points.
+Execution time: 30.059653590914483 minutes.
+
+The usage based heuristic initial solution of I4000_S20000_C309.txt has the score 2057454.
+The traffic based heuristic initial solution of I4000_S20000_C309.txt has the score 2057458.
+The solution of I4000_S20000_C309.txt has the score 2057526.
+Optimized for 68 points.
+Execution time: 30.0593498423812 minutes.
+
+The usage based heuristic initial solution of I4000_S20000_C309.txt has the score 2057454.
+The traffic based heuristic initial solution of I4000_S20000_C309.txt has the score 2057458.
+The solution of I4000_S20000_C309.txt has the score 2057548.
+Optimized for 90 points.
+Execution time: 30.036323375266512 minutes.
+
+The usage based heuristic initial solution of I4000_S20000_C309.txt has the score 2057454.
+The traffic based heuristic initial solution of I4000_S20000_C309.txt has the score 2057458.
+The solution of I4000_S20000_C309.txt has the score 2057546.
+Optimized for 88 points.
+Execution time: 30.062243747967294 minutes.
+
+The usage based heuristic initial solution of I4000_S20000_C309.txt has the score 2057454.
+The traffic based heuristic initial solution of I4000_S20000_C309.txt has the score 2057458.
+The solution of I4000_S20000_C309.txt has the score 2057537.
+Optimized for 79 points.
+Execution time: 30.055629145614027 minutes.
+
+The usage based heuristic initial solution of I4000_S20000_C309.txt has the score 2057454.
+The traffic based heuristic initial solution of I4000_S20000_C309.txt has the score 2057458.
+The solution of I4000_S20000_C309.txt has the score 2057547.
+Optimized for 89 points.
+Execution time: 30.059814368882993 minutes.
+
+The usage based heuristic initial solution of I4000_S20000_C309.txt has the score 2057454.
+The traffic based heuristic initial solution of I4000_S20000_C309.txt has the score 2057458.
+The solution of I4000_S20000_C309.txt has the score 2057538.
+Optimized for 80 points.
+Execution time: 30.054051717250452 minutes.
+
+The usage based heuristic initial solution of I4000_S20000_C309.txt has the score 2057454.
+The traffic based heuristic initial solution of I4000_S20000_C309.txt has the score 2057458.
+The solution of I4000_S20000_C309.txt has the score 2057537.
+Optimized for 79 points.
+Execution time: 30.059627836500294 minutes.
+
+The usage based heuristic initial solution of I4000_S24000_C401.txt has the score 1695694.
+The traffic based heuristic initial solution of I4000_S24000_C401.txt has the score 1695700.
+The solution of I4000_S24000_C401.txt has the score 1695825.
+Optimized for 125 points.
+Execution time: 30.052367070515174 minutes.
+
+The usage based heuristic initial solution of I4000_S24000_C401.txt has the score 1695694.
+The traffic based heuristic initial solution of I4000_S24000_C401.txt has the score 1695700.
+The solution of I4000_S24000_C401.txt has the score 1695828.
+Optimized for 128 points.
+Execution time: 30.05432149961513 minutes.
+
+The usage based heuristic initial solution of I4000_S24000_C401.txt has the score 1695694.
+The traffic based heuristic initial solution of I4000_S24000_C401.txt has the score 1695700.
+The solution of I4000_S24000_C401.txt has the score 1695839.
+Optimized for 139 points.
+Execution time: 30.045181524031797 minutes.
+
+The usage based heuristic initial solution of I4000_S24000_C401.txt has the score 1695694.
+The traffic based heuristic initial solution of I4000_S24000_C401.txt has the score 1695700.
+The solution of I4000_S24000_C401.txt has the score 1695836.
+Optimized for 136 points.
+Execution time: 30.04777264438259 minutes.
+
+The usage based heuristic initial solution of I4000_S24000_C401.txt has the score 1695694.
+The traffic based heuristic initial solution of I4000_S24000_C401.txt has the score 1695700.
+The solution of I4000_S24000_C401.txt has the score 1695828.
+Optimized for 128 points.
+Execution time: 30.04824200211636 minutes.
+
+The usage based heuristic initial solution of I4000_S24000_C401.txt has the score 1695694.
+The traffic based heuristic initial solution of I4000_S24000_C401.txt has the score 1695700.
+The solution of I4000_S24000_C401.txt has the score 1695835.
+Optimized for 135 points.
+Execution time: 30.05244602743381 minutes.
+
+The usage based heuristic initial solution of I4000_S24000_C401.txt has the score 1695694.
+The traffic based heuristic initial solution of I4000_S24000_C401.txt has the score 1695700.
+The solution of I4000_S24000_C401.txt has the score 1695831.
+Optimized for 131 points.
+Execution time: 30.04751736903563 minutes.
+
+The usage based heuristic initial solution of I4000_S24000_C401.txt has the score 1695694.
+The traffic based heuristic initial solution of I4000_S24000_C401.txt has the score 1695700.
+The solution of I4000_S24000_C401.txt has the score 1695842.
+Optimized for 142 points.
+Execution time: 30.053950330913842 minutes.
+
+The usage based heuristic initial solution of I4000_S24000_C401.txt has the score 1695694.
+The traffic based heuristic initial solution of I4000_S24000_C401.txt has the score 1695700.
+The solution of I4000_S24000_C401.txt has the score 1695836.
