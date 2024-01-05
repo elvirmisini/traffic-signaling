@@ -42,7 +42,7 @@ if __name__ == '__main__':
     parser.add_argument('-v', '--version', type=str, required=True)
 
     args = parser.parse_args()
-    instancat = ["I2000_S12000_C57.txt", "I2000_S6000_C376.txt", "I200_S1000_C400.txt", "I200_S1000_C550.txt", "I200_S17200_C1000.txt", "I200_S4200_C400.txt", "I220_S1100_C558.txt", "I220_S660_C430.txt", "I241_S43241_C158.txt", "I2500_S10000_C306.txt", "I2999_S17994_C103.txt", "I3000_S12000_C407.txt", "I3000_S15000_C316.txt", "I3000_S18000_C227.txt", "I4000_S12000_C161.txt", "I4000_S12000_C387.txt", "I4000_S12000_C397.txt", "I4000_S20000_C309.txt", "I4000_S24000_C401.txt", "I400_S2400_C944.txt", "I444_S1776_C666.txt", "I500_S2000_C315.txt", "I500_S998_C1000.txt", "I600_S3000_C332.txt", "I90_S360_C400.txt", "I99_S399_C400.txt", "I80_S480_C600.txt", "I80_S240_C300.txt"]
+    instancat = ["I80_S240_C300.txt", "I80_S480_C600.txt", "I1662_S10000_C1000.txt"]
 
     for instanca in instancat:
     	for run_number in range(1, 11):
