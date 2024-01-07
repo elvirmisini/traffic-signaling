@@ -71,8 +71,8 @@ bulevard_athens884 1
 10
 5
 rrethi_des_tokyo447 1
-buleva_d'_rio885 1
 bulevardi_beijing228 1
+buleva_d'_rio885 1
 boulevard_paris9 1
 rue_le_newyork666 1
 11
@@ -88,7 +88,7 @@ rrethi_rome11 1
 road_london449 1
 buleva_de_lisbon668 1
 buleva_le_madrid230 1
-boulevard_tokyo887 3
+boulevard_tokyo887 1
 13
 5
 buleva_rome450 1
@@ -120,21 +120,21 @@ sheshi_la_moscow672 1
 5
 square_paris673 1
 rrethi_london235 1
-avenue_cairo892 3
+avenue_cairo892 1
 rrethi_prishtina454 1
 buleva_de_lisbon16 1
 18
 5
-bulevardi_tokyo17 1
 rruga_du_rio455 1
-street_la_moscow674 1
 lane_la_london236 1
+bulevardi_tokyo17 1
 road_madrid893 1
+street_la_moscow674 1
 19
 5
 road_cairo894 1
 boulevard_le_lisbon18 1
-rrethi_lisbon456 3
+rrethi_lisbon456 1
 rruga_beijing237 1
 square_des_tokyo675 1
 20
@@ -148,28 +148,28 @@ street_rome676 1
 5
 bulevard_le_tokyo20 1
 rrethi_rio458 1
-sheshi_des_prishtina896 1
-place_berlin677 1
 avenue_prishtina239 1
+place_berlin677 1
+sheshi_des_prishtina896 1
 22
 5
+buleva_d'_london240 1
 rue_des_newyork897 1
 street_rio21 1
-buleva_d'_london240 1
 boulevard_des_lisbon459 1
 rue_la_newyork678 1
 23
 5
 bulevard_du_madrid898 1
 street_newyork460 1
-sheshi_paris22 1
 lane_london241 1
+sheshi_paris22 1
 place_sydney679 1
 24
 5
 bulevard_de_rome461 1
 square_les_moscow23 1
-buleva_lisbon899 1
+buleva_lisbon899 4
 street_athens680 1
 bulevardi_du_rio242 1
 25
@@ -203,17 +203,17 @@ bulevard_du_rio27 1
 29
 5
 bulevard_tokyo247 1
+lane_madrid466 1
 square_la_london28 1
 bulevardi_de_lisbon904 1
-lane_madrid466 1
 sheshi_rio685 1
 30
 5
 lane_cairo248 1
 bulevard_cairo29 1
+rue_prishtina467 1
 rue_la_cairo905 1
 rue_prishtina686 1
-rue_prishtina467 1
 31
 5
 bulevardi_berlin906 1
@@ -231,16 +231,16 @@ street_beijing469 1
 33
 5
 rruga_lisbon251 1
+rruga_lisbon908 1
 rue_newyork689 1
 buleva_moscow470 1
-rruga_lisbon908 1
 boulevard_lisbon32 1
 34
 5
 lane_d'_tokyo33 1
-buleva_d'_rio690 1
-bulevard_berlin909 1
 place_newyork252 1
+bulevard_berlin909 1
+buleva_d'_rio690 1
 road_moscow471 1
 35
 5
@@ -248,7 +248,7 @@ boulevard_beijing472 1
 rruga_rio253 1
 bulevard_madrid910 1
 road_rome34 1
-bulevardi_le_tokyo691 4
+bulevardi_le_tokyo691 1
 36
 5
 buleva_la_prishtina35 1
@@ -301,15 +301,15 @@ boulevard_tokyo479 1
 43
 4
 square_du_paris261 1
-lane_cairo918 4
+lane_cairo918 1
 bulevardi_prishtina480 1
 street_d'_paris699 1
 44
 5
 bulevardi_lisbon481 1
-buleva_de_berlin262 1
 sheshi_d'_moscow43 1
 avenue_prishtina919 1
+buleva_de_berlin262 1
 rue_le_madrid700 1
 45
 5
@@ -334,7 +334,7 @@ rrethi_les_sydney703 1
 rruga_lisbon484 1
 48
 5
-lane_beijing923 2
+lane_beijing923 3
 buleva_london47 1
 rruga_tokyo485 1
 avenue_le_berlin266 1
@@ -365,20 +365,20 @@ bulevard_paris707 1
 boulevard_newyork708 1
 avenue_de_cairo51 1
 rruga_tokyo270 1
-road_le_madrid927 1
+road_le_madrid927 3
 rrethi_d'_london489 1
 53
 5
-rrethi_le_london490 1
-road_du_tokyo52 1
 place_les_madrid271 1
+road_du_tokyo52 1
+rrethi_le_london490 1
 place_la_beijing709 1
 avenue_paris928 1
 54
 5
+place_madrid272 1
 buleva_prishtina491 1
 square_prishtina710 1
-place_madrid272 1
 rruga_rio929 1
 rrethi_paris53 1
 55
@@ -401,14 +401,14 @@ bulevard_rio494 1
 bulevard_du_athens713 1
 boulevard_berlin275 1
 road_rio56 1
-sheshi_des_moscow932 2
+sheshi_des_moscow932 1
 58
 5
 sheshi_des_rome495 1
 square_beijing276 1
 bulevard_newyork57 1
 boulevard_beijing933 1
-rue_rio714 2
+rue_rio714 1
 59
 5
 place_du_sydney715 1
@@ -420,7 +420,7 @@ road_d'_moscow277 1
 5
 rruga_de_rio497 1
 bulevard_le_rome935 1
-road_athens278 1
+road_athens278 4
 lane_lisbon59 1
 rue_de_sydney716 1
 61
@@ -490,7 +490,7 @@ road_cairo68 1
 rrethi_d'_newyork945 1
 place_les_beijing507 1
 rrethi_les_rio288 1
-rruga_du_athens69 3
+rruga_du_athens69 1
 bulevardi_la_newyork726 1
 71
 5
@@ -524,9 +524,9 @@ square_sydney511 1
 5
 sheshi_la_cairo731 1
 rrethi_le_rome293 1
-boulevard_les_rome74 1
-rrethi_les_sydney950 1
 square_la_moscow512 1
+rrethi_les_sydney950 1
+boulevard_les_rome74 1
 76
 5
 avenue_de_moscow75 1
@@ -537,9 +537,9 @@ lane_les_sydney732 1
 77
 5
 rrethi_les_berlin295 1
-bulevardi_moscow952 3
 road_de_rome733 1
 road_du_beijing514 1
+bulevardi_moscow952 1
 avenue_paris76 1
 78
 5
@@ -650,7 +650,7 @@ place_la_athens529 1
 avenue_la_london311 1
 bulevard_london92 1
 street_d'_cairo749 1
-square_des_rome968 3
+square_des_rome968 1
 square_paris530 1
 94
 5
@@ -807,8 +807,8 @@ rruga_rome990 1
 116
 5
 rue_les_prishtina334 1
-boulevard_paris991 1
 buleva_d'_rome115 1
+boulevard_paris991 1
 square_rio772 1
 boulevard_les_rome553 1
 117
@@ -849,9 +849,9 @@ rruga_tokyo558 1
 122
 5
 bulevard_des_berlin340 1
-rue_d'_lisbon121 1
 buleva_le_athens997 1
 boulevard_berlin559 1
+rue_d'_lisbon121 1
 square_rome778 1
 123
 5
@@ -872,7 +872,7 @@ lane_beijing780 1
 bulevard_tokyo562 1
 buleva_beijing781 1
 road_la_athens124 1
-rrethi_sydney343 1
+rrethi_sydney343 3
 rruga_d'_sydney1000 1
 126
 5
@@ -939,9 +939,9 @@ avenue_d'_newyork1009 1
 135
 5
 sheshi_les_cairo572 1
+lane_cairo353 1
 rue_le_moscow791 1
 boulevard_newyork1010 1
-lane_cairo353 1
 sheshi_rio134 1
 136
 4
@@ -951,21 +951,21 @@ lane_lisbon1011 1
 boulevard_paris135 1
 137
 5
-sheshi_des_prishtina136 1
 sheshi_d'_newyork574 1
 avenue_des_madrid355 1
+sheshi_des_prishtina136 1
 square_rio793 1
 bulevard_le_berlin1012 1
 138
 5
 buleva_le_lisbon356 1
 rue_tokyo137 1
-rue_london1013 1
 sheshi_tokyo794 1
 bulevard_newyork575 1
+rue_london1013 1
 139
 5
-square_sydney138 2
+square_sydney138 1
 bulevard_cairo357 1
 road_de_moscow1014 1
 bulevard_du_lisbon795 1
@@ -987,9 +987,9 @@ lane_la_prishtina1016 1
 142
 5
 avenue_madrid360 1
-street_des_rome1017 1
 road_d'_tokyo798 1
-bulevard_de_paris579 3
+bulevard_de_paris579 1
+street_des_rome1017 1
 sheshi_le_athens141 1
 143
 5
@@ -1043,7 +1043,7 @@ square_beijing367 1
 150
 5
 rrethi_rome587 1
-rrethi_le_rio806 1
+rrethi_le_rio806 3
 bulevard_newyork149 1
 avenue_london1025 1
 sheshi_le_paris368 1
@@ -1051,9 +1051,9 @@ sheshi_le_paris368 1
 5
 square_beijing150 1
 boulevard_les_madrid588 1
+place_madrid369 1
 lane_rome807 1
 bulevardi_moscow1026 1
-place_madrid369 1
 152
 5
 rruga_des_lisbon370 1
@@ -1070,8 +1070,8 @@ bulevard_paris1028 1
 rue_de_cairo809 1
 154
 5
-road_athens1029 1
 bulevardi_lisbon591 1
+road_athens1029 1
 rruga_cairo810 1
 sheshi_des_lisbon372 1
 bulevardi_des_beijing153 1
@@ -1084,25 +1084,25 @@ lane_d'_rio811 1
 rrethi_paris154 1
 156
 5
+boulevard_madrid374 1
+rrethi_tokyo593 1
 bulevard_madrid155 1
 sheshi_de_berlin812 1
-rrethi_tokyo593 1
-boulevard_madrid374 1
 buleva_de_paris1031 1
 157
 5
 boulevard_d'_newyork1032 1
 place_de_rio156 1
-buleva_madrid813 1
 square_d'_beijing594 1
 buleva_le_rome375 1
+buleva_madrid813 1
 158
 5
 rue_les_sydney595 1
 bulevardi_london157 1
 sheshi_le_athens814 1
 square_madrid1033 1
-rruga_prishtina376 1
+rruga_prishtina376 2
 159
 4
 bulevardi_sydney596 1
@@ -1118,8 +1118,8 @@ bulevardi_rome159 1
 rue_lisbon597 1
 161
 5
-rruga_prishtina379 1
 square_lisbon598 1
+rruga_prishtina379 1
 lane_newyork1036 1
 square_beijing817 1
 street_le_athens160 1
@@ -1133,7 +1133,7 @@ boulevard_les_paris161 1
 163
 5
 buleva_le_lisbon381 1
-rrethi_du_prishtina600 4
+rrethi_du_prishtina600 2
 place_cairo1038 1
 boulevard_de_newyork819 1
 rrethi_le_tokyo162 1
@@ -1141,7 +1141,7 @@ rrethi_le_tokyo162 1
 5
 buleva_lisbon820 1
 lane_moscow1039 1
-place_paris382 3
+place_paris382 1
 rrethi_des_rio163 1
 boulevard_d'_london601 1
 165
@@ -1221,8 +1221,8 @@ rruga_athens831 1
 5
 bulevard_le_tokyo832 1
 street_beijing175 1
-rue_de_sydney1051 1
 sheshi_des_madrid394 1
+rue_de_sydney1051 1
 avenue_madrid613 1
 177
 5
@@ -1248,9 +1248,9 @@ lane_du_newyork397 1
 5
 bulevard_sydney617 1
 square_des_lisbon836 1
-lane_du_cairo179 1
 sheshi_la_beijing1055 1
 rruga_les_paris398 1
+lane_du_cairo179 2
 181
 4
 boulevard_berlin837 2
@@ -1259,9 +1259,9 @@ buleva_des_rio180 1
 place_des_paris618 1
 182
 5
-buleva_de_sydney838 1
 square_tokyo400 1
 sheshi_les_berlin1057 1
+buleva_de_sydney838 1
 square_la_newyork181 1
 sheshi_la_cairo619 1
 183
@@ -1273,9 +1273,9 @@ lane_les_moscow401 1
 bulevardi_athens1058 1
 184
 4
-rruga_tokyo402 1
 rrethi_newyork840 1
 rrethi_du_rio1059 1
+rruga_tokyo402 1
 sheshi_prishtina621 1
 185
 5
@@ -1300,11 +1300,11 @@ lane_london405 1
 avenue_des_london1062 1
 188
 5
-buleva_le_prishtina1063 1
 boulevard_paris844 1
 rruga_des_paris406 1
+buleva_le_prishtina1063 1
 bulevard_moscow187 1
-buleva_les_paris625 1
+buleva_les_paris625 2
 189
 5
 road_la_paris845 1
@@ -1349,7 +1349,7 @@ rrethi_paris850 1
 rue_beijing1069 1
 195
 5
-rue_rio413 1
+rue_rio413 2
 sheshi_beijing851 1
 sheshi_des_moscow632 1
 buleva_athens1070 1
@@ -1360,10 +1360,10 @@ rruga_rio852 1
 street_le_rome414 1
 place_la_berlin633 1
 street_les_paris1071 1
-bulevard_sydney195 2
+bulevard_sydney195 1
 197
 4
-sheshi_moscow415 2
+sheshi_moscow415 1
 street_d'_beijing853 1
 sheshi_newyork634 1
 bulevardi_beijing196 1
@@ -1418,9 +1418,9 @@ bulevardi_lisbon860 1
 205
 5
 buleva_d'_cairo423 1
-rrethi_d'_moscow1080 1
-square_des_madrid861 1
 boulevard_le_athens642 1
+square_des_madrid861 1
+rrethi_d'_moscow1080 1
 lane_beijing204 1
 206
 5
@@ -1472,9 +1472,9 @@ bulevardi_sydney211 1
 buleva_la_tokyo868 1
 213
 5
-square_moscow431 2
 boulevard_prishtina212 1
 lane_tokyo650 1
+square_moscow431 1
 buleva_de_moscow869 1
 road_berlin1088 1
 214

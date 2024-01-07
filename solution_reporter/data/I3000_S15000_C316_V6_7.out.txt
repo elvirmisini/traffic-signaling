@@ -105,7 +105,7 @@ rruga_lisbon42 1
 3
 rruga_athens9040 1
 lane_le_cairo3042 1
-avenue_tokyo43 1
+avenue_tokyo43 2
 45
 1
 road_athens44 1
@@ -135,9 +135,9 @@ lane_la_newyork52 1
 lane_d'_berlin3053 1
 56
 3
+lane_le_london12051 1
 buleva_la_madrid3054 1
 square_les_tokyo9052 1
-lane_le_london12051 1
 57
 2
 bulevardi_les_berlin12052 1
@@ -161,7 +161,7 @@ sheshi_madrid12057 1
 place_le_tokyo6059 1
 63
 2
-road_lisbon9059 2
+road_lisbon9059 1
 rrethi_des_newyork62 1
 64
 1
@@ -895,9 +895,9 @@ bulevard_d'_athens6563 1
 road_les_prishtina12562 1
 568
 3
-bulevard_d'_moscow6565 1
 avenue_du_paris3566 1
 buleva_la_paris12563 1
+bulevard_d'_moscow6565 1
 569
 1
 bulevardi_du_berlin12564 1
@@ -934,8 +934,8 @@ road_le_tokyo9576 1
 lane_d'_tokyo6580 1
 584
 3
-street_moscow3582 1
 bulevard_le_athens9580 1
+street_moscow3582 1
 buleva_prishtina583 1
 586
 1
@@ -1059,7 +1059,7 @@ lane_les_lisbon6666 1
 rue_moscow12664 1
 672
 2
-lane_les_tokyo9668 1
+lane_les_tokyo9668 2
 road_madrid6669 1
 673
 1
@@ -1207,9 +1207,9 @@ rruga_madrid3759 1
 763
 4
 avenue_des_rome12758 1
-avenue_les_rio3761 1
 boulevard_lisbon9759 1
 buleva_d'_london6760 1
+avenue_les_rio3761 1
 764
 1
 buleva_d'_paris6761 1
@@ -1378,9 +1378,9 @@ rue_rio831 1
 boulevard_le_newyork6832 1
 836
 3
-street_paris12831 2
 street_les_beijing9832 1
 sheshi_la_prishtina835 1
+street_paris12831 1
 837
 1
 buleva_de_newyork836 1
@@ -1495,8 +1495,8 @@ avenue_de_beijing900 1
 902
 3
 rue_des_moscow3900 1
-avenue_rome901 1
 square_de_berlin6899 1
+avenue_rome901 1
 903
 1
 boulevard_des_prishtina6900 1
@@ -2410,9 +2410,9 @@ place_des_london7444 1
 rrethi_london13442 1
 1448
 3
+rrethi_moscow1447 1
 street_d'_beijing13443 1
 rue_madrid4446 1
-rrethi_moscow1447 1
 1450
 1
 lane_d'_rio7447 1
@@ -4057,8 +4057,8 @@ boulevard_newyork8452 1
 2456
 3
 bulevard_la_berlin14451 1
-boulevard_le_beijing8453 1
 rue_beijing11452 1
+boulevard_le_beijing8453 1
 2457
 1
 bulevard_lisbon2456 1
@@ -4488,9 +4488,9 @@ rruga_du_berlin5772 1
 sheshi_de_sydney14770 1
 2776
 3
-bulevard_berlin5774 1
-lane_beijing2775 1
 rruga_moscow11772 1
+lane_beijing2775 1
+bulevard_berlin5774 1
 2777
 2
 buleva_tokyo2776 1
