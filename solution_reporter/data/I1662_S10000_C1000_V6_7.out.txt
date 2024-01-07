@@ -4635,8 +4635,8 @@ iec-had 3
 704
 6
 bbic-hae 11
-chi-hae 9
 hea-hae 6
+chi-hae 9
 idb-hae 4
 ije-hae 3
 fac-hae 1
@@ -7680,7 +7680,7 @@ bfbc-bdbi 2
 gid-bdbj 11
 jfa-bdbj 9
 dhe-bdbj 6
-bbci-bdbj 7
+bbci-bdbj 4
 1320
 1
 fej-bdca 1
