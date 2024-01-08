@@ -3339,9 +3339,9 @@ avenue_des_berlin23471 1
 place_moscow23473 1
 3477
 3
+lane_de_tokyo23474 1
 lane_newyork13475 1
 rruga_la_madrid3476 1
-lane_de_tokyo23474 3
 3478
 1
 bulevard_lisbon3477 1
@@ -3936,7 +3936,7 @@ rrethi_prishtina24047 1
 place_des_paris4049 1
 4053
 2
-bulevardi_berlin4052 1
+bulevardi_berlin4052 2
 buleva_les_moscow24050 1
 4054
 1
@@ -4428,7 +4428,7 @@ rrethi_tokyo4508 1
 4510
 2
 place_du_prishtina4509 1
-road_newyork24507 4
+road_newyork24507 1
 4512
 1
 street_de_lisbon14510 1
@@ -4822,7 +4822,7 @@ bulevardi_lisbon4871 1
 rue_berlin4872 1
 4874
 2
-road_du_moscow4873 1
+road_du_moscow4873 2
 bulevardi_le_moscow24871 1
 4875
 1
@@ -4851,7 +4851,7 @@ street_la_athens24897 1
 4902
 2
 avenue_sydney4901 1
-square_tokyo14900 3
+square_tokyo14900 1
 4903
 1
 road_berlin4902 1
@@ -5316,7 +5316,7 @@ sheshi_des_cairo15372 1
 lane_prishtina5374 1
 5377
 2
-rruga_rome5376 2
+rruga_rome5376 1
 place_le_moscow15375 1
 5378
 1
@@ -5772,7 +5772,7 @@ place_rome16011 1
 6014
 2
 buleva_d'_newyork26011 1
-avenue_tokyo6013 1
+avenue_tokyo6013 2
 6015
 1
 avenue_la_lisbon6014 1
@@ -5859,7 +5859,7 @@ rruga_du_sydney16060 1
 6063
 2
 square_les_rio26060 1
-road_les_rio6062 4
+road_les_rio6062 1
 6065
 2
 street_tokyo26062 1
@@ -6194,7 +6194,7 @@ avenue_athens6353 1
 rrethi_d'_paris16353 1
 6356
 2
-bulevardi_tokyo16354 1
+bulevardi_tokyo16354 2
 sheshi_du_moscow6355 1
 6357
 1
@@ -6848,7 +6848,7 @@ rruga_cairo27015 1
 7019
 2
 bulevardi_le_berlin7018 1
-bulevard_rio17017 1
+bulevard_rio17017 2
 7020
 1
 rruga_la_paris7019 1
@@ -7593,7 +7593,7 @@ lane_des_rio27805 1
 rue_rome17811 1
 7814
 2
-place_la_moscow27811 3
+place_la_moscow27811 1
 sheshi_les_tokyo7813 1
 7816
 1
@@ -7674,9 +7674,9 @@ road_rome17904 1
 lane_du_berlin17905 1
 7909
 3
-street_des_cairo7908 1
-square_de_paris17907 1
+street_des_cairo7908 2
 avenue_les_london27906 1
+square_de_paris17907 3
 7911
 1
 buleva_d'_prishtina17909 1
@@ -8726,7 +8726,7 @@ bulevard_paris28999 1
 place_berlin19001 1
 9004
 2
-place_newyork19002 1
+place_newyork19002 2
 bulevardi_newyork9003 1
 9006
 1

@@ -2673,7 +2673,7 @@ road_d'_london22676 1
 buleva_lisbon2679 1
 2682
 2
-rruga_la_paris12680 1
+rruga_la_paris12680 2
 place_beijing22679 1
 2685
 1
@@ -3339,9 +3339,9 @@ avenue_des_berlin23471 1
 place_moscow23473 1
 3477
 3
-lane_de_tokyo23474 1
 lane_newyork13475 1
 rruga_la_madrid3476 1
+lane_de_tokyo23474 3
 3478
 1
 bulevard_lisbon3477 1
@@ -4428,7 +4428,7 @@ rrethi_tokyo4508 1
 4510
 2
 place_du_prishtina4509 1
-road_newyork24507 4
+road_newyork24507 1
 4512
 1
 street_de_lisbon14510 1
@@ -5316,7 +5316,7 @@ sheshi_des_cairo15372 1
 lane_prishtina5374 1
 5377
 2
-rruga_rome5376 2
+rruga_rome5376 1
 place_le_moscow15375 1
 5378
 1
@@ -5772,7 +5772,7 @@ place_rome16011 1
 6014
 2
 buleva_d'_newyork26011 1
-avenue_tokyo6013 1
+avenue_tokyo6013 2
 6015
 1
 avenue_la_lisbon6014 1
@@ -6426,7 +6426,7 @@ buleva_de_paris6613 1
 rrethi_des_tokyo26612 1
 6617
 2
-boulevard_la_moscow16615 1
+boulevard_la_moscow16615 2
 buleva_la_berlin26614 1
 6618
 1
@@ -7593,7 +7593,7 @@ lane_des_rio27805 1
 rue_rome17811 1
 7814
 2
-place_la_moscow27811 1
+place_la_moscow27811 3
 sheshi_les_tokyo7813 1
 7816
 1
@@ -7822,7 +7822,7 @@ bulevardi_tokyo18077 1
 8082
 2
 buleva_beijing8081 1
-bulevardi_du_lisbon28079 1
+bulevardi_du_lisbon28079 2
 8083
 1
 buleva_du_newyork8082 1
@@ -7881,7 +7881,7 @@ street_prishtina18128 1
 bulevard_les_tokyo28130 1
 8135
 2
-sheshi_le_berlin18133 2
+sheshi_le_berlin18133 1
 sheshi_lisbon28132 1
 8137
 1

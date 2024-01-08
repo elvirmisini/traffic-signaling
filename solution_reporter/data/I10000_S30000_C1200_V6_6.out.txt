@@ -1638,8 +1638,8 @@ bulevard_cairo21643 1
 1647
 3
 sheshi_d'_moscow11645 1
-place_athens1646 1
 boulevard_de_rio21644 1
+place_athens1646 1
 1648
 2
 buleva_rio11646 1
@@ -3144,8 +3144,8 @@ boulevard_les_prishtina3306 1
 3310
 3
 square_d'_sydney13308 1
-square_newyork3309 1
 avenue_du_moscow23307 1
+square_newyork3309 1
 3311
 1
 buleva_sydney3310 1
@@ -3533,7 +3533,7 @@ road_le_beijing3645 1
 place_rio13645 1
 3648
 2
-bulevard_d'_moscow3647 1
+bulevard_d'_moscow3647 2
 bulevard_prishtina13646 1
 3650
 1
@@ -3928,7 +3928,7 @@ rruga_madrid14045 1
 square_du_rome24045 1
 4049
 2
-bulevard_moscow14047 1
+bulevard_moscow14047 2
 rue_les_tokyo4048 1
 4050
 2
@@ -4428,7 +4428,7 @@ rrethi_tokyo4508 1
 4510
 2
 place_du_prishtina4509 1
-road_newyork24507 1
+road_newyork24507 4
 4512
 1
 street_de_lisbon14510 1
@@ -5166,8 +5166,8 @@ lane_le_prishtina25238 1
 5242
 3
 square_les_lisbon15240 1
-road_la_rio5241 1
 lane_rio25239 1
+road_la_rio5241 2
 5243
 1
 place_rome5242 1
@@ -5772,7 +5772,7 @@ place_rome16011 1
 6014
 2
 buleva_d'_newyork26011 1
-avenue_tokyo6013 2
+avenue_tokyo6013 1
 6015
 1
 avenue_la_lisbon6014 1
@@ -5859,7 +5859,7 @@ rruga_du_sydney16060 1
 6063
 2
 square_les_rio26060 1
-road_les_rio6062 4
+road_les_rio6062 1
 6065
 2
 street_tokyo26062 1
@@ -6426,7 +6426,7 @@ buleva_de_paris6613 1
 rrethi_des_tokyo26612 1
 6617
 2
-boulevard_la_moscow16615 1
+boulevard_la_moscow16615 2
 buleva_la_berlin26614 1
 6618
 1
@@ -6848,7 +6848,7 @@ rruga_cairo27015 1
 7019
 2
 bulevardi_le_berlin7018 1
-bulevard_rio17017 1
+bulevard_rio17017 2
 7020
 1
 rruga_la_paris7019 1
@@ -7676,7 +7676,7 @@ lane_du_berlin17905 1
 3
 street_des_cairo7908 2
 avenue_les_london27906 1
-square_de_paris17907 3
+square_de_paris17907 1
 7911
 1
 buleva_d'_prishtina17909 1
@@ -8063,8 +8063,8 @@ square_athens8314 1
 rue_tokyo18314 1
 8317
 3
-bulevardi_les_cairo18315 1
 rrethi_rio8316 1
+bulevardi_les_cairo18315 1
 street_rome28314 1
 8319
 1
@@ -8380,7 +8380,7 @@ bulevardi_paris18615 1
 8618
 2
 rrethi_lisbon18616 1
-bulevard_lisbon8617 4
+bulevard_lisbon8617 1
 8619
 1
 road_la_london8618 1

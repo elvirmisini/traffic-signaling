@@ -847,9 +847,9 @@ lane_beijing18595 1
 street_london27595 1
 600
 4
-rrethi_le_sydney27596 1
-avenue_du_london599 1
 bulevardi_des_rio9598 1
+avenue_du_london599 1
+rrethi_le_sydney27596 1
 avenue_paris18597 1
 601
 1
@@ -1075,7 +1075,7 @@ bulevardi_d'_sydney9748 1
 square_paris749 1
 751
 4
-sheshi_sydney750 1
+sheshi_sydney750 2
 street_berlin27747 1
 street_les_tokyo18748 1
 rruga_de_lisbon9749 1
@@ -1925,7 +1925,7 @@ rue_les_madrid28307 1
 1312
 2
 sheshi_berlin1311 1
-square_rome19309 2
+square_rome19309 1
 1313
 1
 avenue_lisbon1312 1
@@ -2562,7 +2562,7 @@ buleva_lisbon1822 1
 lane_du_cairo10821 1
 1824
 2
-square_de_prishtina1823 2
+square_de_prishtina1823 1
 avenue_de_london19821 1
 1825
 2
@@ -2570,8 +2570,8 @@ rue_newyork1824 1
 rruga_de_lisbon19822 1
 1827
 3
-buleva_athens19824 1
 place_des_beijing28823 1
+buleva_athens19824 1
 boulevard_des_berlin1826 1
 1828
 2
@@ -2804,8 +2804,8 @@ road_de_beijing28961 1
 1967
 3
 avenue_athens10965 1
-rue_newyork19964 1
 buleva_la_moscow28963 1
+rue_newyork19964 1
 1968
 1
 square_cairo1967 1
@@ -4299,8 +4299,8 @@ bulevardi_d'_beijing3210 1
 3212
 3
 rue_athens21209 1
-place_beijing3211 1
 place_de_prishtina12210 1
+place_beijing3211 1
 3213
 1
 square_des_rome30209 1
@@ -4849,13 +4849,13 @@ street_de_athens30660 1
 rruga_lisbon12663 1
 3666
 3
-rruga_newyork3665 1
 buleva_du_prishtina30662 1
+rruga_newyork3665 1
 square_sydney12664 1
 3667
 3
-road_rome3666 1
 lane_la_newyork30663 1
+road_rome3666 1
 bulevardi_des_beijing12665 1
 3668
 2
@@ -5185,8 +5185,8 @@ lane_cairo3873 1
 rrethi_du_sydney12872 1
 3875
 3
-rue_des_moscow21872 1
 bulevardi_madrid12873 1
+rue_des_moscow21872 2
 rue_rio3874 1
 3878
 1
@@ -6438,7 +6438,7 @@ square_les_athens22777 1
 lane_newyork13779 1
 4782
 2
-avenue_la_tokyo4781 2
+avenue_la_tokyo4781 1
 bulevard_sydney22779 1
 4783
 1
@@ -6551,8 +6551,8 @@ buleva_de_berlin31841 1
 4846
 3
 bulevard_lisbon31842 1
+square_madrid22843 1
 bulevard_les_sydney4845 1
-square_madrid22843 3
 4848
 1
 rruga_madrid13846 1
@@ -6722,17 +6722,17 @@ buleva_le_paris31976 1
 rruga_le_berlin4979 1
 4981
 2
-avenue_london13979 2
+avenue_london13979 1
 buleva_les_beijing31977 1
 4982
 2
-buleva_prishtina13980 2
+buleva_prishtina13980 1
 square_des_london22979 1
 4984
 3
 avenue_rome31980 1
 boulevard_du_beijing22981 1
-road_les_sydney13982 1
+road_les_sydney13982 2
 4985
 1
 bulevard_le_rio4984 1
@@ -7039,7 +7039,7 @@ rrethi_newyork23216 1
 5220
 3
 lane_les_rome14218 1
-rue_london23217 2
+rue_london23217 1
 boulevard_moscow5219 1
 5222
 1
@@ -8638,7 +8638,7 @@ street_newyork24421 1
 boulevard_berlin6424 1
 6426
 2
-square_moscow33422 2
+square_moscow33422 1
 rrethi_moscow6425 1
 6430
 1
@@ -8661,9 +8661,9 @@ buleva_cairo33432 1
 bulevardi_rio24433 1
 6437
 3
-lane_d'_beijing33433 1
-lane_le_prishtina15435 1
+lane_le_prishtina15435 3
 lane_cairo6436 1
+lane_d'_beijing33433 1
 6438
 1
 place_rome6437 1
@@ -8735,7 +8735,7 @@ boulevard_d'_lisbon6473 1
 6475
 2
 place_les_tokyo6474 1
-sheshi_d'_beijing24472 1
+sheshi_d'_beijing24472 4
 6476
 1
 boulevard_prishtina6475 1
@@ -9356,7 +9356,7 @@ road_d'_cairo34001 1
 rue_newyork25003 1
 7007
 3
-boulevard_d'_newyork25004 1
+boulevard_d'_newyork25004 3
 bulevardi_des_madrid7006 1
 rrethi_du_prishtina16005 1
 7008
@@ -9512,8 +9512,8 @@ road_athens25103 1
 7107
 3
 road_les_london34103 1
-rue_d'_sydney16105 1
 bulevardi_moscow25104 1
+rue_d'_sydney16105 1
 7109
 1
 sheshi_la_moscow34105 1
@@ -10057,7 +10057,7 @@ place_madrid7479 1
 lane_cairo25478 1
 7482
 2
-bulevard_london7481 1
+bulevard_london7481 2
 sheshi_des_rio34478 1
 7483
 1
@@ -11224,7 +11224,7 @@ rruga_beijing35412 1
 rruga_du_madrid35415 1
 8420
 2
-sheshi_de_madrid8419 2
+sheshi_de_madrid8419 1
 bulevardi_paris35416 1
 8421
 1
@@ -11243,7 +11243,7 @@ buleva_du_rome26421 1
 lane_prishtina17423 1
 8426
 2
-bulevard_du_paris35422 1
+bulevard_du_paris35422 2
 sheshi_de_berlin17424 1
 8429
 1
@@ -11400,9 +11400,9 @@ bulevardi_la_rio26532 1
 bulevard_cairo26533 1
 8538
 3
+square_des_rio17536 1
 street_le_tokyo35534 1
 street_cairo26535 1
-square_des_rio17536 1
 8540
 1
 bulevardi_d'_athens17538 1

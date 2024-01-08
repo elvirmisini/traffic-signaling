@@ -65,4 +65,18 @@ if __name__ == '__main__':
     parser.add_argument('-v', '--version', type=str, required=True)
 
     args = parser.parse_args()
-    main(args.instance_name, args.output, args.version)
+
+    instances = [
+        "I10000_S30000_C1200.txt",
+        "I9000_S36000_C1500.txt",
+        "I12000_S36000_C2000.txt",
+        "I8000_S95928_C1000.txt",
+        "I10000_S35030_C1000.txt"
+    ]
+
+    for instance_name in instances:
+        for run_number in range(1, 11):
+            version = f"{args.version}_{run_number}"
+            main(instance_name, instance_name,version)
+
+
