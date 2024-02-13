@@ -90,7 +90,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     current_home_base = deepcopy(initial_solution)
     best_solution = deepcopy(initial_solution)
 
-    duration = 30 * 60
+    duration = 1 * 60
 
     start_time = time.time()
     iteration = 0

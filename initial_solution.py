@@ -36,10 +36,13 @@ def traffic_based_initial_solution(intersections: list[Intersection]) -> list[Sc
                 green_time = 2 if len(street.waiting_cars) > threshold else 1
                 green_times[street.id] = int(green_time * random_factor)
 
+        red_phase_duration = 100  # Red phase duration in seconds
+        for street_id in green_times.keys():
+            if street_id not in intersection.incomings:
+                green_times[street_id] = red_phase_duration
         if order:
             schedules.append(Schedule(intersection.id, order, green_times))
     return schedules
-
 
 def usage_based_initial_solution(intersections: list[Intersection]) -> list[Schedule]:
     schedules = []
@@ -57,10 +60,15 @@ def usage_based_initial_solution(intersections: list[Intersection]) -> list[Sche
                 green_time = int(math.sqrt(usage)) if usage > 0 else 1
                 green_times[street.id] = green_time
 
+        # Add an extra phase for all red
+        red_phase_duration = 100  # Red phase duration in seconds
+        for street_id in green_times.keys():
+            if street_id not in intersection.incomings:
+                green_times[street_id] = red_phase_duration
+
         if order:
             schedules.append(Schedule(intersection.id, order, green_times))
     return schedules
-
 
 # def green_time_set_to_1(intersections: list[Intersection]) -> list[Schedule]:
 #     schedules = []

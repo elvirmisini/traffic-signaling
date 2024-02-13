@@ -1,0 +1,284 @@
+{
+    "simulation": {
+        "duration": 600,
+        "intersections": 5,
+        "streets": 4,
+        "cars": 10,
+        "bonus": 100,
+        "objectives": [
+            "Delay_minimization",
+            "Mean_queue_length_minimization",
+            "Max_queue_length_minimization",
+            "Increasing_average_vehicle_speed"
+        ],
+        "limit_on_minimum_cycle_length": 100,
+        "limit_on_maximum_cycle_length": 120,
+        "limit_on_minimum_green_phase_duration": 15,
+        "limit_on_maximum_green_phase_duration": 80,
+        "phase_sequence": "Phase_sequence_is_selected_among_phase_groups"
+    },
+    "intersections":[
+        {
+            "id": 0,
+            "name": "BillClinton",
+            "lat": 42.654261, 
+            "lng": 21.152657
+        },
+        {
+            "id": 1,
+            "name": "Lakrishte",
+            "lat": 42.653592, 
+            "lng": 21.150448
+        },
+        {
+            "id": 2,
+            "name": "Santea",
+            "lat": 42.655118,  
+            "lng": 21.155765
+        }
+    ],
+    "streets": [
+        {
+            "start": 0,
+            "end": 1,
+            "name": "Lakrishte_BillClinton_Santea",
+            "time": 60,
+            "exit_roads": [
+                "BillClinton_Santea_Katedralja",
+                "Katedralja"
+            ]
+        },
+
+        {
+            "start": 2,
+            "end": 1,
+            "name": "Lakrishte_BillClinton_Menza",
+            "time": 60, 
+            "exit_roads": [
+                "Menza"
+            ]
+        },
+        {
+            "start": 1, 
+            "end": 2,
+            "name": "Santea_BillClinton_Lakrishte",
+            "time": 120,
+            "exit_roads": [
+                "Lakrishte"
+            ]
+        },
+        {
+            "start": 2, 
+            "end": 0,
+            "name": "Santea_BillClinton_Menza",
+            "time": 120,
+            "exit_roads": [
+                "Menza"
+            ]
+        }
+    ],
+    "cars": [
+        {
+            "path_length": 6,
+            "path": [
+                "Lakrishte_BillClinton_Santea",
+                "Santea_BillClinton_Lakrishte",
+                "Santea_BillClinton_Menza"
+            ]
+        },
+        {
+            "path_length": 6,
+            "path": [
+                "Lakrishte_BillClinton_Santea",
+                "Santea_BillClinton_Lakrishte",
+                "Santea_BillClinton_Menza"
+            ]
+        },
+        {
+            "path_length": 6,
+            "path": [
+                "Lakrishte_BillClinton_Santea",
+                "Santea_BillClinton_Lakrishte",
+                "Santea_BillClinton_Menza"
+            ]
+        },
+        {
+            "path_length": 6,
+            "path": [
+                "Lakrishte_BillClinton_Santea",
+                "Santea_BillClinton_Lakrishte",
+                "Santea_BillClinton_Menza"
+            ]
+        },
+        {
+            "path_length": 6,
+            "path": [
+                "Lakrishte_BillClinton_Santea",
+                "Santea_BillClinton_Lakrishte",
+                "Santea_BillClinton_Menza"
+            ]
+        },
+        {
+            "path_length": 6,
+            "path": [
+                "Lakrishte_BillClinton_Menza",
+                "Santea_BillClinton_Lakrishte",
+                "Santea_BillClinton_Menza",
+                "Lakrishte_BillClinton_Santea"
+            ]
+        },
+        {
+            "path_length": 6,
+            "path": [
+                "Lakrishte_BillClinton_Menza",
+                "Santea_BillClinton_Lakrishte",
+                "Santea_BillClinton_Menza",
+                "Lakrishte_BillClinton_Santea"
+            ]
+        },
+        {
+            "path_length": 6,
+            "path": [
+                "Lakrishte_BillClinton_Menza",
+                "Santea_BillClinton_Lakrishte",
+                "Santea_BillClinton_Menza",
+                "Lakrishte_BillClinton_Santea"
+            ]
+        },
+        {
+            "path_length": 6,
+            "path": [
+                "Lakrishte_BillClinton_Menza",
+                "Santea_BillClinton_Lakrishte",
+                "Santea_BillClinton_Menza",
+                "Lakrishte_BillClinton_Santea"
+            ]
+        },
+        {
+            "path_length": 6,
+            "path": [
+                "Lakrishte_BillClinton_Menza",
+                "Santea_BillClinton_Lakrishte",
+                "Santea_BillClinton_Menza",
+                "Lakrishte_BillClinton_Santea"
+            ]
+        }
+     
+    ],
+    "constraints": [
+        {
+            "type": "simultaneously_signal",
+            "intersection": 1,
+            "streets": [
+                "Lakrishte_BillClinton_Santea",
+                "Santea_BillClinton_Lakrishte"
+            ]
+        },
+        {
+            "type": "simultaneously_signal",
+            "intersection": 1,
+            "streets": [
+                "Tuneli_BillClinton_Menza",
+                "Menza_BillClinton_Tuneli"
+            ]
+        },
+        {
+            "type": "simultaneously_signal",
+            "intersection": 1,
+            "streets": [
+                "Santea_BillClinton_Tuneli",
+                "Lakrishte_BillClinton_Menza"
+            ]
+        },
+        {
+            "type": "all_red_phase",
+            "intersection": 1,
+            "interval":4
+        },
+        {
+            "type": "signal_phase_order",
+            "intersection": 1,
+            "streets": [
+                "Lakrishte_BillClinton_Santea",
+                "Lakrishte_BillClinton_Menza"
+            ]
+        },
+        {
+            "type": "signal_phase_order",
+            "intersection": 1,
+            "streets": [
+                "Santea_BillClinton_Lakrishte",
+                "Santea_BillClinton_Tuneli"
+            ]
+        },
+        {
+            "type": "simultaneously_signal",
+            "intersection": 2,
+            "streets": [
+                "BillClinton_Santea_Katedralja",
+                "Katedralja_Santea_BillClinton"
+            ]
+        },
+        {
+            "type": "simultaneously_signal",
+            "intersection": 2,
+            "streets": [
+                "Katedralja_Santea_RobertDoll",
+                "BillClinton_Santea_RobertDoll"
+            ]
+        },
+        {
+            "type": "simultaneously_signal",
+            "intersection": 2,
+            "streets": [
+                "RobertDoll_Santea_BillClinton",
+                "RobertDoll_Santea_Katedralja"
+            ]
+        },
+        {
+            "type": "all_red_phase",
+            "intersection": 2,
+            "interval":1
+        },
+        {
+            "type": "signal_phase_order",
+            "intersection": 2,
+            "streets": [
+                "BillClinton_Santea_Katedralja",
+                "BillClinton_Santea_RobertDoll"
+            ]
+        },
+        {
+            "type": "signal_phase_order",
+            "intersection": 2,
+            "streets": [
+                "Katedralja_Santea_BillClinton",
+                "Katedralja_Santea_RobertDoll"
+            ]
+        },
+        {
+            "type": "simultaneously_signal",
+            "intersection": 3,
+            "streets": [
+                "Santea_Katedralja_Santea", 
+                "Menza_Katedralja_PTK"
+            ]
+        },
+        {
+            "type": "simultaneously_signal",
+            "intersection": 3,
+            "streets": [
+                "Santea_Katedralja_Menza",
+                "Menza_Katedralja_Santea"
+            ]
+        },
+        {
+            "type": "simultaneously_signal",
+            "intersection": 7,
+            "streets": [
+                "Menza_MAShTI_XhamiaLlapit",
+                "XhamiaLlapit_MAShTI_Menza"
+            ]
+        }
+    ]
+}

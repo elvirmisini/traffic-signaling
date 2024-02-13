@@ -63,32 +63,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 if __name__ == '__main__':
-    instances = [
-        "I70_S210_C200.txt",
-"I100_S400_C600.txt",
-"I100_S500_C500.txt",
-"I100_S600_C153.txt",
-"I110_S330_C450.txt",
-"I120_S480_C500.txt",
-"I120_S720_C400.txt",
-"I150_S45150_C100.txt",
-"I155_S57155_C300.txt",
-"I1662_S10000_C1000.txt",
-"I180_S1080_C800.txt",
-"I2000_S12000_C57.txt",
-"I2000_S6000_C376.txt",
-"I200_S1000_C400.txt",
-"I200_S1000_C550.txt",
-"I200_S17200_C1000.txt",
-"I200_S4200_C400.txt",
-"I220_S1100_C558.txt",
-"I220_S660_C430.txt",
-"I241_S43241_C158.txt",
-"I2500_S10000_C306.txt",
- "I2999_S17994_C103.txt",
- "I3000_S12000_C407.txt",
- "I3000_S15000_C316.txt",
- "I3000_S18000_C227.txt"]
+    instances = ["test1.txt"]
     
 #     instances =[
 # "I300_S1500_C469.txt",
