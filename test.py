@@ -15,6 +15,7 @@ streets = simulation['streets']
 cars = simulation['cars']
 bonus = simulation['bonus']
 duration_to_pass_through_an_intersection = simulation['duration_to_pass_through_an_intersection']
+yellow_phase = simulation['yellow_phase']
 limit_on_minimum_cycle_length = simulation['limit_on_minimum_cycle_length']
 limit_on_maximum_cycle_length = simulation['limit_on_maximum_cycle_length']
 limit_on_minimum_green_phase_duration = simulation['limit_on_minimum_green_phase_duration']
@@ -22,7 +23,7 @@ limit_on_maximum_green_phase_duration = simulation['limit_on_maximum_green_phase
 
 # Write simulation data to txt file
 with open("output.txt", "w") as txt_file:
-    txt_file.write(f"{duration} {intersections} {streets} {cars} {bonus} {duration_to_pass_through_an_intersection} {limit_on_minimum_cycle_length} {limit_on_maximum_cycle_length} {limit_on_minimum_green_phase_duration} {limit_on_maximum_green_phase_duration}\n")
+    txt_file.write(f"{duration} {intersections} {streets} {cars} {bonus} {duration_to_pass_through_an_intersection} {yellow_phase} {limit_on_minimum_cycle_length} {limit_on_maximum_cycle_length} {limit_on_minimum_green_phase_duration} {limit_on_maximum_green_phase_duration}\n")
     
     # Write street data to txt file
     for street in parsed_data['streets']:

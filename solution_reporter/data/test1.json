@@ -6,6 +6,7 @@
         "cars": 35,
         "bonus": 100,
         "duration_to_pass_through_an_intersection": 1,
+        "yellow_phase":4,
         "limit_on_minimum_cycle_length": 30,
         "limit_on_maximum_cycle_length": 60,
         "limit_on_minimum_green_phase_duration": 10,
