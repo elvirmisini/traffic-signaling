@@ -38,8 +38,8 @@ def read_input(instance_name: str) -> tuple:
         lines = deque(f.readlines())
 
     # Parse the first line
-    total_duration, num_intersections, num_streets, num_cars, bonus_points = map(int, lines.popleft().split())
-
+    total_duration, num_intersections, num_streets, num_cars, bonus_points, duration_to_pass_through_an_intersection,yellow_phase,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration = map(int, lines.popleft().split())
+    print(total_duration, num_intersections, num_streets, num_cars, bonus_points, duration_to_pass_through_an_intersection,yellow_phase,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
     intersections = tuple(Intersection(id=i,
                                        incomings=deque(),
                                        outgoings=deque(),
@@ -93,4 +93,4 @@ def read_input(instance_name: str) -> tuple:
         # delete duplicates in using_streets array
         intersections[inter.id].using_streets = list(dict.fromkeys(intersections[inter.id].using_streets))
 
-    return total_duration, bonus_points, intersections, streets, name_to_street, paths
+    return total_duration, bonus_points, intersections, streets, name_to_street, paths,duration_to_pass_through_an_intersection,yellow_phase,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration

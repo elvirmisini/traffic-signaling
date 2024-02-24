@@ -12,7 +12,7 @@ Schedule = recordclass('Schedule', [
 ])
 
 
-def traffic_based_initial_solution(intersections: list[Intersection]) -> list[Schedule]:
+def traffic_based_initial_solution(intersections: list[Intersection],limit_on_minimum_green_phase_duration:int,limit_on_maximum_green_phase_duration:int) -> list[Schedule]:
     schedules = []
 
     # Calculate the global threshold first for efficiency
@@ -32,19 +32,17 @@ def traffic_based_initial_solution(intersections: list[Intersection]) -> list[Sc
             if street.name in intersection.using_streets:
                 order.append(street.id)
                 # Introduce randomness in green time allocation
-                random_factor = random.uniform(1, 2)  # Adjust the range as needed
+                random_factor = random.uniform(limit_on_minimum_green_phase_duration, limit_on_maximum_green_phase_duration)  # Adjust the range as needed
                 green_time = 2 if len(street.waiting_cars) > threshold else 1
+                print(int(green_time * random_factor))
                 green_times[street.id] = int(green_time * random_factor)
 
-        red_phase_duration = 100  # Red phase duration in seconds
-        for street_id in green_times.keys():
-            if street_id not in intersection.incomings:
-                green_times[street_id] = red_phase_duration
         if order:
+            print(green_times)
             schedules.append(Schedule(intersection.id, order, green_times))
     return schedules
 
-def usage_based_initial_solution(intersections: list[Intersection]) -> list[Schedule]:
+def usage_based_initial_solution(intersections: list[Intersection],limit_on_minimum_green_phase_duration:int,limit_on_maximum_green_phase_duration:int) -> list[Schedule]:
     schedules = []
     for intersection in intersections:
         order = []
@@ -57,14 +55,10 @@ def usage_based_initial_solution(intersections: list[Intersection]) -> list[Sche
             if street.name in intersection.using_streets:
                 order.append(street.id)
                 usage = intersection.streets_usage.get(street.name, 0)
-                green_time = int(math.sqrt(usage)) if usage > 0 else 1
+                #green_time = int(math.sqrt(usage)) if usage > 0 else 1
+                green_time = min(max(limit_on_minimum_green_phase_duration, int(math.sqrt(usage))), limit_on_maximum_green_phase_duration)
+                print(green_time)
                 green_times[street.id] = green_time
-
-        # Add an extra phase for all red
-        red_phase_duration = 100  # Red phase duration in seconds
-        for street_id in green_times.keys():
-            if street_id not in intersection.incomings:
-                green_times[street_id] = red_phase_duration
 
         if order:
             schedules.append(Schedule(intersection.id, order, green_times))

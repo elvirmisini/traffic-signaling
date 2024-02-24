@@ -11,8 +11,9 @@ from ouput_writer import save_schedule_to_file
 def main(instance_name, output,version_prefix) -> None:
     start_time = time.perf_counter()
 
-    total_duration, bonus_points, intersections, streets, name_to_i_street, paths = read_input(instance_name)
-    usage_based_heuristic_initial_solution = usage_based_initial_solution(intersections)
+    total_duration, bonus_points, intersections, streets, name_to_i_street, paths,duration_to_pass_through_an_intersection,yellow_phase,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration = read_input(instance_name)
+    #print(total_duration, bonus_points, intersections, streets, name_to_i_street, paths,duration_to_pass_through_an_intersection,yellow_phase,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
+    usage_based_heuristic_initial_solution = usage_based_initial_solution(intersections,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
     usage_based_heuristic_initial_score = fitness_score(usage_based_heuristic_initial_solution,
                                                         streets, intersections,
                                                         paths,
@@ -21,7 +22,7 @@ def main(instance_name, output,version_prefix) -> None:
     print(f'The usage based heuristic initial solution of {instance_name} has the score '
           f'{usage_based_heuristic_initial_score}.')
 
-    traffic_based_heuristic_initial_solution = traffic_based_initial_solution(intersections)
+    traffic_based_heuristic_initial_solution = traffic_based_initial_solution(intersections,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
     traffic_based_heuristic_initial_score = fitness_score(traffic_based_heuristic_initial_solution,
                                                           streets,
                                                           intersections,
