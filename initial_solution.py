@@ -34,11 +34,11 @@ def traffic_based_initial_solution(intersections: list[Intersection],limit_on_mi
                 # Introduce randomness in green time allocation
                 random_factor = random.uniform(limit_on_minimum_green_phase_duration, limit_on_maximum_green_phase_duration)  # Adjust the range as needed
                 green_time = 2 if len(street.waiting_cars) > threshold else 1
-                print(int(green_time * random_factor))
+               # print(int(green_time * random_factor))
                 green_times[street.id] = int(green_time * random_factor)
 
         if order:
-            print(green_times)
+            #print(green_times)
             schedules.append(Schedule(intersection.id, order, green_times))
     return schedules
 
@@ -57,7 +57,7 @@ def usage_based_initial_solution(intersections: list[Intersection],limit_on_mini
                 usage = intersection.streets_usage.get(street.name, 0)
                 #green_time = int(math.sqrt(usage)) if usage > 0 else 1
                 green_time = min(max(limit_on_minimum_green_phase_duration, int(math.sqrt(usage))), limit_on_maximum_green_phase_duration)
-                print(green_time)
+               # print(green_time)
                 green_times[street.id] = green_time
 
         if order:

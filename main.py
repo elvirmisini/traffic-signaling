@@ -44,7 +44,9 @@ def main(instance_name, output,version_prefix) -> None:
                                               intersections,
                                               paths,
                                               total_duration,
-                                              bonus_points)
+                                              bonus_points,
+                                              limit_on_minimum_green_phase_duration,
+                                              limit_on_maximum_green_phase_duration)
 
     score = fitness_score(ils_solution, streets, intersections, paths, total_duration, bonus_points)
     print(f'The solution of {instance_name} has the score {score}.')

@@ -23,7 +23,7 @@ def new_home_base(current_home_base: list[Schedule],
         return deepcopy(current_home_base)
 
 
-def change_green_times(current_solution: list[Schedule]) -> list[Schedule]:
+def change_green_times(current_solution: list[Schedule],limit_on_minimum_green_phase_duration:int,limit_on_maximum_green_phase_duration:int) -> list[Schedule]:
     tweaked_solution = deepcopy(current_solution)
     num_to_change = max(1, len(tweaked_solution) * 5 // 100)
     for _ in range(num_to_change):
@@ -33,7 +33,12 @@ def change_green_times(current_solution: list[Schedule]) -> list[Schedule]:
         order_key = random.choice(schedule.order)
         choices = [-1] * 40 + [1] * 40 + [2] * 10 + [3] * 5 + [4] * 5
         change = random.choice(choices)
-        schedule.green_times[order_key] = max(1, schedule.green_times[order_key] + change)
+        current_green_time = schedule.green_times[order_key]
+        new_green_time = max(min(limit_on_maximum_green_phase_duration, current_green_time + change), limit_on_minimum_green_phase_duration)
+        print(new_green_time)
+        schedule.green_times[order_key] = new_green_time
+
+       # schedule.green_times[order_key] = max(1, schedule.green_times[order_key] + change)
     return tweaked_solution
 
 
@@ -59,7 +64,7 @@ def swap_random_orders(current_solution: list[Schedule]) -> list[Schedule]:
     return tweaked_solution
 
 
-def enhanced_tweak(current_solution: list[Schedule]) -> list[Schedule]:
+def enhanced_tweak(current_solution: list[Schedule],limit_on_minimum_green_phase_duration:int,limit_on_maximum_green_phase_duration:int) -> list[Schedule]:
     tweak_option = random.random()
 
     if tweak_option < 0.45:
@@ -67,7 +72,7 @@ def enhanced_tweak(current_solution: list[Schedule]) -> list[Schedule]:
     elif tweak_option < 0.90:
         return swap_random_orders(current_solution)
     else:
-        return change_green_times(current_solution)
+        return change_green_times(current_solution,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
 
 
 def perturb(current_solution: list[Schedule]) -> list[Schedule]:
@@ -84,7 +89,9 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
                                intersections: list[Intersection],
                                paths: list[str],
                                total_duration: int,
-                               bonus_points: int
+                               bonus_points: int,
+                               limit_on_minimum_green_phase_duration:int,
+                               limit_on_maximum_green_phase_duration:int
                                ) -> list[Schedule]:
     current_solution = deepcopy(initial_solution)
     current_home_base = deepcopy(initial_solution)
@@ -98,7 +105,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     while time.time() - start_time < duration:
         inner_iteration = 0
         while inner_iteration < 100 and time.time() - start_time < duration:
-            tweak_solution = enhanced_tweak(current_solution)
+            tweak_solution = enhanced_tweak(current_solution,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
 
             cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
             tw_score = fitness_score(tweak_solution, streets, intersections, paths, total_duration, bonus_points)
