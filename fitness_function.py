@@ -14,7 +14,7 @@ def reinit(streets, intersections):
         intersection.needs_updates = False
 
 
-def fitness_score(schedules, streets, intersections, paths, total_duration, bonus_points):
+def fitness_score(schedules, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection):
     # we reset intersections and streets before performing a simulation
     reinit(streets, intersections)
 
@@ -100,7 +100,7 @@ def fitness_score(schedules, streets, intersections, paths, total_duration, bonu
                     if len(paths[car]) == 0:
                         # car finished its path
                         score += bonus_points
-                        score += total_duration - t - 1
+                        score += total_duration - t - duration_to_pass_through_an_intersection
                     else:
                         street.waiting_cars.append(car)
                         street.end.num_waiting_cars += 1

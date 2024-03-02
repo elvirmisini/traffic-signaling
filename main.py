@@ -13,24 +13,24 @@ def main(instance_name, output,version_prefix) -> None:
 
     total_duration, bonus_points, intersections, streets, name_to_i_street, paths,duration_to_pass_through_an_intersection,yellow_phase,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration = read_input(instance_name)
     #print(total_duration, bonus_points, intersections, streets, name_to_i_street, paths,duration_to_pass_through_an_intersection,yellow_phase,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
-    usage_based_heuristic_initial_solution = usage_based_initial_solution(intersections,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
-    usage_based_heuristic_initial_score = fitness_score(usage_based_heuristic_initial_solution,
-                                                        streets, intersections,
-                                                        paths,
-                                                        total_duration,
-                                                        bonus_points)
-    print(f'The usage based heuristic initial solution of {instance_name} has the score '
-          f'{usage_based_heuristic_initial_score}.')
-
+    
     traffic_based_heuristic_initial_solution = traffic_based_initial_solution(intersections,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
     traffic_based_heuristic_initial_score = fitness_score(traffic_based_heuristic_initial_solution,
                                                           streets,
                                                           intersections,
                                                           paths,
                                                           total_duration,
-                                                          bonus_points)
+                                                          bonus_points,duration_to_pass_through_an_intersection)
     print(f'The traffic based heuristic initial solution of {instance_name} has the score '
           f'{traffic_based_heuristic_initial_score}.')
+    usage_based_heuristic_initial_solution = usage_based_initial_solution(intersections,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
+    usage_based_heuristic_initial_score = fitness_score(usage_based_heuristic_initial_solution,
+                                                        streets, intersections,
+                                                        paths,
+                                                        total_duration,
+                                                        bonus_points,duration_to_pass_through_an_intersection)
+    print(f'The usage based heuristic initial solution of {instance_name} has the score '
+          f'{usage_based_heuristic_initial_score}.')
 
     if traffic_based_heuristic_initial_score > usage_based_heuristic_initial_score:
         initial_solution = traffic_based_heuristic_initial_solution
@@ -46,9 +46,9 @@ def main(instance_name, output,version_prefix) -> None:
                                               total_duration,
                                               bonus_points,
                                               limit_on_minimum_green_phase_duration,
-                                              limit_on_maximum_green_phase_duration)
+                                              limit_on_maximum_green_phase_duration,duration_to_pass_through_an_intersection)
 
-    score = fitness_score(ils_solution, streets, intersections, paths, total_duration, bonus_points)
+    score = fitness_score(ils_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection)
     print(f'The solution of {instance_name} has the score {score}.')
 
     print(f'Optimized for {score - initial_score} points.')
