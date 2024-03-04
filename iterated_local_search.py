@@ -24,7 +24,7 @@ def new_home_base(current_home_base: list[Schedule],
         return deepcopy(current_home_base)
 
 
-def change_green_times(current_solution: list[Schedule],limit_on_minimum_green_phase_duration:int,limit_on_maximum_green_phase_duration:int) -> list[Schedule]:
+def change_green_times(current_solution: list[Schedule],limit_on_minimum_green_phase_duration:int,limit_on_maximum_green_phase_duration:int,limit_on_minimum_cycle_length:int,limit_on_maximum_cycle_length:int) -> list[Schedule]:
     tweaked_solution = deepcopy(current_solution)
     num_to_change = max(1, len(tweaked_solution) * 5 // 100)
     for _ in range(num_to_change):
@@ -37,10 +37,41 @@ def change_green_times(current_solution: list[Schedule],limit_on_minimum_green_p
         current_green_time = schedule.green_times[order_key]
         new_green_time = max(min(limit_on_maximum_green_phase_duration, current_green_time + change), limit_on_minimum_green_phase_duration)
         #print(new_green_time)
-        schedule.green_times[order_key] = new_green_time
+        total_green_time_excluding_current = sum(green_time for street_id, green_time in schedule.green_times.items() if street_id != order_key)
 
-       # schedule.green_times[order_key] = max(1, schedule.green_times[order_key] + change)
+        # Check if all streets except the current one have zero green time
+        if total_green_time_excluding_current == 0:
+            # Adjust the current street's green time to meet the cycle length constraints
+            if new_green_time > limit_on_maximum_cycle_length:
+                multiplier = (limit_on_maximum_cycle_length - new_green_time) / current_green_time
+            elif new_green_time < limit_on_minimum_cycle_length:
+                multiplier = (limit_on_minimum_cycle_length - new_green_time) / current_green_time
+            else:
+                multiplier = 0
+        else:
+            # Apply constraints on the total green time to ensure it fits within the cycle length bounds
+            min_possible_total_green_time = max(limit_on_minimum_cycle_length - new_green_time, total_green_time_excluding_current)
+            max_possible_total_green_time = min(limit_on_maximum_cycle_length - new_green_time, total_green_time_excluding_current)
+
+            # Ensure new total green time stays within bounds
+            total_green_time_excluding_current = max(min_possible_total_green_time, min(max_possible_total_green_time, total_green_time_excluding_current))
+
+            # Calculate a multiplier to adjust other green times while keeping the total green time correct
+            if total_green_time_excluding_current != 0:
+                multiplier = total_green_time_excluding_current / sum(green_time for street_id, green_time in schedule.green_times.items() if street_id != order_key)
+            else:
+                multiplier = 0
+
+        # Adjust green times for all streets except the one being changed
+        for street_id in schedule.green_times:
+            if street_id != order_key:
+                schedule.green_times[street_id] = int(schedule.green_times[street_id] * multiplier)
+
+        # Finally, update the green time for the street being changed
+        schedule.green_times[order_key] = new_green_time
+        print(schedule)
     return tweaked_solution
+
 
 
 def swap_neighbor_orders(current_solution: list[Schedule]) -> list[Schedule]:
@@ -65,7 +96,7 @@ def swap_random_orders(current_solution: list[Schedule]) -> list[Schedule]:
     return tweaked_solution
 
 
-def enhanced_tweak(current_solution: list[Schedule],limit_on_minimum_green_phase_duration:int,limit_on_maximum_green_phase_duration:int) -> list[Schedule]:
+def enhanced_tweak(current_solution: list[Schedule],limit_on_minimum_green_phase_duration:int,limit_on_maximum_green_phase_duration:int,limit_on_minimum_cycle_length:int,limit_on_maximum_cycle_length:int) -> list[Schedule]:
     tweak_option = random.random()
 
     if tweak_option < 0.45:
@@ -93,7 +124,9 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
                                bonus_points: int,
                                limit_on_minimum_green_phase_duration:int,
                                limit_on_maximum_green_phase_duration:int,
-                               duration_to_pass_through_an_intersection:int
+                               duration_to_pass_through_an_intersection:int,
+                               limit_on_minimum_cycle_length:int,
+                               limit_on_maximum_cycle_length:int
                                ) -> list[Schedule]:
     current_solution = deepcopy(initial_solution)
     current_home_base = deepcopy(initial_solution)
@@ -107,7 +140,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     while time.time() - start_time < duration:
         inner_iteration = 0
         while inner_iteration < 100 and time.time() - start_time < duration:
-            tweak_solution = enhanced_tweak(current_solution,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
+            tweak_solution = enhanced_tweak(current_solution,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length)
 
             cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection)
             tw_score = fitness_score(tweak_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection)
