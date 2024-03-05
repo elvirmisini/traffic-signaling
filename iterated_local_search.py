@@ -104,7 +104,7 @@ def enhanced_tweak(current_solution: list[Schedule],limit_on_minimum_green_phase
     elif tweak_option < 0.90:
         return swap_random_orders(current_solution)
     else:
-        return change_green_times(current_solution,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
+        return change_green_times(current_solution,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length)
 
 
 def perturb(current_solution: list[Schedule]) -> list[Schedule]:
