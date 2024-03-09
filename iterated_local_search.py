@@ -69,7 +69,7 @@ def change_green_times(current_solution: list[Schedule],limit_on_minimum_green_p
 
         # Finally, update the green time for the street being changed
         schedule.green_times[order_key] = new_green_time
-        print(schedule)
+        #print(schedule)
     return tweaked_solution
 
 

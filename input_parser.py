@@ -27,7 +27,9 @@ Intersection = recordclass('Intersection', [
     'using_streets',
     'streets_usage',
     'green_street_per_t_mod',
-    'needs_updates'
+    'needs_updates',
+    'pedestrian_phase',
+    'all_red_phase',
 ])
 
 
@@ -89,6 +91,12 @@ def read_input(instance_name: str) -> tuple:
 
         path = deque(name_to_street[name] for name in path)
         paths.append(path)
+        
+    for phases in range(num_intersections):
+        line = lines.popleft().split()        
+        intersections[phases].pedestrian_phase=int(line[1])
+        intersections[phases].all_red_phase=int(line[2])
+        
     for inter in intersections:
         # delete duplicates in using_streets array
         intersections[inter.id].using_streets = list(dict.fromkeys(intersections[inter.id].using_streets))

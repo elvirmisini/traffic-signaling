@@ -1,14 +1,14 @@
 import math
 import random
-
 from recordclass import recordclass
-
 from input_parser import Intersection
 
 Schedule = recordclass('Schedule', [
     'i_intersection',
     'order',
-    'green_times'
+    'green_times',
+    'pedestrian_phase',    
+    'all_red_phase',    
 ])
 
 
@@ -38,7 +38,7 @@ def traffic_based_initial_solution(intersections: list[Intersection],limit_on_mi
                # print(int(green_time * random_factor))
                 green_times[street.id] = int(green_time * random_factor)
                 total_green_time += green_times[street.id]
-                print(total_green_time)
+              #  print(total_green_time)
 
         # Apply minimum and maximum constraints on total green time for the intersection
         total_green_time = max(min(total_green_time, limit_on_minimum_cycle_length), limit_on_maximum_cycle_length)
@@ -52,8 +52,8 @@ def traffic_based_initial_solution(intersections: list[Intersection],limit_on_mi
         for street_id in green_times:
             green_times[street_id] = max(min(green_times[street_id], limit_on_maximum_green_phase_duration), limit_on_minimum_green_phase_duration)
         if order:
-            print(intersection.id, order, green_times)
-            schedules.append(Schedule(intersection.id, order, green_times))
+            #print(intersection.id, order, green_times,intersection.pedestrian_phase,intersection.all_red_phase)
+            schedules.append(Schedule(intersection.id, order, green_times,intersection.pedestrian_phase,intersection.all_red_phase))
     return schedules
 
 def usage_based_initial_solution(intersections: list[Intersection],limit_on_minimum_green_phase_duration:int,limit_on_maximum_green_phase_duration:int,limit_on_minimum_cycle_length:int,limit_on_maximum_cycle_length:int) -> list[Schedule]:
@@ -87,9 +87,8 @@ def usage_based_initial_solution(intersections: list[Intersection],limit_on_mini
             green_times[street_id] = max(min(green_times[street_id], limit_on_maximum_green_phase_duration), limit_on_minimum_green_phase_duration)
         
         if order:
-            schedules.append(Schedule(intersection.id, order, green_times))
+            schedules.append(Schedule(intersection.id, order, green_times,intersection.pedestrian_phase,intersection.all_red_phase))
     return schedules
-
 # def green_time_set_to_1(intersections: list[Intersection]) -> list[Schedule]:
 #     schedules = []
 #     for intersection in intersections:
