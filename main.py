@@ -20,7 +20,7 @@ def main(instance_name, output,version_prefix) -> None:
                                                           intersections,
                                                           paths,
                                                           total_duration,
-                                                          bonus_points,duration_to_pass_through_an_intersection)
+                                                          bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
     print(f'The traffic based heuristic initial solution of {instance_name} has the score '
           f'{traffic_based_heuristic_initial_score}.')
     usage_based_heuristic_initial_solution = usage_based_initial_solution(intersections,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length)
@@ -28,7 +28,7 @@ def main(instance_name, output,version_prefix) -> None:
                                                         streets, intersections,
                                                         paths,
                                                         total_duration,
-                                                        bonus_points,duration_to_pass_through_an_intersection)
+                                                        bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
     print(f'The usage based heuristic initial solution of {instance_name} has the score '
           f'{usage_based_heuristic_initial_score}.')
 
@@ -47,9 +47,9 @@ def main(instance_name, output,version_prefix) -> None:
                                               bonus_points,
                                               limit_on_minimum_green_phase_duration,
                                               limit_on_maximum_green_phase_duration,duration_to_pass_through_an_intersection,
-                                              limit_on_minimum_cycle_length,limit_on_maximum_cycle_length)
+                                              limit_on_minimum_cycle_length,limit_on_maximum_cycle_length,yellow_phase)
 
-    score = fitness_score(ils_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection)
+    score = fitness_score(ils_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
     print(f'The solution of {instance_name} has the score {score}.')
 
     print(f'Optimized for {score - initial_score} points.')

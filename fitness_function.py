@@ -14,7 +14,7 @@ def reinit(streets, intersections):
         intersection.needs_updates = False
 
 
-def fitness_score(schedules, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection):
+def fitness_score(schedules, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase):
     # we reset intersections and streets before performing a simulation
     reinit(streets, intersections)
 
@@ -63,21 +63,49 @@ def fitness_score(schedules, streets, intersections, paths, total_duration, bonu
             if intersection.needs_updates:
                 # Update the green street
                 t_mod = t % intersection.schedule_duration
-                intersection.green_street = intersection.green_street_per_t_mod[t_mod]
+                intersection.green_street = None
+                if(t_mod + yellow_phase < len(intersection.green_street_per_t_mod)):
+                    if(intersection.green_street_per_t_mod[t_mod + yellow_phase].id == intersection.green_street_per_t_mod[t_mod].id):
+                        intersection.green_street = intersection.green_street_per_t_mod[t_mod]
 
-            green_street = intersection.green_street
-            waiting_cars = green_street.waiting_cars
-            if len(waiting_cars) > 0:
-                # Drive across the intersection
-                waiting_car = waiting_cars.popleft()
-                green_street.departure_times[waiting_car] = t
-                next_street = paths[waiting_car].popleft()
-                next_street.driving_cars[waiting_car] = next_street.duration
-                street_ids_with_driving_cars.add(next_street.id)
+            if(intersection.green_street is None):
+                green_streets = []
+            else:
+                green_street = intersection.green_street
+                green_streets = [green_street]
+                # if ('simultaneously_signal' in intersection.constraints):
+                #     for group_street in intersection.constraints['simultaneously_signal']:
+                #         if green_street == group_street[0]:
+                #             green_streets = [*group_street]
+            # green_street = intersection.green_street
+            # green_streets = [green_street]
+            # waiting_cars = green_street.waiting_cars
+            # if len(waiting_cars) > 0:
+            #     # Drive across the intersection
+            #     waiting_car = waiting_cars.popleft()
+            #     green_street.departure_times[waiting_car] = t
+            #     next_street = paths[waiting_car].popleft()
+            #     next_street.driving_cars[waiting_car] = next_street.duration
+            #     street_ids_with_driving_cars.add(next_street.id)
 
-                intersection.num_waiting_cars -= 1
-                if intersection.num_waiting_cars == 0:
-                    intersection_ids_to_remove.add(i_intersection)
+            #         intersection.num_waiting_cars -= 1
+            #         if intersection.num_waiting_cars == 0:
+            #             intersection_ids_to_remove.add(i_intersection)
+
+
+            for green_street in green_streets:  
+                waiting_cars = green_street.waiting_cars
+                if len(waiting_cars) > 0:
+                    # Drive across the intersection
+                    waiting_car = waiting_cars.popleft()
+                    green_street.departure_times[waiting_car] = t
+                    next_street = paths[waiting_car].popleft()
+                    next_street.driving_cars[waiting_car] = next_street.duration
+                    street_ids_with_driving_cars.add(next_street.id)
+
+                    intersection.num_waiting_cars -= 1
+                    if intersection.num_waiting_cars == 0:
+                        intersection_ids_to_remove.add(i_intersection)
 
         intersection_ids_with_waiting_cars.difference_update(intersection_ids_to_remove)
 

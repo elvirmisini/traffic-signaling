@@ -14,10 +14,10 @@ def new_home_base(current_home_base: list[Schedule],
                   paths: list[str],
                   total_duration: int,
                   bonus_points: int,
-                  duration_to_pass_through_an_intersection:int
+                  duration_to_pass_through_an_intersection:int,yellow_phase:int
                   ) -> list[Schedule]:
-    cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection)
-    chb_score = fitness_score(current_home_base, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection)
+    cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
+    chb_score = fitness_score(current_home_base, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
     if cs_score >= chb_score:
         return deepcopy(current_solution)
     else:
@@ -126,13 +126,13 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
                                limit_on_maximum_green_phase_duration:int,
                                duration_to_pass_through_an_intersection:int,
                                limit_on_minimum_cycle_length:int,
-                               limit_on_maximum_cycle_length:int
+                               limit_on_maximum_cycle_length:int,yellow_phase:int
                                ) -> list[Schedule]:
     current_solution = deepcopy(initial_solution)
     current_home_base = deepcopy(initial_solution)
     best_solution = deepcopy(initial_solution)
 
-    duration = 1 * 60
+    duration = 1 * 10
 
     start_time = time.time()
     iteration = 0
@@ -142,20 +142,20 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
         while inner_iteration < 100 and time.time() - start_time < duration:
             tweak_solution = enhanced_tweak(current_solution,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length)
 
-            cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection)
-            tw_score = fitness_score(tweak_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection)
+            cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
+            tw_score = fitness_score(tweak_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
             if tw_score > cs_score:
                 current_solution = tweak_solution
 
             inner_iteration = inner_iteration + 1
 
-        bs_score = fitness_score(best_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection)
-        cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection)
+        bs_score = fitness_score(best_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
+        cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
         if cs_score > bs_score:
             best_solution = current_solution
 
         current_home_base = new_home_base(current_home_base, current_solution, streets, intersections, paths,
-                                          total_duration, bonus_points,duration_to_pass_through_an_intersection)
+                                          total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
         current_solution = perturb(current_home_base)
         iteration = iteration + 1
 
