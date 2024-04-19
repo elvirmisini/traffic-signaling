@@ -67,7 +67,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 if __name__ == '__main__':
-    instances = ["test1.txt"]
+    instances = ["test1.json"]
     
 #     instances =[
 # "I300_S1500_C469.txt",
