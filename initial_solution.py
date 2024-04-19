@@ -53,7 +53,8 @@ def traffic_based_initial_solution(intersections: list[Intersection],limit_on_mi
             green_times[street_id] = max(min(green_times[street_id], limit_on_maximum_green_phase_duration), limit_on_minimum_green_phase_duration)
         if order:
             #print(intersection.id, order, green_times,intersection.pedestrian_phase,intersection.all_red_phase)
-            schedules.append(Schedule(intersection.id, order, green_times,intersection.pedestrian_phase,intersection.all_red_phase))
+            #schedules.append(Schedule(intersection.id, order, green_times,intersection.pedestrian_phase,intersection.all_red_phase))
+            schedules.append(Schedule(intersection.id, order, green_times))
     return schedules
 
 def usage_based_initial_solution(intersections: list[Intersection],limit_on_minimum_green_phase_duration:int,limit_on_maximum_green_phase_duration:int,limit_on_minimum_cycle_length:int,limit_on_maximum_cycle_length:int) -> list[Schedule]:
@@ -87,7 +88,7 @@ def usage_based_initial_solution(intersections: list[Intersection],limit_on_mini
             green_times[street_id] = max(min(green_times[street_id], limit_on_maximum_green_phase_duration), limit_on_minimum_green_phase_duration)
         
         if order:
-            schedules.append(Schedule(intersection.id, order, green_times,intersection.pedestrian_phase,intersection.all_red_phase))
+            schedules.append(Schedule(intersection.id, order, green_times))
     return schedules
 # def green_time_set_to_1(intersections: list[Intersection]) -> list[Schedule]:
 #     schedules = []
