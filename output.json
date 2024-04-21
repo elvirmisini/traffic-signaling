@@ -1,0 +1,71 @@
+{
+  "number_of_intersections": 6,
+  "intersections": [
+    {
+      "intersection_name": "Intersection_1",
+      "pedestrian_phase_interval": 6,
+      "all_red_phase_interval": 3,
+      "streets": [
+        {
+          "name": "Taulanti",
+          "green_time": 20
+        }
+      ]
+    },
+    {
+      "intersection_name": "Intersection_2",
+      "pedestrian_phase_interval": 0,
+      "all_red_phase_interval": 0,
+      "streets": [
+        {
+          "name": "Dardani",
+          "green_time": 20
+        }
+      ]
+    },
+    {
+      "intersection_name": "Intersection_3",
+      "pedestrian_phase_interval": 8,
+      "all_red_phase_interval": 0,
+      "streets": [
+        {
+          "name": "Encheleans",
+          "green_time": 20
+        }
+      ]
+    },
+    {
+      "intersection_name": "Intersection_4",
+      "pedestrian_phase_interval": 5,
+      "all_red_phase_interval": 3,
+      "streets": [
+        {
+          "name": "Dalmatae",
+          "green_time": 20
+        }
+      ]
+    },
+    {
+      "intersection_name": "Intersection_5",
+      "pedestrian_phase_interval": 0,
+      "all_red_phase_interval": 0,
+      "streets": [
+        {
+          "name": "Ardiani",
+          "green_time": 20
+        }
+      ]
+    },
+    {
+      "intersection_name": "Intersection_6",
+      "pedestrian_phase_interval": 0,
+      "all_red_phase_interval": 0,
+      "streets": [
+        {
+          "name": "Derriopes",
+          "green_time": 16
+        }
+      ]
+    }
+  ]
+}
