@@ -36,12 +36,12 @@
          "intersection_name": "Intersection_3",
          "streets": [
             {
-               "name": "Derriopes",
-               "green_time": 14
+               "name": "Ardiani",
+               "green_time": 20
             },
             {
-               "name": "Ardiani",
-               "green_time": 16
+               "name": "Derriopes",
+               "green_time": 17
             }
          ]
       }
