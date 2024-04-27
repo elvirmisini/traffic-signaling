@@ -17,7 +17,7 @@ def reinit(streets, intersections):
 def fitness_score(schedules, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase):
     # we reset intersections and streets before performing a simulation
     reinit(streets, intersections)
-
+    max_waiting_cars=0
     # save path copies to reset them after performing the simulation
     paths_copy = [path.copy() for path in paths]
 
@@ -95,6 +95,10 @@ def fitness_score(schedules, streets, intersections, paths, total_duration, bonu
 
             for green_street in green_streets:  
                 waiting_cars = green_street.waiting_cars
+
+                if(len(waiting_cars)>max_waiting_cars):
+                    max_waiting_cars=len(waiting_cars)
+
                 if len(waiting_cars) > 0:
                     # Drive across the intersection
                     waiting_car = waiting_cars.popleft()
@@ -146,4 +150,4 @@ def fitness_score(schedules, streets, intersections, paths, total_duration, bonu
     # The end of simulation, we reset the paths
     for i_path in range(len(paths)):
         paths[i_path] = paths_copy[i_path]
-    return score
+    return score,max_waiting_cars
