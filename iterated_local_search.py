@@ -16,8 +16,8 @@ def new_home_base(current_home_base: list[Schedule],
                   bonus_points: int,
                   duration_to_pass_through_an_intersection:int,yellow_phase:int
                   ) -> list[Schedule]:
-    cs_score,waiting_car0 = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
-    chb_score,waiting_car1 = fitness_score(current_home_base, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
+    cs_score,waiting_car0,avg0 = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
+    chb_score,waiting_car1,avg1 = fitness_score(current_home_base, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
     if cs_score >= chb_score:
         return deepcopy(current_solution)
     else:
@@ -142,15 +142,15 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
         while inner_iteration < 100 and time.time() - start_time < duration:
             tweak_solution = enhanced_tweak(current_solution,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length)
 
-            cs_score,waiting_car2 = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
-            tw_score,waiting_car3 = fitness_score(tweak_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
+            cs_score,waiting_car2,avg2 = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
+            tw_score,waiting_car3,abg3 = fitness_score(tweak_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
             if tw_score > cs_score:
                 current_solution = tweak_solution
 
             inner_iteration = inner_iteration + 1
 
-        bs_score,waiting_car4 = fitness_score(best_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
-        cs_score,waiting_car5 = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
+        bs_score,waiting_car4,avg4 = fitness_score(best_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
+        cs_score,waiting_car5,avg5 = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
         if cs_score > bs_score:
             best_solution = current_solution
 

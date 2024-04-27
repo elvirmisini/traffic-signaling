@@ -15,7 +15,7 @@ def main(instance_name, output,version_prefix) -> None:
     #print(total_duration, bonus_points, intersections, streets, name_to_i_street, paths,duration_to_pass_through_an_intersection,yellow_phase,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration)
     
     traffic_based_heuristic_initial_solution = traffic_based_initial_solution(intersections,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length)
-    traffic_based_heuristic_initial_score,waitng_cars0 = fitness_score(traffic_based_heuristic_initial_solution,
+    traffic_based_heuristic_initial_score,waitng_cars0,avg0 = fitness_score(traffic_based_heuristic_initial_solution,
                                                           streets,
                                                           intersections,
                                                           paths,
@@ -24,7 +24,7 @@ def main(instance_name, output,version_prefix) -> None:
     print(f'The traffic based heuristic initial solution of {instance_name} has the score '
           f'{traffic_based_heuristic_initial_score}.')
     usage_based_heuristic_initial_solution = usage_based_initial_solution(intersections,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length)
-    usage_based_heuristic_initial_score,waitng_cars1 = fitness_score(usage_based_heuristic_initial_solution,
+    usage_based_heuristic_initial_score,waitng_cars1,avg1 = fitness_score(usage_based_heuristic_initial_solution,
                                                         streets, intersections,
                                                         paths,
                                                         total_duration,
@@ -49,8 +49,8 @@ def main(instance_name, output,version_prefix) -> None:
                                               limit_on_maximum_green_phase_duration,duration_to_pass_through_an_intersection,
                                               limit_on_minimum_cycle_length,limit_on_maximum_cycle_length,yellow_phase)
 
-    score,max_waiting_cars = fitness_score(ils_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
-    print(f'The solution of {instance_name} has the score {score}, and max waiting cars are {max_waiting_cars}.')
+    score,max_waiting_cars,avg = fitness_score(ils_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
+    print(f'The solution of {instance_name} has the score {score}, and max waiting cars are {max_waiting_cars} and average cars of {avg}.')
     print(f'Optimized for {score - initial_score} points.')
     save_schedule_to_file(ils_solution, streets, f"{output.replace('.txt', '')}_{version_prefix}")
 
