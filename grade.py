@@ -133,7 +133,7 @@ def grade(schedules, streets, intersections, paths, total_duration, bonus_points
         # Drive across roads
         # Store the ids of streets that don't have driving cars after this.
         street_ids_to_remove = set()
-        for i_street in street_ids_with_driving_cars:
+        for i_street in street_ids_with_driving_cars: 
             street = streets[i_street] 
             driving_cars = street.driving_cars
             for car in list(driving_cars):
