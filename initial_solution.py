@@ -1,6 +1,8 @@
 import math
 import random
+
 from recordclass import recordclass
+
 from input_parser import Intersection
 
 Schedule = recordclass('Schedule', [
@@ -8,6 +10,7 @@ Schedule = recordclass('Schedule', [
     'order',
     'green_times'
 ])
+
 
 def traffic_based_initial_solution(intersections: list[Intersection]) -> list[Schedule]:
     schedules = []
