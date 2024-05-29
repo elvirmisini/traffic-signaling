@@ -7,6 +7,8 @@ from copy import deepcopy
 from random import choices
 from time import time
 
+#import time
+
 import numpy as np
 from recordclass import recordclass
 
@@ -413,124 +415,94 @@ def outputToFile(patches, executionTime, countIterations, ns, nb, ne, nrb, nre, 
     return
 
 
-def BeeHive(streets, intersections, paths, total_duration, bonus_points, terminated_time, yellow_phase,
+
+def new_home_base(current_home_base,
+                  current_solution,
+                  streets,
+                  intersections,
+                  paths ,
+                  total_duration,
+                  bonus_points,
+                  duration_to_pass_through_an_intersection:int,yellow_phase:int
+                  ):
+    
+    cs_score,waiting_car0,avg0 = gl.grade(current_solution, streets, intersections, paths, total_duration, bonus_points, yellow_phase, duration_to_pass_through_an_intersection)
+    chb_score,waiting_car1,avg1 = gl.grade(current_home_base, streets, intersections, paths, total_duration, bonus_points, yellow_phase, duration_to_pass_through_an_intersection)
+    if cs_score >= chb_score:
+        return deepcopy(current_solution)
+    else:
+        return deepcopy(current_home_base)
+
+
+def enhanced_tweak(current_solution,shrinkageFactor,intersections,name_to_i_street):
+    tweak_option = random.random()
+ 
+    if tweak_option < 0.45:
+        
+        return shuffleOrder(current_solution, math.floor(len(intersections) * shrinkageFactor) + 1,
+                                               intersections, name_to_i_street)
+    else:
+       
+        return  swapOrder(current_solution, math.floor(len(intersections) * shrinkageFactor) + 1,
+                                            intersections, name_to_i_street)
+
+def perturb(current_solution,shrinkageFactor,limit_on_minimum_green_phase_duration,
+                                       limit_on_maximum_green_phase_duration,
+                                       limit_on_minimum_cycle_length, limit_on_maximum_cycle_length,
+                                   i_id_to_intersection):
+
+    return changeGreenTimeDuration(current_solution, math.floor(len(intersections) * shrinkageFactor * 0.001) + 1,
+                                        1, limit_on_minimum_green_phase_duration,
+                                       limit_on_maximum_green_phase_duration,
+                                       limit_on_minimum_cycle_length, limit_on_maximum_cycle_length,
+                                   i_id_to_intersection)
+
+
+def optimize_solution_with_ils(streets, intersections, paths, total_duration, bonus_points, terminated_time, yellow_phase,
             name_to_i_street, limit_on_minimum_green_phase_duration, limit_on_maximum_green_phase_duration,
             limit_on_minimum_cycle_length, limit_on_maximum_cycle_length, duration_to_pass_through_a_traffic_light,
-            i_id_to_intersection, use_seed=False, solution_file_path=None):
-    patches = []
-    ns = 20  # number of scout bees
-    nb = 5  # number of best sites
-    ne = 2  # number of elite sites
-    nrb = 5  # number of recruited bees for best sites
-    nre = 20  # number of recruited bees for elite sites
-    stgLim = 4  # stagnation limit for patches
-    shrinkageFactor = 0.001  # how fast does the neighborhood shrink. 1 is max. This higher the factor the less is the neighborhood shrinking
-    shrinkageFactorReducedBy = 0.99  # by how much is the shrinkage factor reduceb by for iteration
-    executionTime =  30  # 8 * 60 * 60
-    ## Only for visualisation purposes
-    initialShrinkageFactor = shrinkageFactor
-    countIterations = 0
-    ##
-    for i in range(0, ns):
-        if (use_seed == 'True' and i < 5):
-            sol = gl.readSolution(solution_file_path=solution_file_path, streets=streets)
-            if i != 0:
-                sol = shuffleOrder(sol, math.floor(len(intersections) * 0.2) + 1, intersections, name_to_i_street)
-        else:
-            sol = generateSolution(intersections, name_to_i_street, limit_on_minimum_green_phase_duration,
+            i_id_to_intersection, use_seed=False, solution_file_path=None
+                               ):
+    initial_solution=generateSolution(intersections, name_to_i_street, limit_on_minimum_green_phase_duration,
                                    limit_on_maximum_green_phase_duration)
+    current_solution = deepcopy(initial_solution)
+    current_home_base = deepcopy(initial_solution)
+    best_solution = deepcopy(initial_solution)
+    shrinkageFactor = 0.001  # how fast does the neighborhood shrink. 1 is max. This higher the factor the less is the neighborhood shrinking
+    duration = 60*15
+    completed_cars=0
+    avg_cars=0
+    start_time = time()
+    iteration = 0
 
-        grade, completed_cars, avg_cars = gl.grade(sol, streets, intersections, paths, total_duration, bonus_points,
-                                                   yellow_phase, duration_to_pass_through_a_traffic_light)
-        patches.append(Patch(grade, sol, cars=completed_cars, avg=avg_cars))
-    while (time() - terminated_time < executionTime):
-        patches.sort(reverse=True, key=sortKey)
-        patches = patches[0: ns]
+    while time() - start_time < duration:
+        inner_iteration = 0
+        while inner_iteration < 100 and time() - start_time < duration:
+            tweak_solution = enhanced_tweak(current_solution,shrinkageFactor,intersections,name_to_i_street)
 
-        # outputToFile(patches, executionTime, countIterations, ns, nb, ne, nrb, nre, stgLim, initialShrinkageFactor,
-        #             shrinkageFactorReducedBy, shrinkageFactor, start)
+            cs_score,waiting_car2,avg2 = gl.grade(current_solution, streets, intersections, paths, total_duration, bonus_points, yellow_phase, duration_to_pass_through_a_traffic_light)
+            tw_score,waiting_car3,abg3 = gl.grade(tweak_solution, streets, intersections, paths, total_duration, bonus_points, yellow_phase, duration_to_pass_through_a_traffic_light)
+            if tw_score > cs_score:
+                current_solution = tweak_solution
 
-        # return patches[0].scout, patches[0].score, patches[0].cars, patches[0].avg
+            inner_iteration = inner_iteration + 1
 
-        for i in range(0, nb):
-            employees = 0
-            if (i < ne):
-                employees = nre
-                patches[i].employees = nre
-            else:
-                employees = nrb
-                patches[i].employees = nrb
+        bs_score,waiting_car4,avg4 = gl.grade(best_solution, streets, intersections, paths, total_duration, bonus_points, yellow_phase, duration_to_pass_through_a_traffic_light)
+        cs_score,waiting_car5,avg5 = gl.grade(current_solution, streets, intersections, paths, total_duration, bonus_points, yellow_phase, duration_to_pass_through_a_traffic_light)
+        if cs_score > bs_score:
+            best_solution = current_solution
+        current_home_base = new_home_base(current_home_base, current_solution, streets, intersections, paths,
+                                          total_duration, bonus_points,duration_to_pass_through_a_traffic_light,yellow_phase)
+        current_solution = perturb(current_home_base,shrinkageFactor,limit_on_minimum_green_phase_duration,
+                                       limit_on_maximum_green_phase_duration,
+                                       limit_on_minimum_cycle_length, limit_on_maximum_cycle_length,
+                                   i_id_to_intersection)
+        iteration = iteration + 1
+    score,completed_cars,avg_cars=gl.grade(best_solution, streets, intersections, paths, total_duration, bonus_points, yellow_phase, duration_to_pass_through_a_traffic_light)
+    gl.print_json_solution(score, best_solution, streets=streets, intersections=intersections,
+                           file=file, code='code',completed_cars=completed_cars,avg_cars=avg_cars,score=score)
 
-            patches[i].stg = True
-
-            for e in range(0, employees):
-                tempSchedule = copyScheduleArray(patches[i].scout)
-                decideOperator = random.randint(0, 30)
-                if (decideOperator < 10):
-                    tempSchedule = shuffleOrder(tempSchedule, math.floor(len(intersections) * shrinkageFactor) + 1,
-                                                intersections, name_to_i_street)
-                elif (decideOperator >= 10 and decideOperator < 20):
-                    tempSchedule = swapOrder(tempSchedule, math.floor(len(intersections) * shrinkageFactor) + 1,
-                                             intersections, name_to_i_street)
-                else:
-                    tempSchedule = changeGreenTimeDuration(tempSchedule,
-                                                           math.floor(len(intersections) * shrinkageFactor * 0.001) + 1,
-                                                           1, limit_on_minimum_green_phase_duration,
-                                                           limit_on_maximum_green_phase_duration,
-                                                           limit_on_minimum_cycle_length, limit_on_maximum_cycle_length,
-                                                           i_id_to_intersection)
-
-                tempScore, completed_cars1, avg_cars1 = gl.grade(tempSchedule, streets, intersections, paths,
-                                                                 total_duration, bonus_points, yellow_phase,
-                                                                 duration_to_pass_through_a_traffic_light)
-
-                if (tempScore > patches[i].score):
-                    patches[i].stg = False
-                    # patches[i].scout = tempSchedule
-                    # patches[i].score = tempScore
-                    # break
-                    patches.append(Patch(score=tempScore, scout=tempSchedule, cars=completed_cars1, avg=avg_cars1))
-
-            if (patches[i].stg):
-                patches[i].stgLim += 1
-            else:
-                patches[i].stgLim = 0
-
-            if (patches[i].stgLim > stgLim and i != 0):
-                solution = generateSolution(intersections, name_to_i_street, limit_on_minimum_green_phase_duration,
-                                            limit_on_maximum_green_phase_duration)
-                grade, completed_cars2, avg_cars2 = gl.grade(solution, streets, intersections, paths, total_duration,
-                                                             bonus_points, yellow_phase,
-                                                             duration_to_pass_through_a_traffic_light)
-                patches[i] = Patch(score=grade, scout=solution, cars=completed_cars2, avg=avg_cars2)
-
-        for i in range(nb, ns):
-            solution = generateSolution(intersections, name_to_i_street, limit_on_minimum_green_phase_duration,
-                                        limit_on_maximum_green_phase_duration)
-            grade, completed_cars4, avg_cars4 = gl.grade(solution, streets, intersections, paths, total_duration,
-                                                         bonus_points, yellow_phase,
-                                                         duration_to_pass_through_a_traffic_light)
-            # gl.grade_for_simulation(solution, streets, intersections, paths, total_duration,
-            #                                              bonus_points, yellow_phase,
-            #                                              duration_to_pass_through_a_traffic_light,grade)
-            patches.append(Patch(score=grade, scout=solution, cars=completed_cars4, avg=avg_cars4))
-
-        if (shrinkageFactor > 0.001):
-            shrinkageFactor *= shrinkageFactorReducedBy
-
-        countIterations += 1
-
-        # patches.sort(reverse=True, key=sortKey)
-        # patches = patches[0: ns]
-
-    patches.sort(reverse=True, key=sortKey)
-    gl.grade_for_simulation(patches[0].scout, streets, intersections, paths, total_duration,
-                                                         bonus_points, yellow_phase,
-                                                         duration_to_pass_through_a_traffic_light,grade)
-    outputToFile(patches, executionTime, countIterations, ns, nb, ne, nrb, nre, stgLim, initialShrinkageFactor,
-                 shrinkageFactorReducedBy, shrinkageFactor, start,patches[0].cars, patches[0].avg,patches[0].score)
-
-    return patches[0].scout, patches[0].score, patches[0].cars, patches[0].avg
+    return best_solution , score, completed_cars, avg_cars
 
 
 # file = input("Enter name of the input file, e.g. \"a.txt\": ")
@@ -542,76 +514,24 @@ total_duration, bonus_points, intersections, streets, name_to_i_street, paths, \
     limit_on_maximum_cycle_length, limit_on_minimum_green_phase_duration, \
     limit_on_maximum_green_phase_duration, i_id_to_intersection = gl.readInput(file)
 
-manualSolution = gl.readSolutionFromJson('./output/manual_output/manual_output_pr_fk1.json', name_to_i_street, intersections)
-score,completed_cars3,avg_cars3 = gl.grade(manualSolution, streets, intersections, paths, total_duration, bonus_points, yellow_phase, duration_to_pass_through_a_traffic_light)
-print("Real Score: ",score,", completed cars: ",completed_cars3,", avg cars=",avg_cars3)
-# if len(sys.argv) == 3:
-#     use_seed = sys.argv[2]
-#     solution_file_path = './seeds/' + sys.argv[1] + '.txt.out'
-#     schedule, score, cars, avg = BeeHive(streets, intersections, paths, total_duration, bonus_points, start,
-#                                          yellow_phase, name_to_i_street, limit_on_minimum_green_phase_duration,
-#                                          limit_on_maximum_green_phase_duration, limit_on_minimum_cycle_length,
-#                                          limit_on_maximum_cycle_length, duration_to_pass_through_a_traffic_light,
-#                                          i_id_to_intersection, use_seed, solution_file_path)
-# else:
-#     schedule, score, cars, avg = BeeHive(streets, intersections, paths, total_duration, bonus_points, start,
-#                                          yellow_phase, name_to_i_street, limit_on_minimum_green_phase_duration,
-#                                          limit_on_maximum_green_phase_duration, limit_on_minimum_cycle_length,
-#                                          limit_on_maximum_cycle_length, duration_to_pass_through_a_traffic_light,
-#                                          i_id_to_intersection)
-#     gl.printSchedule(schedule, streets)
-#     # gl.print_json_solution(schedule, streets, intersections)
+# manualSolution = gl.readSolutionFromJson('./output/manual_output/manual_output_pr_fk1.json', name_to_i_street, intersections)
+# score,completed_cars3,avg_cars3 = gl.grade(manualSolution, streets, intersections, paths, total_duration, bonus_points, yellow_phase, duration_to_pass_through_a_traffic_light)
+# print("Real Score: ",score,", completed cars: ",completed_cars3,", avg cars=",avg_cars3)
+if len(sys.argv) == 3:
+    use_seed = sys.argv[2]
+    solution_file_path = './seeds/' + sys.argv[1] + '.txt.out'
+    schedule, score, cars, avg = optimize_solution_with_ils(streets, intersections, paths, total_duration, bonus_points, start,
+                                         yellow_phase, name_to_i_street, limit_on_minimum_green_phase_duration,
+                                         limit_on_maximum_green_phase_duration, limit_on_minimum_cycle_length,
+                                         limit_on_maximum_cycle_length, duration_to_pass_through_a_traffic_light,
+                                         i_id_to_intersection, use_seed, solution_file_path)
+else:
+    schedule, score, cars, avg = optimize_solution_with_ils(streets, intersections, paths, total_duration, bonus_points, start,
+                                         yellow_phase, name_to_i_street, limit_on_minimum_green_phase_duration,
+                                         limit_on_maximum_green_phase_duration, limit_on_minimum_cycle_length,
+                                         limit_on_maximum_cycle_length, duration_to_pass_through_a_traffic_light,
+                                         i_id_to_intersection)
+    gl.printSchedule(schedule, streets)
+    # gl.print_json_solution(schedule, streets, intersections)
 
-# print("Score: ", score, ", completed cars: ", cars, ", avg cars=", avg)
-
-# print(gl.grade(gl.readSolution('./seeds/I500_S998_C1000.txt.out',streets),streets, intersections, paths, total_duration, bonus_points))
-# print(gl.grade(gl.readSolution('./I200_S17200_C1000_1207889',streets),streets, intersections, paths, total_duration, bonus_points))
-
-# gl.printSchedule(schedule, streets)
-
-
-
-def optimize_solution_with_ils(initial_solution: list[Schedule],
-                               streets: list[Street],
-                               intersections: list[Intersection],
-                               paths: list[str],
-                               total_duration: int,
-                               bonus_points: int,
-                               limit_on_minimum_green_phase_duration:int,
-                               limit_on_maximum_green_phase_duration:int,
-                               duration_to_pass_through_an_intersection:int,
-                               limit_on_minimum_cycle_length:int,
-                               limit_on_maximum_cycle_length:int,yellow_phase:int
-                               ) -> list[Schedule]:
-    current_solution = deepcopy(initial_solution)
-    current_home_base = deepcopy(initial_solution)
-    best_solution = deepcopy(initial_solution)
-
-    duration = 1 * 10
-
-    start_time = time.time()
-    iteration = 0
-
-    while time.time() - start_time < duration:
-        inner_iteration = 0
-        while inner_iteration < 100 and time.time() - start_time < duration:
-            tweak_solution = enhanced_tweak(current_solution,limit_on_minimum_green_phase_duration,limit_on_maximum_green_phase_duration,limit_on_minimum_cycle_length,limit_on_maximum_cycle_length)
-
-            cs_score,waiting_car2,avg2 = gl.grade(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
-            tw_score,waiting_car3,abg3 = gl.grade(tweak_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
-            if tw_score > cs_score:
-                current_solution = tweak_solution
-
-            inner_iteration = inner_iteration + 1
-
-        bs_score,waiting_car4,avg4 = gl.grade(best_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
-        cs_score,waiting_car5,avg5 = gl.grade(current_solution, streets, intersections, paths, total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
-        if cs_score > bs_score:
-            best_solution = current_solution
-
-        current_home_base = new_home_base(current_home_base, current_solution, streets, intersections, paths,
-                                          total_duration, bonus_points,duration_to_pass_through_an_intersection,yellow_phase)
-        current_solution = perturb(current_home_base)
-        iteration = iteration + 1
-
-    return best_solution
+print("Score: ", score, ", completed cars: ", cars, ", avg cars=", avg)

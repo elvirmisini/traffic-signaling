@@ -793,6 +793,6 @@ def print_json_solution(patches, schedules, streets, intersections, file, code,c
         solution["intersections"].append(intersection)
 
     json_object = json.dumps(solution, indent=4)
-    jsonOutputFile = open(f"output/{file}/{file}_{patches[0].score}_{code}.json", "a")
+    jsonOutputFile = open(f"output/{file}/{file}_{patches}_{code}.json", "a")
     jsonOutputFile.write(json_object)
     jsonOutputFile.close()
