@@ -1,5 +1,6 @@
 import os.path
 from collections import deque
+
 from recordclass import recordclass
 
 SOLUTION_REPORTER_DIR = 'solution_reporter'
@@ -19,6 +20,7 @@ Street = recordclass('Street', [
 
 Intersection = recordclass('Intersection', [
     'id',
+    'street_ids',
     'incomings',
     'outgoings',
     'green_street',
@@ -41,6 +43,7 @@ def read_input(instance_name: str) -> tuple:
     total_duration, num_intersections, num_streets, num_cars, bonus_points = map(int, lines.popleft().split())
 
     intersections = tuple(Intersection(id=i,
+                                       street_ids=[],
                                        incomings=deque(),
                                        outgoings=deque(),
                                        green_street=None,
@@ -71,7 +74,12 @@ def read_input(instance_name: str) -> tuple:
         name_to_street[name] = street
         intersections[start].outgoings.append(street)
         intersections[end].incomings.append(street)
+
+        intersections[start].street_ids.append(i_street)
+        intersections[end].street_ids.append(i_street)
         streets.append(street)
+
+    street_id_to_car_length = {}
 
     paths = []
     for i_car in range(num_cars):
@@ -79,18 +87,34 @@ def read_input(instance_name: str) -> tuple:
         path_length = int(line[0])
         path = line[1:]
         assert len(path) == path_length
+
         for name in path:
-            id_inter = name_to_street[name].end.id
+            street = name_to_street[name]
+            id_inter = street.end.id
             intersections[id_inter].using_streets.append(name)
             if name in intersections[id_inter].streets_usage:
                 intersections[id_inter].streets_usage[name] += 1
             else:
                 intersections[id_inter].streets_usage[name] = 1
 
+            if street.id in street_id_to_car_length:
+                street_id_to_car_length[street.id] += 1
+            else:
+                street_id_to_car_length[street.id] = 1
+
         path = deque(name_to_street[name] for name in path)
         paths.append(path)
+
     for inter in intersections:
         # delete duplicates in using_streets array
         intersections[inter.id].using_streets = list(dict.fromkeys(intersections[inter.id].using_streets))
 
-    return total_duration, bonus_points, intersections, streets, name_to_street, paths
+    intersection_id_to_car_length = {}
+    for intersection in intersections:
+        intersection_id_to_car_length[intersection.id] = 0
+
+        for street_id in intersection.street_ids:
+            if street_id in street_id_to_car_length:
+                intersection_id_to_car_length[intersection.id] += street_id_to_car_length[street_id]
+
+    return total_duration, bonus_points, intersections, streets, name_to_street, paths, street_id_to_car_length, intersection_id_to_car_length
