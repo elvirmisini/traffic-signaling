@@ -275,7 +275,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
             if tw_score > cs_score:
                 current_solution = tweak_solution
                 cs_score = tw_score
-                print('tw score:', tw_score)
+                # print('tw score:', tw_score)
 
             inner_iteration = inner_iteration + 1
 
@@ -284,7 +284,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
         if cs_score > bs_score:
             best_solution = current_solution
 
-        print('bs score:', cs_score)
+        # print('bs score:', cs_score)
 
         current_home_base = new_home_base(current_home_base, current_solution, streets, intersections, paths,
                                           total_duration, bonus_points)
@@ -295,19 +295,3 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     print()
 
     return best_solution
-
-# The solution of I2000_S12000_C57.txt has the score 54495.
-# Optimized for 1048 points.
-# Execution time: 5.0068708216655065 minutes.
-
-# The solution of I2000_S12000_C57.txt has the score 54496.
-# Optimized for 1048 points.
-# Execution time: 5.008147568333273 minutes.
-
-# The solution of I2000_S12000_C57.txt has the score 54500.
-# Optimized for 1052 points.
-# Execution time: 5.0067427033325655 minutes.
-
-# The solution of I2000_S12000_C57.txt has the score 54510.
-# Optimized for 1062 points.
-# Execution time: 10.007283678332653 minutes.

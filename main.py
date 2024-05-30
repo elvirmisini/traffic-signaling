@@ -1,3 +1,4 @@
+import concurrent.futures
 import time
 
 from fitness_function import fitness_score
@@ -114,6 +115,16 @@ if __name__ == '__main__':
         "V5"
     ]
 
-    for instance_name in instance_names:
-        for version in versions:
-            main(instance_name, instance_name, version)
+
+    def execute_main(instance_name, version):
+        main(instance_name, instance_name, version)
+
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        futures = [executor.submit(execute_main, instance_name, version)
+                   for instance_name in instance_names
+                   for version in versions]
+
+        concurrent.futures.wait(futures)
+
+    print("All tasks completed.")
