@@ -224,7 +224,11 @@ function simulate() {
         dataset.streets[streetName].lastQueuingNumber = car.queuingNumber;
 
         car.currentStreetName = car.streetNames[++car.currentStreetIdx];
+
+        // if (dataset.streets[car.currentStreetName] != undefined) {
+        //   console.log(dataset.streets[car.currentStreetName]);
         car.remainingTimeOnStreet = dataset.streets[car.currentStreetName].duration;
+        // }
       }
     }
 

@@ -1,0 +1,328 @@
+import math
+import random
+import time
+from copy import deepcopy
+from random import choices
+
+import numpy as np
+from recordclass import recordclass
+
+import GlobalFunctions as gl
+
+Schedule = recordclass('Schedule', [
+    'i_intersection',
+    'order',
+    'green_times'
+])
+
+
+def randomSolution(intersections):
+    schedules = []
+    for intersection in intersections:
+        order = []
+        green_times = {}
+        for i in range(len(intersection.incomings)):
+            green_time = choices([1, 2], weights=[90, 10], k=1)
+            street = intersection.incomings[i]
+            if street.name in intersection.using_streets:
+                order.append(street.id)
+                green_times[street.id] = int(green_time[0])
+        if len(order) > 0:
+            schedule = Schedule(i_intersection=intersection.id,
+                                order=order,
+                                green_times=green_times)
+            schedules.append(schedule)
+    return schedules
+
+
+def initialPopulation(streets, intersections, paths, total_duration, bonus_points):
+    population = []
+    for i in range(10):
+        schedules = randomSolution(intersections)
+        population.append([gl.grade(schedules, streets, intersections, paths, total_duration, bonus_points), schedules])
+    return population
+
+
+def sortKey(e):
+    return e.score
+
+
+class Patch:
+    def __init__(self, score, scout):
+        self.score = score
+        self.scout = scout
+        self.stgLim = 0
+        self.employees = 0
+        self.stg = True
+
+
+def firstOperator(order):
+    order = order[1:] + order[:1]
+    return order
+
+
+def fifthOperator(schedules, numberOfIntersections, numberOfRoads, instersections, streets):
+    if (numberOfIntersections <= 0):
+        return schedules
+
+    maxNumOfSchedules = len(schedules)
+    for i in range(0, numberOfIntersections):
+        intersection = schedules[random.randint(0, maxNumOfSchedules)]
+        for j in range(0, numberOfRoads):
+            if (j >= len(intersection.order)):
+                break
+            else:
+                streetId = intersection.order[random.randint(0, len(intersection.order) - 1)]
+                intersection.green_times[streetId] = choices([2, 3, 4], weights=[85, 10, 5])
+        ## Street to find the next intersection
+        streetId = intersection.order[random.randint(0, len(intersection.order) - 1)]
+        nextInterectionId = streets[streetId].end
+        # print(streets[streetId], ' -------------- aouiwfhsihfauish')
+        intersection = [x for x in schedules if x.i_intersection == nextInterectionId][0]
+
+    return schedules
+
+
+def changeGreenTimeDuration(schedule, intersections, numberOfRoads):
+    count = 0
+
+    for intersection in intersections:
+        selectedIntersection = intersection.id
+        if selectedIntersection not in schedule:
+            continue
+        length = len(schedule[selectedIntersection].order)
+        otherCount = 0
+        while (otherCount < length and otherCount < numberOfRoads):
+            semaforId = random.randint(0, length - 1)
+            schedule[selectedIntersection].green_times[schedule[selectedIntersection].order[semaforId]] = int(
+                choices([1, 2, 3], weights=[10, 70, 20], k=1)[0])
+            otherCount += 1
+        count += 1
+
+    return schedule
+
+
+def shuffleOrder(schedules, intersections):
+    for intersection in intersections:
+        if intersection.id not in schedules:
+            continue
+        random.shuffle(schedules[intersection.id].order)
+
+    return schedules
+
+
+def swapOrder(schedules, intersections):
+    for intersection in intersections:
+        selectedIntersection = intersection.id
+        if selectedIntersection not in schedules:
+            continue
+        incomingStreetsLength = len(schedules[selectedIntersection].order)
+        if (incomingStreetsLength == 1):
+            continue
+        rand1 = random.randint(0, incomingStreetsLength - 1)
+        rand2 = random.randint(0, incomingStreetsLength - 1)
+        while (rand1 == rand2):
+            rand2 = random.randint(0, incomingStreetsLength - 1)
+        temp = schedules[selectedIntersection].order[rand1]
+        schedules[selectedIntersection].order[rand1] = schedules[selectedIntersection].order[rand2]
+        schedules[selectedIntersection].order[rand2] = temp
+
+    return schedules
+
+
+def copyScheduleArray(scheduleArr):
+    newScheduleArr = []
+    for i in range(0, len(scheduleArr)):
+        newScheduleArr.append(
+            Schedule(
+                i_intersection=scheduleArr[i].i_intersection,
+                order=deepcopy(scheduleArr[i].order),
+                green_times=deepcopy(scheduleArr[i].green_times))
+        )
+
+    return newScheduleArr
+
+
+def traffic_based_initial_solution(intersections: list[gl.Intersection]) -> list[Schedule]:
+    schedules = []
+
+    # Calculate the global threshold first for efficiency
+    all_waiting_cars = [len(street.waiting_cars) for intersection in intersections for street in intersection.incomings]
+    threshold = sum(all_waiting_cars) / len(all_waiting_cars)
+
+    for intersection in intersections:
+        order = []
+        green_times = {}
+
+        # Sort streets based on the sum of lengths of driving_cars and waiting_cars
+        sorted_streets = sorted(intersection.incomings,
+                                key=lambda s: len(s.driving_cars) + len(s.waiting_cars),
+                                reverse=True)
+
+        for street in sorted_streets:
+            if street.name in intersection.using_streets:
+                order.append(street.id)
+                # Introduce randomness in green time allocation
+                random_factor = random.uniform(1, 2)  # Adjust the range as needed
+                # green_time = 2 if len(street.waiting_cars) > threshold else 1
+                green_times[street.id] = 1
+        if order:
+            schedules.append(Schedule(intersection.id, order, green_times))
+    return schedules
+
+
+def usage_based_initial_solution(intersections: list[gl.Intersection]) -> list[Schedule]:
+    schedules = []
+    for intersection in intersections:
+        order = []
+        green_times = {}
+
+        sorted_streets = sorted(intersection.incomings, key=lambda s: intersection.streets_usage.get(s.name, 0),
+                                reverse=True)
+
+        for street in sorted_streets:
+            if street.name in intersection.using_streets:
+                order.append(street.id)
+                usage = intersection.streets_usage.get(street.name, 0)
+                # green_time = int(math.sqrt(usage)) if usage > 0 else 1
+                green_times[street.id] = 1
+
+        if order:
+            schedules.append(Schedule(intersection.id, order, green_times))
+    return schedules
+
+
+def generateSolution(intersections):
+    decideGen = random.randint(0, 1)
+
+    if (decideGen == 0):
+        solution = traffic_based_initial_solution(intersections)
+    else:
+        solution = usage_based_initial_solution(intersections)
+
+    return solution
+
+
+def assignEmployeesArray(ns, ne, shrinkage):
+    employees = np.zeros(ns)
+
+    for i in range(0, ns):
+        employees[i] = shrinkage ** (i / 2)
+
+    employees = employees / employees.sum()
+
+    for i in range(0, ns):
+        employees[i] = math.floor(employees[i] * ne)
+
+    for i in range(0, int(ne - employees.sum())):
+        employees[i] += 1
+
+    return employees
+
+
+# Select intersections based on the number of waiting cars. This number is the total of waiting cars on all streets
+def selectInteresctions(allIntersections, numOfIntersections):
+    if (numOfIntersections <= 0):
+        return [random.choice(allIntersections)]
+
+    if (numOfIntersections * 2 > len(allIntersections)):
+        expandedIntersections = len(allIntersections)
+    else:
+        expandedIntersections = numOfIntersections * 2
+
+    intersections = random.sample(allIntersections, expandedIntersections)
+
+    def sortKey(i):
+        return i.num_waiting_cars
+
+    intersections.sort(reverse=True, key=sortKey)
+
+    intersections = intersections[:numOfIntersections]
+
+    return intersections
+
+
+def BeeHive(streets, intersections, paths, total_duration, bonus_points, terminated_time, initial_solution):
+    patches = []
+    ns = 20  # number of scout bees
+    nEmployees = 200
+    stgLim = 4  # stagnation limit for patches
+    shrinkageFactor = 0.9  # how fast does the neighborhood shrink. 1 is max. This higher the factor the
+    # less is the neighborhood shrinking
+    shrinkageFactorReducedBy = 0.95  # by how much is the shrinkage factor reduceb by for iteration
+    countIterations = 0
+
+    for i in range(0, ns):
+        sol = initial_solution
+        grade = gl.grade(sol, streets, intersections, paths, total_duration, bonus_points)
+        patches.append(Patch(grade, sol))
+
+    start_time = time.time()
+    while time.time() - start_time < terminated_time:
+        patches.sort(reverse=True, key=sortKey)
+
+        if (len(patches) == ns):
+            patches = patches[0: ns]
+        elif len(patches) > ns:
+            lowerScorePatchesPercent = math.floor(len(patches) * 0.35)
+            worsePatches = random.choices(patches[ns:], k=lowerScorePatchesPercent)
+            patches = patches[0:(ns - lowerScorePatchesPercent)]
+            patches.extend(worsePatches)
+
+        assignEmployees = assignEmployeesArray(ns, nEmployees, shrinkage=shrinkageFactor)
+        indexOfFirstSiteWithoutEmployees = ns
+        for i in range(0, ns):
+            employees = assignEmployees[i]
+
+            if (employees == 0):
+                indexOfFirstSiteWithoutEmployees = i
+                break
+
+            patches[i].stg = True
+
+            for e in range(0, int(employees)):
+                tempSchedule = copyScheduleArray(patches[i].scout)
+                decideOperator = random.randint(0, 20)
+                if (decideOperator < 3):
+                    selectedInteresctions = selectInteresctions(intersections,
+                                                                math.floor(len(intersections) * shrinkageFactor) + 1)
+                    tempSchedule = shuffleOrder(tempSchedule, selectedInteresctions)
+                elif (decideOperator >= 3 and decideOperator < 20):
+                    selectedInteresctions = selectInteresctions(intersections,
+                                                                math.floor(len(intersections) * shrinkageFactor) + 1)
+                    tempSchedule = swapOrder(tempSchedule, selectedInteresctions)
+                else:
+                    selectedInteresctions = selectInteresctions(intersections, math.floor(
+                        len(intersections) * shrinkageFactor * 0.001) + 1)
+                    tempSchedule = changeGreenTimeDuration(tempSchedule, selectedInteresctions, 1)
+
+                tempScore = gl.grade(tempSchedule, streets, intersections, paths, total_duration, bonus_points)
+
+                if (tempScore > patches[i].score):
+                    patches[i].stg = False
+                    patches.append(Patch(score=tempScore, scout=tempSchedule))
+
+            if (patches[i].stg):
+                patches[i].stgLim += 1
+            else:
+                patches[i].stgLim = 0
+
+            if (patches[i].stgLim > stgLim and i != 0):
+                solution = generateSolution(intersections)
+                grade = gl.grade(solution, streets, intersections, paths, total_duration, bonus_points)
+                patches[i] = Patch(score=grade, scout=solution)
+
+        for i in range(indexOfFirstSiteWithoutEmployees, ns):
+            solution = generateSolution(intersections)
+            grade = gl.grade(solution, streets, intersections, paths, total_duration, bonus_points)
+            patches.append(Patch(score=grade, scout=solution))
+
+        if (shrinkageFactor > 0.001):
+            shrinkageFactor *= shrinkageFactorReducedBy
+
+        countIterations += 1
+        print('ABC iteration:', countIterations)
+
+    patches.sort(reverse=True, key=sortKey)
+
+    return patches[0].scout, patches[0].score

@@ -43,7 +43,7 @@ def guided_swap_orders(current_solution: list[Schedule],
     sorted_schedules = sorted(tweaked_solution, key=lambda x: intersection_id_to_car_length[x.i_intersection],
                               reverse=True)
 
-    num_to_change = max(1, len(tweaked_solution) * 10 // 100)
+    num_to_change = max(1, len(tweaked_solution) * 1 // 100)
 
     selected_schedules = sorted_schedules[:num_to_change]
 
@@ -63,7 +63,7 @@ def guided_change_of_green_time(current_solution: list[Schedule],
                                 intersection_id_to_car_length
                                 ) -> list[Schedule]:
     tweaked_solution = deepcopy(current_solution)
-    num_to_change = max(1, len(tweaked_solution) * 10 // 100)
+    num_to_change = max(1, len(tweaked_solution) * 1 // 100)
 
     sorted_schedules = sorted(tweaked_solution, key=lambda x: intersection_id_to_car_length[x.i_intersection],
                               reverse=True)
@@ -87,7 +87,7 @@ def guided_change_of_green_time(current_solution: list[Schedule],
 
 def change_green_times(current_solution: list[Schedule]) -> list[Schedule]:
     tweaked_solution = deepcopy(current_solution)
-    num_to_change = max(1, len(tweaked_solution) * 5 // 100)
+    num_to_change = max(1, len(tweaked_solution) * 1 // 100)
     for _ in range(num_to_change):
         schedule = random.choice(tweaked_solution)
         if not schedule.order:
@@ -101,7 +101,7 @@ def change_green_times(current_solution: list[Schedule]) -> list[Schedule]:
 
 def swap_neighbor_orders(current_solution: list[Schedule]) -> list[Schedule]:
     tweaked_solution = deepcopy(current_solution)
-    num_to_swap = max(1, len(tweaked_solution) * 5 // 100)
+    num_to_swap = max(1, len(tweaked_solution) * 1 // 100)
     for _ in range(num_to_swap):
         schedule = random.choice(tweaked_solution)
         if len(schedule.order) > 1:
@@ -112,7 +112,7 @@ def swap_neighbor_orders(current_solution: list[Schedule]) -> list[Schedule]:
 
 def swap_random_orders(current_solution: list[Schedule]) -> list[Schedule]:
     tweaked_solution = deepcopy(current_solution)
-    num_to_swap = max(1, len(tweaked_solution) * 5 // 100)
+    num_to_swap = max(1, len(tweaked_solution) * 20 // 100)
     for _ in range(num_to_swap):
         schedule = random.choice(tweaked_solution)
         if len(schedule.order) > 1:
@@ -195,7 +195,7 @@ def enhanced_tweak(current_solution: list[Schedule],
                    street_id_to_car_length,
                    intersection_id_to_car_length
                    ) -> list[Schedule]:
-    options = ([0] * 30) + ([1] * 5) + ([2] * 15) + ([3] * 15) + ([4] * 30)
+    options = [0, 1, 2, 3]
     tweak_option = random.choice(options)
 
     if tweak_option == 0:
@@ -206,19 +206,18 @@ def enhanced_tweak(current_solution: list[Schedule],
         return change_green_times(current_solution)
     elif tweak_option == 2:
         return swap_neighbor_orders(current_solution)
-    elif tweak_option == 3:
-        return swap_random_orders(current_solution)
     else:
         return guided_swap_orders(current_solution, intersection_id_to_car_length)
 
 
-def perturb(current_solution: list[Schedule]) -> list[Schedule]:
-    perturbed_solution = deepcopy(current_solution)
-    num_to_shuffle = max(1, len(perturbed_solution) * 15 // 100)
-    for _ in range(num_to_shuffle):
-        schedule = random.choice(perturbed_solution)
-        random.shuffle(schedule.order)
-    return perturbed_solution
+def perturb(current_solution: list[Schedule], intersection_id_to_car_length) -> list[Schedule]:
+    return swap_random_orders(current_solution)
+    # perturbed_solution = deepcopy(current_solution)
+    # num_to_shuffle = max(1, len(perturbed_solution) * 15 // 100)
+    # for _ in range(num_to_shuffle):
+    #     schedule = random.choice(perturbed_solution)
+    #     random.shuffle(schedule.order)
+    # return perturbed_solution
 
 
 def optimize_solution_with_ils(initial_solution: list[Schedule],
@@ -253,7 +252,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     current_home_base = deepcopy(initial_solution)
     best_solution = deepcopy(initial_solution)
 
-    duration = 60 * 60
+    duration = 30 * 60
 
     start_time = time.time()
     iteration = 0
@@ -262,7 +261,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
         inner_iteration = 0
         cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
 
-        while inner_iteration < 1000 and time.time() - start_time < duration:
+        while inner_iteration < 5000 and time.time() - start_time < duration:
             tweak_solution = enhanced_tweak(current_solution,
                                             intersection_id_to_intersection,
                                             street_name_to_street,
@@ -284,11 +283,11 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
         if cs_score > bs_score:
             best_solution = current_solution
 
-        # print('bs score:', cs_score)
+        print('bs score:', bs_score)
 
         current_home_base = new_home_base(current_home_base, current_solution, streets, intersections, paths,
                                           total_duration, bonus_points)
-        current_solution = perturb(current_home_base)
+        current_solution = perturb(current_home_base, intersection_id_to_car_length)
         iteration = iteration + 1
 
     print(iteration)

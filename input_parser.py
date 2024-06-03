@@ -81,6 +81,8 @@ def read_input(instance_name: str) -> tuple:
 
     street_id_to_car_length = {}
 
+
+
     paths = []
     for i_car in range(num_cars):
         line = lines.popleft().split()
