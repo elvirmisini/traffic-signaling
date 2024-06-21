@@ -115,7 +115,7 @@ def fitness_score(schedules, streets, intersections, paths, total_duration, bonu
                 street_ids_to_remove.add(i_street)
         street_ids_with_driving_cars.difference_update(street_ids_to_remove)
 
-    # The end of simulation, we reset the paths
     for i_path in range(len(paths)):
         paths[i_path] = paths_copy[i_path]
+
     return score

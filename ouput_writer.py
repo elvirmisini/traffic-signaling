@@ -1,11 +1,10 @@
 import os.path
 
-SOLUTION_REPORTER_DIR = 'solution_reporter'
-DATA_DIR = 'data'
+SOLUTION_REPORTER_DIR = 'output'
 
 
 def save_schedule_to_file(schedules, streets, filename) -> None:
-    output_path = os.path.join(SOLUTION_REPORTER_DIR, DATA_DIR, filename + '.out.txt')
+    output_path = os.path.join(SOLUTION_REPORTER_DIR, filename + '.txt.out.txt')
 
     with open(output_path, 'w') as file:
         file.write(str(len(schedules)) + '\n')

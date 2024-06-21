@@ -34,7 +34,7 @@ Intersection = recordclass('Intersection', [
 
 
 def read_input(instance_name: str) -> tuple:
-    instance_path = os.path.join(SOLUTION_REPORTER_DIR, DATA_DIR, instance_name)
+    instance_path = os.path.join('input', instance_name + '.txt')
 
     with open(instance_path) as f:
         lines = deque(f.readlines())
@@ -81,13 +81,12 @@ def read_input(instance_name: str) -> tuple:
 
     street_id_to_car_length = {}
 
-
-
     paths = []
     for i_car in range(num_cars):
         line = lines.popleft().split()
         path_length = int(line[0])
         path = line[1:]
+
         assert len(path) == path_length
 
         for name in path:
