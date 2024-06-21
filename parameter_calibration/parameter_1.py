@@ -160,7 +160,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     current_home_base = deepcopy(initial_solution)
     best_solution = deepcopy(initial_solution)
 
-    duration = 5 * 60
+    duration = 10 * 60
 
     start_time = time.time()
     iteration = 0
@@ -171,13 +171,13 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
         cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
 
         # We are going to try to set the inner iteration to:
-        #   - 200
+        #   + 200
         #   - 400
         #   - 600
         #   - 800
         #   - 1000
 
-        while inner_iteration < 200 and time.time() - start_time < duration:
+        while inner_iteration < 400 and time.time() - start_time < duration:
             tweak_solution = enhanced_tweak(current_solution,
                                             street_id_to_car_length,
                                             intersection_id_to_car_length)

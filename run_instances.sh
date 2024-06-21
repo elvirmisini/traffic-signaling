@@ -5,7 +5,7 @@ run_instance() {
     local instance_name=$1
     local variant=$2
     local version=$3
-    nohup python3 parameter_calibration/main.py -i $instance_name -va $variant -ve $version &
+    nohup python3 main.py -i $instance_name -va $variant -ve $version &
 }
 
 # Directory containing input files
@@ -21,7 +21,7 @@ do
     for version in {1..5}
     do
         # Run the instance and save the PID
-        run_instance $filename 1 $version
+        run_instance $filename 2 $version
         pids+=($!)
 
         # Check if we have reached the limit of 30 concurrent processes

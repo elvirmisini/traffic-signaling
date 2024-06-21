@@ -34,7 +34,7 @@ Intersection = recordclass('Intersection', [
 
 
 def read_input(instance_name: str) -> tuple:
-    instance_path = os.path.join('input', instance_name + '.txt')
+    instance_path = os.path.join('input', instance_name)
 
     with open(instance_path) as f:
         lines = deque(f.readlines())
