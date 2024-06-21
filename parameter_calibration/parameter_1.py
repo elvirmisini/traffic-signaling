@@ -172,12 +172,12 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
 
         # We are going to try to set the inner iteration to:
         #   + 200
-        #   - 400
-        #   - 600
+        #   + 400
+        #   + 600
         #   - 800
         #   - 1000
 
-        while inner_iteration < 400 and time.time() - start_time < duration:
+        while inner_iteration < 800 and time.time() - start_time < duration:
             tweak_solution = enhanced_tweak(current_solution,
                                             street_id_to_car_length,
                                             intersection_id_to_car_length)
