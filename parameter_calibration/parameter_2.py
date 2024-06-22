@@ -112,13 +112,13 @@ def swap_neighbor_orders(current_solution: list[Schedule]) -> list[Schedule]:
 def swap_random_orders(current_solution: list[Schedule]) -> list[Schedule]:
     tweaked_solution = deepcopy(current_solution)
 
-    #  - 10
-    #  - 15
-    #  - 20
-    #  - 25
+    #  + 10
+    #  + 15
+    #  + 20
+    #  + 25
     #  - 30
 
-    num_to_swap = max(1, len(tweaked_solution) * 10 // 100)
+    num_to_swap = max(1, len(tweaked_solution) * 30 // 100)
     for _ in range(num_to_swap):
         schedule = random.choice(tweaked_solution)
         if len(schedule.order) > 1:
