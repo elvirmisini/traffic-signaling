@@ -77,6 +77,11 @@ def guided_change_of_green_time(current_solution: list[Schedule],
         order_key = find_max_value_number(orders, street_id_to_car_length)
 
         choices = [-3] * 16 + [-2] * 17 + [-1] * 17 + [1] * 17 + [2] * 17 + [3] * 16
+        # choices = [-3] * 33 + [-2] * 33 + [-1] * 34
+        # choices = [1] * 33 + [2] * 33 + [3] * 34
+        # choices = [-3] * 10 + [-2] * 15 + [-1] * 25 + [1] * 25 + [2] * 15 + [3] * 10
+        # choices = [-3] * 25 + [-2] * 15 + [-1] * 10 + [1] * 10 + [2] * 15 + [3] * 25
+
         change = random.choice(choices)
 
         schedule.green_times[order_key] = max(1, schedule.green_times[order_key] + change)
@@ -116,9 +121,9 @@ def swap_random_orders(current_solution: list[Schedule]) -> list[Schedule]:
     #  + 15
     #  + 20
     #  + 25
-    #  - 30
+    #  + 30
 
-    num_to_swap = max(1, len(tweaked_solution) * 30 // 100)
+    num_to_swap = max(1, len(tweaked_solution) * 10 // 100)
     for _ in range(num_to_swap):
         schedule = random.choice(tweaked_solution)
         if len(schedule.order) > 1:
