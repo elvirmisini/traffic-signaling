@@ -7,8 +7,8 @@ def read_nohup_file(file_path):
     with open(file_path, 'r') as file:
         return file.read()
 
-
-file_path = 'rezultatet_nunmri_i_brenshem_1000.out'
+n = 'rezultatet_parametri_2_30'
+file_path = f'{n}.out'
 
 raw_data = read_nohup_file(file_path)
 
@@ -64,4 +64,4 @@ summary_df_filtered = summary_df_filtered.sort_values("Instance Name")
 
 print(len(summary_df_filtered))
 
-summary_df_filtered.to_csv("instance_results_summary_full_1000.csv", index=False)
+summary_df_filtered.to_csv(f"{n}.csv", index=False)
