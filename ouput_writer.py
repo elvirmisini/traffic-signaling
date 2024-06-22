@@ -1,6 +1,6 @@
 import os.path
 
-SOLUTION_REPORTER_DIR = 'output'
+SOLUTION_REPORTER_DIR = 'output_parametri_1'
 
 
 def save_schedule_to_file(schedules, streets, filename) -> None:
