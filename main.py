@@ -5,8 +5,14 @@ from fitness_function import fitness_score
 from initial_solution import traffic_based_initial_solution, usage_based_initial_solution
 from input_parser import read_input
 from ouput_writer import save_schedule_to_file
-from parameter_calibration.parameter_2 import optimize_solution_with_ils
+from variantet.ils import optimize_solution_with_ils
 
+# from variantet.ils_lt import optimize_solution_with_ils
+# from variantet.ILS_GCGT_GSS_RCGT_CGTWC import optimize_solution_with_ils
+# from variantet.ILS_GCGT_GSS_SNS_CGTWC import optimize_solution_with_ils
+# from variantet.ILS_GCGT_RCGT_SNS_CGTWC import optimize_solution_with_ils
+# from variantet.ILS_GCGT_GSS_RCGT_SNS import optimize_solution_with_ils
+# from variantet.ILS_GSS_RCGT_SNS_CGTWC import optimize_solution_with_ils
 
 def main(instance_name, variant, version) -> None:
     start_time = time.perf_counter()

@@ -7,7 +7,8 @@ def read_nohup_file(file_path):
     with open(file_path, 'r') as file:
         return file.read()
 
-n = 'rezultatet_parametri_2_30'
+n = 'rezultati_12'
+
 file_path = f'{n}.out'
 
 raw_data = read_nohup_file(file_path)
