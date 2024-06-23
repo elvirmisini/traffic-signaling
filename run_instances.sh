@@ -21,7 +21,7 @@ do
     for version in {1..5}
     do
         # Run the instance and save the PID
-        run_instance $filename 1 $version
+        run_instance $filename 2 $version
         pids+=($!)
 
         # Check if we have reached the limit of 30 concurrent processes
