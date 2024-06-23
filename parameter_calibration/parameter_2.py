@@ -63,13 +63,13 @@ def guided_change_of_green_time(current_solution: list[Schedule],
                                 ) -> list[Schedule]:
     tweaked_solution = deepcopy(current_solution)
 
-    # - 1
-    # - 3
-    # - 6
-    # - 9
+    # + 1
+    # + 3
+    # + 6
+    # + 9
     # - 12
 
-    num_to_change = max(1, len(tweaked_solution) * 1 // 100)
+    num_to_change = max(1, len(tweaked_solution) * 12 // 100)
 
     sorted_schedules = sorted(tweaked_solution, key=lambda x: intersection_id_to_car_length[x.i_intersection],
                               reverse=True)
