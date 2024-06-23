@@ -21,11 +21,11 @@ do
     for version in {1..5}
     do
         # Run the instance and save the PID
-        run_instance $filename 5 $version
+        run_instance $filename 1 $version
         pids+=($!)
 
         # Check if we have reached the limit of 30 concurrent processes
-        if [ ${#pids[@]} -ge 40 ]; then
+        if [ ${#pids[@]} -ge 50 ]; then
             # Wait for all processes to finish
             for pid in "${pids[@]}"; do
                 wait $pid

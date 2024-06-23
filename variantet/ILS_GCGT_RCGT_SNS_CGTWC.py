@@ -267,6 +267,4 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
         current_solution = perturb(current_home_base)
         iteration = iteration + 1
 
-        print(bs_score)
-
     return best_solution
