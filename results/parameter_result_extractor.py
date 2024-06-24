@@ -7,7 +7,7 @@ def read_nohup_file(file_path):
     with open(file_path, 'r') as file:
         return file.read()
 
-n = 'rezultati_12'
+n = 'ILS_GCGT_GSS_RCGT_SNS'
 
 file_path = f'{n}.out'
 
