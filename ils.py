@@ -231,7 +231,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     current_home_base = deepcopy(initial_solution)
     best_solution = deepcopy(initial_solution)
 
-    duration = 30 * 60
+    duration = 60 * 60
 
     start_time = time.time()
     iteration = 0
@@ -260,7 +260,6 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
 
         if cs_score > bs_score:
             best_solution = current_solution
-            bs_score = cs_score
 
         current_home_base = new_home_base(current_home_base, current_solution, streets, intersections, paths,
                                           total_duration, bonus_points)
