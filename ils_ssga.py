@@ -1,6 +1,7 @@
 import argparse
 import time
 from collections import deque
+import os.path
 
 from recordclass import recordclass
 
@@ -55,7 +56,7 @@ def main(instance_name, variant, version) -> None:
         street_id_to_car_length, intersection_id_to_car_length = read_input(instance_name)
 
     initial_solution = readSolution(
-        f'seeds\\{instance_name}.out',
+        os.path.join('seeds', f'{instance_name}.out'),
         streets)
 
     initial_score = fitness_score(initial_solution, streets, intersections, paths, total_duration, bonus_points)
