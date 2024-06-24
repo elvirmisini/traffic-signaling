@@ -299,13 +299,10 @@ def traffic_based_initial_solution(intersections: list[gl.Intersection], limit_o
             for _order, _green_time in zip(order, green_times):
                 green_time_dict[_order] = int(_green_time)
 
-            # print('Green Times: ',green_time_dict)
-            # print("Order: ", order)
-            if sum(green_time_dict.values()) > 120:
+            if sum(green_time_dict.values()) > limit_on_minimum_cycle_length:
                 print("Times: ", green_times, " SUM: ", sum(green_times))
 
         if order:
-            # schedules.append(Schedule(intersection.id, order, green_times,intersection.pedestrian_phase,intersection.all_red_phase))
             schedules.append(Schedule(intersection.id, order, green_time_dict))
     return schedules
 
@@ -377,13 +374,13 @@ def generateSolution(intersections, name_to_i_street, limit_on_minimum_green_pha
    # decideGen = 0
     print("decide gen  ",decideGen)
     #if (decideGen == 0):
-    solution = traffic_based_initial_solution(intersections, limit_on_minimum_green_phase_duration,
-                                                  limit_on_maximum_green_phase_duration, limit_on_minimum_cycle_length,
-                                                  limit_on_maximum_cycle_length, name_to_i_street)
+    # solution = traffic_based_initial_solution(intersections, limit_on_minimum_green_phase_duration,
+    #                                               limit_on_maximum_green_phase_duration, limit_on_minimum_cycle_length,
+    #                                               limit_on_maximum_cycle_length, name_to_i_street)
     # else:
-    #    solution = usage_based_initial_solution(intersections, limit_on_minimum_green_phase_duration,
-    #                                            limit_on_maximum_green_phase_duration, limit_on_minimum_cycle_length,
-    #                                            limit_on_maximum_cycle_length, name_to_i_street)
+    solution = usage_based_initial_solution(intersections, limit_on_minimum_green_phase_duration,
+                                               limit_on_maximum_green_phase_duration, limit_on_minimum_cycle_length,
+                                               limit_on_maximum_cycle_length, name_to_i_street)
 
     for i in range(0, len(solution)):
         schedule = solution[i]
@@ -497,7 +494,7 @@ def optimize_solution_with_ils(streets, intersections, paths, total_duration, bo
     current_home_base = deepcopy(current_solution)
     best_solution = deepcopy(current_home_base)
     shrinkageFactor = 0.001  # how fast does the neighborhood shrink. 1 is max. This higher the factor the less is the neighborhood shrinking
-    duration =600*3#3585 aktualisht 
+    duration =60#3585 aktualisht 
     completed_cars=0
     avg_cars=0
     start_time = time()
@@ -522,7 +519,7 @@ def optimize_solution_with_ils(streets, intersections, paths, total_duration, bo
                 completed_cars2=completed_cars3
                 #current_solution = tweak_solution
                 test_solution=deepcopy(tweak_solution)
-                #inner_iteration=40
+
             inner_iteration += 1
 
         
