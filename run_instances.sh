@@ -2,8 +2,7 @@
 
 run_instance() {
     local instance_name=$1
-   
-    nohup python experiment.py $instance_name &
+    nohup python3 experiment.py $instance_name &
 }
 
 input_dir="./input"
@@ -18,7 +17,7 @@ do
         run_instance $filename 
         pids+=($!)
 
-        if [ ${#pids[@]} -ge 5 ]; then
+        if [ ${#pids[@]} -ge 50 ]; then
 
             for pid in "${pids[@]}"; do
                 wait $pid

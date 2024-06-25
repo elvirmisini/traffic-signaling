@@ -374,13 +374,13 @@ def generateSolution(intersections, name_to_i_street, limit_on_minimum_green_pha
    # decideGen = 0
     print("decide gen  ",decideGen)
     #if (decideGen == 0):
-    # solution = traffic_based_initial_solution(intersections, limit_on_minimum_green_phase_duration,
-    #                                               limit_on_maximum_green_phase_duration, limit_on_minimum_cycle_length,
-    #                                               limit_on_maximum_cycle_length, name_to_i_street)
+    solution = traffic_based_initial_solution(intersections, limit_on_minimum_green_phase_duration,
+                                                   limit_on_maximum_green_phase_duration, limit_on_minimum_cycle_length,
+                                                   limit_on_maximum_cycle_length, name_to_i_street)
     # else:
-    solution = usage_based_initial_solution(intersections, limit_on_minimum_green_phase_duration,
-                                               limit_on_maximum_green_phase_duration, limit_on_minimum_cycle_length,
-                                               limit_on_maximum_cycle_length, name_to_i_street)
+    #solution = usage_based_initial_solution(intersections, limit_on_minimum_green_phase_duration,
+     #                                          limit_on_maximum_green_phase_duration, limit_on_minimum_cycle_length,
+      #                                         limit_on_maximum_cycle_length, name_to_i_street)
 
     for i in range(0, len(solution)):
         schedule = solution[i]
@@ -494,7 +494,7 @@ def optimize_solution_with_ils(streets, intersections, paths, total_duration, bo
     current_home_base = deepcopy(current_solution)
     best_solution = deepcopy(current_home_base)
     shrinkageFactor = 0.001  # how fast does the neighborhood shrink. 1 is max. This higher the factor the less is the neighborhood shrinking
-    duration =60#3585 aktualisht 
+    duration =600*3#3585 aktualisht 
     completed_cars=0
     avg_cars=0
     start_time = time()
