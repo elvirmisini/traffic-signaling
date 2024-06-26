@@ -540,6 +540,8 @@ def optimize_solution_with_ils(streets, intersections, paths, total_duration, bo
     score,completed_cars,avg_cars=gl.grade(best_solution, streets, intersections, paths, total_duration, bonus_points, yellow_phase, duration_to_pass_through_a_traffic_light)
     gl.print_json_solution(score, best_solution, streets=streets, intersections=intersections,
                            file=file, code='code',completed_cars=completed_cars,avg_cars=avg_cars,score=score)
+    gl.grade_for_simulation(best_solution, streets, intersections, paths, total_duration, bonus_points, yellow_phase,
+          duration_to_pass_through_a_traffic_light,score):
 
     return best_solution , score, completed_cars, avg_cars
 
