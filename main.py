@@ -5,6 +5,7 @@ from fitness_function import fitness_score
 from initial_solution import traffic_based_initial_solution, usage_based_initial_solution
 from input_parser import read_input
 from ouput_writer import save_schedule_to_file
+from ils import optimize_solution_with_ils
 
 
 def main(instance_name, variant, version) -> None:
