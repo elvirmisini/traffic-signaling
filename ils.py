@@ -354,7 +354,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     current_home_base = deepcopy(initial_solution)
     best_solution = deepcopy(initial_solution)
 
-    duration = 30 * 60
+    duration = 30 * 60  # 30 minutes
 
     start_time = time.time()
     iteration = 0
@@ -402,4 +402,4 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     print(f'Nr inner iterations: {sum_all_inner_iterations}')
     print(f'Time taken to reach the best solution: {best_solution_time - start_time:.2f} seconds')
 
-    return best_solution, best_solution_time - start_time
+    return best_solution, best_solution_time - start_time,iteration,sum_all_inner_iterations
