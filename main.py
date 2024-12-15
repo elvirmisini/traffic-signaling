@@ -40,7 +40,7 @@ def main(instance_name, variant, version) -> None:
         initial_solution = usage_based_heuristic_initial_solution
         initial_score = usage_based_heuristic_initial_score
 
-    ils_solution = optimize_solution_with_ils(initial_solution,
+    ils_solution,best_solution_time = optimize_solution_with_ils(initial_solution,
                                               streets,
                                               intersections,
                                               paths,
@@ -53,7 +53,7 @@ def main(instance_name, variant, version) -> None:
     print(f'The solution of {instance_name} has the score {score}.')
 
     print(f'Optimized for {score - initial_score} points.')
-    save_schedule_to_file(ils_solution, streets, f'{instance_name}_{variant}_{version}')
+    save_schedule_to_file(ils_solution, streets, f'{instance_name}_{variant}_{version}_best_solution_time_{best_solution_time}.out')
 
     end_time = time.perf_counter()
     elapsed_time = end_time - start_time

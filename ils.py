@@ -295,6 +295,7 @@ def perturb(current_solution: list[Schedule]) -> list[Schedule]:
         return perturbed_solution
 
 
+
 def optimize_solution_with_ils(initial_solution: list[Schedule],
                                streets: list[Street],
                                intersections: list[Intersection],
@@ -318,6 +319,9 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     iteration = 0
     sum_all_inner_iterations = 0
 
+    # Track the time when the best solution is found
+    best_solution_time = start_time
+
     while time.time() - start_time < duration:
         inner_iteration = 0
 
@@ -336,24 +340,24 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
                 current_solution = tweak_solution
                 cs_score = tw_score
 
-            inner_iteration = inner_iteration + 1
-            sum_all_inner_iterations = sum_all_inner_iterations + 1
+            inner_iteration += 1
+            sum_all_inner_iterations += 1
 
         bs_score = fitness_score(best_solution, streets, intersections, paths, total_duration, bonus_points)
         cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
 
         if cs_score > bs_score:
             best_solution = current_solution
-        
+            best_solution_time = time.time()  # Update the time when the best solution is found
+
         print(bs_score)
 
         current_home_base = new_home_base(current_home_base, current_solution, streets, intersections, paths,
                                           total_duration, bonus_points)
         current_solution = perturb(current_home_base)
-        iteration = iteration + 1
+        iteration += 1
+    print(f'Nr outer iterations: {iteration}')
+    print(f'Nr inner iterations: {sum_all_inner_iterations}')
+    print(f'Time taken to reach the best solution: {best_solution_time - start_time:.2f} seconds')
 
-
-    print(f'Nr outer iterations:', iteration)
-    print(f'Nr innter iterations:', sum_all_inner_iterations)
-
-    return best_solution
+    return best_solution, best_solution_time - start_time
