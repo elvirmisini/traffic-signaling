@@ -8,6 +8,47 @@ from initial_solution import Schedule
 from input_parser import Intersection, Street
 
 
+score_cache = {}
+
+def memoized_fitness(solution, streets, intersections, paths, total_duration, bonus_points):
+    solution_key = make_solution_key(solution)
+    if solution_key in score_cache:
+        return score_cache[solution_key]
+    
+    # If not cached, compute and store
+    score = fitness_score(solution, streets, intersections, paths, total_duration, bonus_points)
+    score_cache[solution_key] = score
+    return score
+
+
+def make_solution_key(solution):
+    """
+    Convert a list[Schedule] into a hashable tuple structure.
+    """
+    # Sort schedules by intersection id to keep a consistent ordering
+    sorted_schedules = sorted(solution, key=lambda s: s.i_intersection)
+    
+    # Build a nested tuple representation
+    representation = []
+    for sched in sorted_schedules:
+        # Convert order to a tuple
+        order_tuple = tuple(sched.order)
+
+        # Convert green_times dict into sorted key-value pairs
+        green_times_tuple = tuple(sorted(sched.green_times.items()))
+        
+        # Combine them in a consistent structure
+        schedule_tuple = (
+            sched.i_intersection,
+            order_tuple,
+            green_times_tuple
+        )
+        representation.append(schedule_tuple)
+    
+    # Convert the entire solution to a tuple
+    return tuple(representation)
+
+
 def new_home_base(current_home_base: list[Schedule],
                   current_solution: list[Schedule],
                   streets: list[Street],
@@ -356,6 +397,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
                                           total_duration, bonus_points)
         current_solution = perturb(current_home_base)
         iteration += 1
+
     print(f'Nr outer iterations: {iteration}')
     print(f'Nr inner iterations: {sum_all_inner_iterations}')
     print(f'Time taken to reach the best solution: {best_solution_time - start_time:.2f} seconds')

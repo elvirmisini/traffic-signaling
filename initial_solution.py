@@ -11,6 +11,18 @@ Schedule = recordclass('Schedule', [
     'green_times'
 ])
 
+class Schedule(Schedule):
+    def __hash__(self):
+        # Create a hash based on the immutable components
+        return hash((self.i_intersection, tuple(self.order), frozenset(self.green_times.items())))
+
+    def __eq__(self, other):
+        if not isinstance(other, Schedule):
+            return False
+        return (self.i_intersection == other.i_intersection and
+                tuple(self.order) == tuple(other.order) and
+                frozenset(self.green_times.items()) == frozenset(other.green_times.items()))
+
 
 def traffic_based_initial_solution(intersections: list[Intersection]) -> list[Schedule]:
     schedules = []
