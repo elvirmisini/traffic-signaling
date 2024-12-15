@@ -1,0 +1,191 @@
+{
+    "number_of_intersections": 25,
+    "score": 0,
+    "cars_completed": 0,
+    "average_waiting_cars": 0,
+    "intersections": [
+        {
+            "intersection_name": "XhamiaLlapitTregu",
+            "all_red_phase_interval": 0,
+            "pedestrian_phase_interval": 16,
+            "phases": [
+                {
+                    "phase": 1,
+                    "streets": [
+                        {
+                            "Parlamenti_XhamiaLlapitTregu_XhamiaLlapit": 43
+                        },
+                        {
+                            "Parlamenti_XhamiaLlapitTregu_MetoBajraktari": 43
+                        },
+                        {
+                            "Parlamenti_XhamiaLlapitTregu_LidhjaPrizrenit": 43
+                        },
+                        {
+                            "XhamiaLlapit_XhamiaLlapitTregu_LidhjaPrizrenit": 43
+                        },
+                        {
+                            "XhamiaLlapit_XhamiaLlapitTregu_Parlamenti": 43
+                        },
+                        {
+                            "XhamiaLlapit_XhamiaLlapitTregu_MetoBajraktari": 43
+                        }
+                    ]
+                },
+                {
+                    "phase": 2,
+                    "streets": [
+                        {
+                            "MetoBajraktari_XhamiaLlapitTregu_XhamiaLlapit": 29
+                        },
+                        {
+                            "MetoBajraktari_XhamiaLlapitTregu_LidhjaPrizrenit": 29
+                        },
+                        {
+                            "MetoBajraktari_XhamiaLlapitTregu_Parlamenti": 29
+                        },
+                        {
+                            "LidhjaPrizrenit_XhamiaLlapitTregu_Parlamenti": 29
+                        },
+                        {
+                            "LidhjaPrizrenit_XhamiaLlapitTregu_MetoBajraktari": 29
+                        },
+                        {
+                            "LidhjaPrizrenit_XhamiaLlapitTregu_XhamiaLlapit": 29
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "intersection_name": "XhamiaLlapit",
+            "all_red_phase_interval": 0,
+            "pedestrian_phase_interval": 18,
+            "phases": [
+                {
+                    "phase": 1,
+                    "streets": [
+                        {
+                            "XhamiaLlapitTregu_XhamiaLlapit_LidhjaLezhes": 62
+                        },
+                        {
+                            "XhamiaLlapitTregu_XhamiaLlapit_VellezeritFazliu": 62
+                        },
+                        {
+                            "XhamiaLlapitTregu_XhamiaLlapit_Tjegullorja": 62
+                        },
+                        {
+                            "XhamiaLlapitTregu_XhamiaLlapit_Makovc": 62
+                        },
+                        {
+                            "VellezeritFazliu_XhamiaLlapit_Tjegullorja": 62
+                        },
+                        {
+                            "VellezeritFazliu_XhamiaLlapit_LidhjaLezhes": 62
+                        },
+                        {
+                            "VellezeritFazliu_XhamiaLlapit_XhamiaLlapitTregu": 62
+                        },
+                        {
+                            "VellezeritFazliu_XhamiaLlapit_Makovc": 62
+                        }
+                    ]
+                },
+                {
+                    "phase": 2,
+                    "streets": [
+                        {
+                            "LidhjaLezhes_XhamiaLlapit_Tjegullorja": 44
+                        },
+                        {
+                            "LidhjaLezhes_XhamiaLlapit_VellezeritFazliu": 44
+                        },
+                        {
+                            "LidhjaLezhes_XhamiaLlapit_Makovc": 44
+                        },
+                        {
+                            "LidhjaLezhes_XhamiaLlapit_XhamiaLlapitTregu": 44
+                        },
+                        {
+                            "Tjegullorja_XhamiaLlapit_VellezeritFazliu": 44
+                        },
+                        {
+                            "Tjegullorja_XhamiaLlapit_Makovc": 44
+                        },
+                        {
+                            "Tjegullorja_XhamiaLlapit_XhamiaLlapitTregu": 44
+                        },
+                        {
+                            "Tjegullorja_XhamiaLlapit_LidhjaLezhes": 44
+                        },
+                        {
+                            "Makovc_XhamiaLlapit_XhamiaLlapitTregu": 44
+                        },
+                        {
+                            "Makovc_XhamiaLlapit_LidhjaLezhes": 44
+                        },
+                        {
+                            "Makovc_XhamiaLlapit_Tjegullorja": 44
+                        },
+                        {
+                            "Makovc_XhamiaLlapit_VellezeritFazliu": 44
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "intersection_name": "Tjegullorja",
+            "all_red_phase_interval": 3,
+            "pedestrian_phase_interval": 0,
+            "phases": [
+                {
+                    "phase": 1,
+                    "streets": [
+                        {
+                            "XhamiaLlapit_Tjegullorja_Vushtrria": 44
+                        },
+                        {
+                            "XhamiaLlapit_Tjegullorja_Zagrebi": 44
+                        },
+                        {
+                            "XhamiaLlapit_Tjegullorja_Plava": 44
+                        },
+                        {
+                            "Zagrebi_Tjegullorja_Plava": 44
+                        },
+                        {
+                            "Zagrebi_Tjegullorja_XhamiaLlapit": 44
+                        },
+                        {
+                            "Zagrebi_Tjegullorja_Vushtrria": 44
+                        }
+                    ]
+                },
+                {
+                    "phase": 2,
+                    "streets": [
+                        {
+                            "Vushtrria_Tjegullorja_Zagrebi": 23
+                        },
+                        {
+                            "Vushtrria_Tjegullorja_Plava": 23
+                        },
+                        {
+                            "Vushtrria_Tjegullorja_XhamiaLlapit": 23
+                        },
+                        {
+                            "Plava_Tjegullorja_XhamiaLlapit": 23
+                        },
+                        {
+                            "Plava_Tjegullorja_Vushtrria": 23
+                        },
+                        {
+                            "Plava_Tjegullorja_Zagrebi": 23
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

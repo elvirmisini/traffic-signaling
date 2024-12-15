@@ -1,0 +1,217 @@
+{
+    "number_of_intersections": 25,
+    "score": 0,
+    "cars_completed": 0,
+    "average_waiting_cars": 0,
+    "intersections": [
+        {
+            "intersection_name": "BillClinton",
+            "all_red_phase_interval": 4,
+            "pedestrian_phase_interval": 0,
+            "phases": [
+                {
+                    "phase": 1,
+                    "streets": [
+                        {
+                            "Lakrishte_BillClinton_Santea": 62
+                        },
+                        {
+                            "Lakrishte_BillClinton_Tuneli": 62
+                        },
+                        {
+                            "Santea_BillClinton_Lakrishte": 62
+                        },
+                        {
+                            "Santea_BillClinton_ShtjefenGjeqovi": 62
+                        }
+                    ]
+                },
+                {
+                    "phase": 2,
+                    "streets": [
+                        {
+                            "Lakrishte_BillClinton_Lakrishte": 24
+                        },
+                        {
+                            "Lakrishte_BillClinton_ShtjefenGjeqovi": 24
+                        },
+                        {
+                            "Santea_BillClinton_Santea": 24
+                        },
+                        {
+                            "Santea_BillClinton_Tuneli": 24
+                        },
+                        {
+                            "Tuneli_BillClinton_Santea": 24
+                        },
+                        {
+                            "ShtjefenGjeqovi_BillClinton_Lakrishte": 24
+                        }
+                    ]
+                },
+                {
+                    "phase": 3,
+                    "streets": [
+                        {
+                            "Lakrishte_BillClinton_Tuneli": 27
+                        },
+                        {
+                            "Tuneli_BillClinton_ShtjefenGjeqovi": 27
+                        },
+                        {
+                            "Tuneli_BillClinton_Lakrishte": 27
+                        },
+                        {
+                            "Tuneli_BillClinton_Santea": 27
+                        },
+                        {
+                            "ShtjefenGjeqovi_BillClinton_Tuneli": 27
+                        },
+                        {
+                            "ShtjefenGjeqovi_BillClinton_Santea": 27
+                        },
+                        {
+                            "ShtjefenGjeqovi_BillClinton_Lakrishte": 27
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "intersection_name": "Santea",
+            "all_red_phase_interval": 0,
+            "pedestrian_phase_interval": 10,
+            "phases": [
+                {
+                    "phase": 1,
+                    "streets": [
+                        {
+                            "BillClinton_Santea_Katedralja": 50
+                        },
+                        {
+                            "Katedralja_Santea_BillClinton": 50
+                        },
+                        {
+                            "Katedralja_Santea_RobertDoll": 50
+                        }
+                    ]
+                },
+                {
+                    "phase": 2,
+                    "streets": [
+                        {
+                            "BillClinton_Santea_RobertDoll": 28
+                        },
+                        {
+                            "BillClinton_Santea_BillClinton": 28
+                        },
+                        {
+                            "Katedralja_Santea_RobertDoll": 28
+                        },
+                        {
+                            "RobertDoll_Santea_BillClinton": 28
+                        }
+                    ]
+                },
+                {
+                    "phase": 3,
+                    "streets": [
+                        {
+                            "RobertDoll_Santea_BillClinton": 39
+                        },
+                        {
+                            "RobertDoll_Santea_Katedralja": 39
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "intersection_name": "Katedralja",
+            "all_red_phase_interval": 0,
+            "pedestrian_phase_interval": 0,
+            "phases": [
+                {
+                    "phase": 1,
+                    "streets": [
+                        {
+                            "Santea_Katedralja_Menza": 45
+                        },
+                        {
+                            "Santea_Katedralja_PTK": 45
+                        },
+                        {
+                            "Menza_Katedralja_Santea": 45
+                        },
+                        {
+                            "PTK_Katedralja_Menza": 45
+                        }
+                    ]
+                },
+                {
+                    "phase": 2,
+                    "streets": [
+                        {
+                            "Santea_Katedralja_Santea": 18
+                        },
+                        {
+                            "Santea_Katedralja_PTK": 18
+                        },
+                        {
+                            "PTK_Katedralja_Menza": 18
+                        },
+                        {
+                            "Menza_Katedralja_PTK": 18
+                        },
+                        {
+                            "Menza_Katedralja_Menza": 18
+                        },
+                        {
+                            "Parking_Katedralja_Santea": 18
+                        }
+                    ]
+                },
+                {
+                    "phase": 3,
+                    "streets": [
+                        {
+                            "PTK_Katedralja_PTK": 24
+                        },
+                        {
+                            "PTK_Katedralja_Santea": 24
+                        },
+                        {
+                            "PTK_Katedralja_Menza": 24
+                        },
+                        {
+                            "Santea_Katedralja_PTK": 24
+                        },
+                        {
+                            "Parking_Katedralja_Parking": 24
+                        },
+                        {
+                            "Parking_Katedralja_Menza": 24
+                        }
+                    ]
+                },
+                {
+                    "phase": 4,
+                    "streets": [
+                        {
+                            "Parking_Katedralja_PTK": 25
+                        },
+                        {
+                            "Parking_Katedralja_Santea": 25
+                        },
+                        {
+                            "Santea_Katedralja_PTK": 25
+                        },
+                        {
+                            "PTK_Katedralja_Menza": 25
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
