@@ -57,8 +57,8 @@ def new_home_base(current_home_base: list[Schedule],
                   total_duration: int,
                   bonus_points: int
                   ) -> list[Schedule]:
-    cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
-    chb_score = fitness_score(current_home_base, streets, intersections, paths, total_duration, bonus_points)
+    cs_score = memoized_fitness(current_solution, streets, intersections, paths, total_duration, bonus_points)
+    chb_score = memoized_fitness(current_home_base, streets, intersections, paths, total_duration, bonus_points)
     if cs_score >= chb_score:
         return deepcopy(current_solution)
     else:
@@ -219,6 +219,7 @@ def change_of_green_time_of_waiting_cars(current_solution: list[Schedule], inter
     return tweaked_solution
 
 
+
 def optimize_orders_brute_force(current_solution: list[Schedule],
                                 streets: list[Street],
                                 intersections: list[Intersection],
@@ -226,57 +227,88 @@ def optimize_orders_brute_force(current_solution: list[Schedule],
                                 total_duration: int,
                                 bonus_points: int
                                 ) -> list[Schedule]:
+
+    # Initial best
     best_solution = deepcopy(current_solution)
-    best_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
+    best_score = memoized_fitness(best_solution, streets, intersections, paths, total_duration, bonus_points)
 
-    num_to_optimize = int(max(1, len(current_solution) * 0.15 // 100))
-    schedules_to_optimize = random.sample(current_solution, num_to_optimize)
+    # Decide how many schedules to optimize
+    num_to_optimize = max(1, int(len(intersections) * 0.0015))
+    schedules_to_optimize = random.sample(best_solution, num_to_optimize)
 
+    # --- STEP 1: Collect all candidate permutations ---
+    # We'll store them in a list so we can evaluate all candidate changes in a single pass
+    # rather than deeply nested loops that repeatedly call fitness.
+    candidate_changes = []
     for schedule in schedules_to_optimize:
         original_order = schedule.order
-        for i in range(len(original_order) - 2):
-            # Extracting 3 continuous elements, or less if not available
-            elements_to_permute = original_order[i:i + 3]
-            for permuted in itertools.permutations(elements_to_permute):
-                schedule.order = original_order[:i] + list(permuted) + original_order[i + 3:]
-                temp_score = fitness_score(current_solution, streets, intersections, paths, total_duration,
-                                           bonus_points)
-                if temp_score > best_score:
-                    best_score = temp_score
-                    best_solution = deepcopy(current_solution)
+        n = len(original_order)
+        # For each 3-element (or partial) segment in the order
+        for i in range(n - 2):
+            # Extract the 3 continuous elements
+            segment = original_order[i : i + 3]
+            # Generate all permutations
+            for permuted in itertools.permutations(segment):
+                candidate_changes.append(
+                    # We store a tuple: (schedule, start_index, permuted_segment, original_segment)
+                    (schedule, i, permuted, segment)
+                )
 
-        # Resetting the order after optimization
-        schedule.order = original_order
+    # --- STEP 2: Evaluate each candidate permutation ---
+    for schedule, start_index, permuted, original_segment in candidate_changes:
+        original_order = schedule.order
+        # Apply the permutation in-place
+        schedule.order = (
+            original_order[:start_index] +
+            list(permuted) +
+            original_order[start_index + 3:]
+        )
+
+        # Evaluate fitness
+        temp_score = memoized_fitness(best_solution, streets, intersections, paths, total_duration, bonus_points)
+        if temp_score > best_score:
+            best_score = temp_score
+            # Only do a deepcopy here when we actually find a new best
+            best_solution = deepcopy(best_solution)
+        else:
+            # Revert the change if no improvement
+            schedule.order = original_order
 
     return best_solution
 
 
-def optimize_green_times_brute_force(current_solution: list[Schedule],
-                                     streets: list[Street],
-                                     intersections: list[Intersection],
-                                     paths: list[str],
-                                     total_duration: int,
-                                     bonus_points: int
-                                     ) -> list[Schedule]:
+
+def optimize_green_times_brute_force(current_solution, 
+                                     streets, 
+                                     intersections, 
+                                     paths,
+                                     total_duration, 
+                                     bonus_points):
     best_solution = deepcopy(current_solution)
-    best_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
+    best_score = memoized_fitness(best_solution, streets, intersections, paths, total_duration, bonus_points)
 
-    num_to_optimize = int(max(1, len(current_solution) * 0.15 // 100))
-    schedules_to_optimize = random.sample(current_solution, num_to_optimize)
+    num_to_optimize = max(1, int(len(intersections) * 0.0015))
+    schedules_to_optimize = random.sample(best_solution, num_to_optimize)
 
+    candidate_changes = []
     for schedule in schedules_to_optimize:
-        for key in schedule.green_times:
-            original_value = schedule.green_times[key]
+        for signal_key in schedule.green_times:
+            original_value = schedule.green_times[signal_key]
             for change in [-1, 1, 2, 3]:
-                schedule.green_times[key] = max(1, original_value + change)
-                temp_score = fitness_score(current_solution, streets, intersections, paths, total_duration,
-                                           bonus_points)
-                if temp_score > best_score:
-                    best_score = temp_score
-                    best_solution = deepcopy(current_solution)
+                new_value = max(1, original_value + change)
 
-            # Resetting green_times after optimization
-            schedule.green_times[key] = original_value
+                if new_value != original_value:
+                    candidate_changes.append((schedule, signal_key, new_value, original_value))
+
+    for schedule, signal_key, new_value, original_value in candidate_changes:
+        schedule.green_times[signal_key] = new_value
+
+        temp_score = memoized_fitness(best_solution, streets, intersections, paths, total_duration, bonus_points)
+        if temp_score > best_score:
+            best_score = temp_score
+            best_solution = deepcopy(best_solution)
+        else:
+            schedule.green_times[signal_key] = original_value
 
     return best_solution
 
@@ -329,7 +361,7 @@ def perturb(current_solution: list[Schedule]) -> list[Schedule]:
         return swap_random_orders(current_solution)
     else:
         perturbed_solution = deepcopy(current_solution)
-        num_to_shuffle = max(1, len(perturbed_solution) * 20 // 100)
+        num_to_shuffle = max(1, len(perturbed_solution) * 10 // 100)
         for _ in range(num_to_shuffle):
             schedule = random.choice(perturbed_solution)
             random.shuffle(schedule.order)
@@ -366,16 +398,17 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
     while time.time() - start_time < duration:
         inner_iteration = 0
 
-        cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
+        cs_score = memoized_fitness(current_solution, streets, intersections, paths, total_duration, bonus_points)
 
-        selected_inner_iteration = random.choice([30, 60, 100, 200, 500])
+        selected_inner_iteration = random.choice([30, 60, 100, 200, 500, 800, 1000])
+        # selected_inner_iteration = 1000
 
         while inner_iteration < selected_inner_iteration and time.time() - start_time < duration:
             tweak_solution = enhanced_tweak(current_solution, streets, intersections, paths, total_duration,
                                             bonus_points, street_id_to_car_length,
                                             intersection_id_to_car_length)
 
-            tw_score = fitness_score(tweak_solution, streets, intersections, paths, total_duration, bonus_points)
+            tw_score = memoized_fitness(tweak_solution, streets, intersections, paths, total_duration, bonus_points)
 
             if tw_score > cs_score:
                 current_solution = tweak_solution
@@ -384,8 +417,8 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
             inner_iteration += 1
             sum_all_inner_iterations += 1
 
-        bs_score = fitness_score(best_solution, streets, intersections, paths, total_duration, bonus_points)
-        cs_score = fitness_score(current_solution, streets, intersections, paths, total_duration, bonus_points)
+        bs_score = memoized_fitness(best_solution, streets, intersections, paths, total_duration, bonus_points)
+        cs_score = memoized_fitness(current_solution, streets, intersections, paths, total_duration, bonus_points)
 
         if cs_score > bs_score:
             best_solution = current_solution
