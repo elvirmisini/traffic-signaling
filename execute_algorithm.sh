@@ -55,7 +55,7 @@ instance_names=(
     "I12000_S36000_C2000.txt"
 )
 
-MAX_THREADS=30
+MAX_THREADS=60
 
 function run_in_parallel {
     while (( $(jobs | wc -l) >= MAX_THREADS )); do
