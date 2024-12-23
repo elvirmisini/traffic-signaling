@@ -2,10 +2,10 @@ import argparse
 import time
 
 from fitness_function import fitness_score
+from ils import optimize_solution_with_ils
 from initial_solution import traffic_based_initial_solution, usage_based_initial_solution
 from input_parser import read_input
 from ouput_writer import save_schedule_to_file
-from ils import optimize_solution_with_ils
 
 
 def main(instance_name, variant, version) -> None:
@@ -40,20 +40,28 @@ def main(instance_name, variant, version) -> None:
         initial_solution = usage_based_heuristic_initial_solution
         initial_score = usage_based_heuristic_initial_score
 
-    ils_solution,best_solution_time,iteration,sum_all_inner_iterations = optimize_solution_with_ils(initial_solution,
-                                              streets,
-                                              intersections,
-                                              paths,
-                                              total_duration,
-                                              bonus_points,
-                                              street_id_to_car_length,
-                                              intersection_id_to_car_length)
+    ils_solution, best_solution_time, iteration, sum_all_inner_iterations = optimize_solution_with_ils(initial_solution,
+                                                                                                       streets,
+                                                                                                       intersections,
+                                                                                                       paths,
+                                                                                                       total_duration,
+                                                                                                       bonus_points,
+                                                                                                       street_id_to_car_length,
+                                                                                                       intersection_id_to_car_length)
 
     score = fitness_score(ils_solution, streets, intersections, paths, total_duration, bonus_points)
     print(f'The solution of {instance_name} has the score {score}.')
 
     print(f'Optimized for {score - initial_score} points.')
-    save_schedule_to_file(ils_solution, streets, f'{instance_name}_{variant}_{version}_inner_iterations_{iteration}_all_iterations_{sum_all_inner_iterations}_best_solution_time_{best_solution_time}.out')
+    save_schedule_to_file(ils_solution,
+                          streets,
+                          f'{instance_name}_'
+                          f'variant_{variant}_'
+                          f'version_{version}_'
+                          f'inner_iterations_{iteration}_'
+                          f'all_iterations_{sum_all_inner_iterations}_'
+                          f'best_solution_time_{best_solution_time}_'
+                          f'best_score_{score}.out')
 
     end_time = time.perf_counter()
     elapsed_time = end_time - start_time
