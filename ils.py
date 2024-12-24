@@ -264,33 +264,33 @@ def enhanced_tweak(current_solution: list[Schedule],
                    intersection_id_to_car_length
                    ) -> list[Schedule]:
     # We have 7 operations total, each will have ~14.2857% chance.
-    tweak_option = random.randint(0, 6)
+    tweak_option = random.randint(0, 5)
 
+    # if tweak_option == 0:
+    #     return guided_change_of_green_time(current_solution,
+    #                                        street_id_to_car_length,
+    #                                        intersection_id_to_car_length)
     if tweak_option == 0:
-        return guided_change_of_green_time(current_solution,
-                                           street_id_to_car_length,
-                                           intersection_id_to_car_length)
-    elif tweak_option == 1:
         return change_green_times(current_solution)
-    elif tweak_option == 2:
+    elif tweak_option == 1:
         swap_order_option = random.randint(0, 1)
         if swap_order_option == 0:
             select_option = random.choice([1, 2, 3])
             return swap_random_orders(current_solution, select_option)
         else:
             return swap_neighbor_orders(current_solution)
-    elif tweak_option == 3:
+    elif tweak_option == 2:
         return change_of_green_time_of_waiting_cars(current_solution, intersections)
-    elif tweak_option == 4:
+    elif tweak_option == 3:
         return guided_swap_orders(current_solution, intersection_id_to_car_length)
-    elif tweak_option == 5:
+    elif tweak_option == 4:
         return optimize_orders_brute_force(current_solution,
                                            streets,
                                            intersections,
                                            paths,
                                            total_duration,
                                            bonus_points)
-    else:  # tweak_option == 6
+    else:  # tweak_option == 5
         return optimize_green_times_brute_force(current_solution,
                                                 streets,
                                                 intersections,
