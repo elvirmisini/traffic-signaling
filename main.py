@@ -1,11 +1,45 @@
 import argparse
+import os.path
 import time
+from collections import deque
 
 from fitness_function import fitness_score
 from ils import optimize_solution_with_ils
-from initial_solution import traffic_based_initial_solution, usage_based_initial_solution
+from initial_solution import Schedule
 from input_parser import read_input
 from ouput_writer import save_schedule_to_file
+
+
+def read_solution(solution_file_path, streets):
+    with open(solution_file_path) as f:
+        lines = deque(f.readlines())
+
+    num_intersections = int(lines.popleft())
+
+    schedules = []
+    for i in range(0, num_intersections):
+        i_intersection = int(lines.popleft())
+        num_streets = int(lines.popleft())
+        order = []
+        green_times = {}
+        for j in range(0, num_streets):
+            street_name, green_time_str = lines.popleft().split()
+            green_time = int(green_time_str)
+
+            street_id = None
+            for street in streets:
+                if street.name == street_name:
+                    street_id = street.id
+                    break
+
+            order.append(street_id)
+            green_times[street_id] = green_time
+
+        schedules.append(Schedule(i_intersection=i_intersection,
+                                  order=order,
+                                  green_times=green_times))
+
+    return schedules
 
 
 def main(instance_name, variant, version) -> None:
@@ -14,31 +48,11 @@ def main(instance_name, variant, version) -> None:
     total_duration, bonus_points, intersections, streets, name_to_i_street, paths, \
         street_id_to_car_length, intersection_id_to_car_length = read_input(instance_name)
 
-    usage_based_heuristic_initial_solution = usage_based_initial_solution(intersections)
-    usage_based_heuristic_initial_score = fitness_score(usage_based_heuristic_initial_solution,
-                                                        streets, intersections,
-                                                        paths,
-                                                        total_duration,
-                                                        bonus_points)
-    print(f'The usage based heuristic initial solution of {instance_name} has the score '
-          f'{usage_based_heuristic_initial_score}.')
+    ssga_solution_path = os.path.join('ssga_solution', instance_name)
+    initial_solution = read_solution(ssga_solution_path, streets)
+    initial_score = fitness_score(initial_solution, streets, intersections, paths, total_duration, bonus_points)
 
-    traffic_based_heuristic_initial_solution = traffic_based_initial_solution(intersections)
-    traffic_based_heuristic_initial_score = fitness_score(traffic_based_heuristic_initial_solution,
-                                                          streets,
-                                                          intersections,
-                                                          paths,
-                                                          total_duration,
-                                                          bonus_points)
-    print(f'The traffic based heuristic initial solution of {instance_name} has the score '
-          f'{traffic_based_heuristic_initial_score}.')
-
-    if traffic_based_heuristic_initial_score > usage_based_heuristic_initial_score:
-        initial_solution = traffic_based_heuristic_initial_solution
-        initial_score = traffic_based_heuristic_initial_score
-    else:
-        initial_solution = usage_based_heuristic_initial_solution
-        initial_score = usage_based_heuristic_initial_score
+    print(f'Initial Score: {initial_score}')
 
     ils_solution, best_solution_time, iteration, sum_all_inner_iterations = optimize_solution_with_ils(initial_solution,
                                                                                                        streets,

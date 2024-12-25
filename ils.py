@@ -368,7 +368,7 @@ def optimize_solution_with_ils(initial_solution: list[Schedule],
             best_solution = current_solution
             best_solution_time = time.time()  # Update the time when the best solution is found
 
-        print(bs_score)
+        print(f'Best score after Hill-Climbing: {bs_score}')
 
         current_home_base = new_home_base(current_home_base, current_solution, streets, intersections, paths,
                                           total_duration, bonus_points)
