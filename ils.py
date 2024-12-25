@@ -263,8 +263,7 @@ def enhanced_tweak(current_solution: list[Schedule],
                    street_id_to_car_length,
                    intersection_id_to_car_length
                    ) -> list[Schedule]:
-    # We have 7 operations total, each will have ~14.2857% chance.
-    tweak_option = random.randint(0, 6)
+    tweak_option = random.randint(0, 5)
 
     if tweak_option == 0:
         return guided_change_of_green_time(current_solution,
@@ -283,20 +282,20 @@ def enhanced_tweak(current_solution: list[Schedule],
         return change_of_green_time_of_waiting_cars(current_solution, intersections)
     elif tweak_option == 4:
         return guided_swap_orders(current_solution, intersection_id_to_car_length)
-    elif tweak_option == 5:
+    else:
         return optimize_orders_brute_force(current_solution,
                                            streets,
                                            intersections,
                                            paths,
                                            total_duration,
                                            bonus_points)
-    else:  # tweak_option == 6
-        return optimize_green_times_brute_force(current_solution,
-                                                streets,
-                                                intersections,
-                                                paths,
-                                                total_duration,
-                                                bonus_points)
+    # else:  # tweak_option == 6
+    #     return optimize_green_times_brute_force(current_solution,
+    #                                             streets,
+    #                                             intersections,
+    #                                             paths,
+    #                                             total_duration,
+    #                                             bonus_points)
 
 
 def perturb(current_solution: list[Schedule]) -> list[Schedule]:
