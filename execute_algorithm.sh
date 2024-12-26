@@ -66,7 +66,7 @@ function run_in_parallel {
 
 for instance in "${instance_names[@]}"; do
     for version in {1..10}; do
-        run_in_parallel python3 main.py --instance_name "$instance" --variant 9 --version "$version"
+        run_in_parallel python3 main.py --instance_name "$instance" --variant 10 --version "$version"
     done
 done
 

@@ -48,7 +48,7 @@ def main(instance_name, variant, version) -> None:
     total_duration, bonus_points, intersections, streets, name_to_i_street, paths, \
         street_id_to_car_length, intersection_id_to_car_length = read_input(instance_name)
 
-    ssga_solution_path = os.path.join('ssga_solution', instance_name)
+    ssga_solution_path = os.path.join('ssga_hill_climbing_solution', instance_name)
     initial_solution = read_solution(ssga_solution_path, streets)
     initial_score = fitness_score(initial_solution, streets, intersections, paths, total_duration, bonus_points)
 
