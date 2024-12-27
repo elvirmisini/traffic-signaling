@@ -3,7 +3,7 @@ import time
 
 from fitness_function import fitness_score
 from ils import optimize_solution_with_ils
-from initial_solution import traffic_based_initial_solution
+from initial_solution import usage_based_initial_solution
 from input_parser import read_input
 from ouput_writer import save_schedule_to_file
 
@@ -14,27 +14,27 @@ def main(instance_name, variant, version) -> None:
     total_duration, bonus_points, intersections, streets, name_to_i_street, paths, \
         street_id_to_car_length, intersection_id_to_car_length = read_input(instance_name)
 
-    # usage_based_heuristic_initial_solution = usage_based_initial_solution(intersections)
-    # usage_based_heuristic_initial_score = fitness_score(usage_based_heuristic_initial_solution,
-    #                                                     streets, intersections,
-    #                                                     paths,
-    #                                                     total_duration,
-    #                                                     bonus_points)
-    # print(f'The usage based heuristic initial solution of {instance_name} has the score '
-    #       f'{usage_based_heuristic_initial_score}.')
+    usage_based_heuristic_initial_solution = usage_based_initial_solution(intersections)
+    usage_based_heuristic_initial_score = fitness_score(usage_based_heuristic_initial_solution,
+                                                        streets, intersections,
+                                                        paths,
+                                                        total_duration,
+                                                        bonus_points)
+    print(f'The usage based heuristic initial solution of {instance_name} has the score '
+          f'{usage_based_heuristic_initial_score}.')
 
-    traffic_based_heuristic_initial_solution = traffic_based_initial_solution(intersections)
-    traffic_based_heuristic_initial_score = fitness_score(traffic_based_heuristic_initial_solution,
-                                                          streets,
-                                                          intersections,
-                                                          paths,
-                                                          total_duration,
-                                                          bonus_points)
-    print(f'The traffic based heuristic initial solution of {instance_name} has the score '
-          f'{traffic_based_heuristic_initial_score}.')
+    # traffic_based_heuristic_initial_solution = traffic_based_initial_solution(intersections)
+    # traffic_based_heuristic_initial_score = fitness_score(traffic_based_heuristic_initial_solution,
+    #                                                       streets,
+    #                                                       intersections,
+    #                                                       paths,
+    #                                                       total_duration,
+    #                                                       bonus_points)
+    # print(f'The traffic based heuristic initial solution of {instance_name} has the score '
+    #       f'{traffic_based_heuristic_initial_score}.')
 
     ils_solution, best_solution_time, iteration, sum_all_inner_iterations = optimize_solution_with_ils(
-        traffic_based_heuristic_initial_solution,
+        usage_based_heuristic_initial_solution,
         streets,
         intersections,
         paths,
@@ -46,7 +46,7 @@ def main(instance_name, variant, version) -> None:
     score = fitness_score(ils_solution, streets, intersections, paths, total_duration, bonus_points)
     print(f'The solution of {instance_name} has the score {score}.')
 
-    print(f'Optimized for {score - traffic_based_heuristic_initial_score} points.')
+    print(f'Optimized for {score - usage_based_heuristic_initial_score} points.')
     save_schedule_to_file(ils_solution,
                           streets,
                           f'{instance_name}_'
